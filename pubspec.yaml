@@ -1,0 +1,67 @@
+name: lettutor
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  cupertino_icons: ^1.0.2
+  animate_do: ^3.0.2
+  awesome_dialog: ^3.1.0
+  cached_network_image: ^3.2.3
+  dio: ^5.3.0
+  flutter_easyloading: ^3.0.5
+  flutter_svg: ^2.0.9
+  fluttertoast: ^8.0.9
+  freezed: ^2.3.5
+  freezed_annotation: 2.2.0
+  get: ^4.6.5
+  intl: ^0.18.1
+  intl_phone_field: ^3.2.0
+  loading_animation_widget: ^1.2.0+4
+  permission_handler: ^11.0.1
+  photo_view: ^0.14.0
+  shared_preferences: ^2.0.15
+  tuple: ^2.0.2
+  get_storage: ^2.1.1
+  flutter_secure_storage: ^9.0.0
+  introduction_screen: ^3.1.12
+  pull_to_refresh: ^2.0.0
+  flutter_cached_pdfview: ^0.4.2
+  syncfusion_flutter_pdfviewer: ^23.1.43
+  flutter_rating_bar: ^4.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  build_runner: ^2.1.7
+  json_serializable: ^6.7.1
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/svgs/
+    - assets/icons/
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/InterSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/InterMedium.ttf
+          weight: 500
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
+        - asset: assets/fonts/InterBold.ttf
+          weight: 700
