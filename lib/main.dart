@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:lettutor/app/config/app_colors.dart';
 import 'package:lettutor/app/utils/di.dart';
 import 'package:lettutor/data/providers/local/local_storage.dart';
-import 'package:lettutor/presentation/modules/main/app.dart';
+import 'package:lettutor/presentation/main/app.dart';
 
 void main() async {
   DenpendencyInjection.init();

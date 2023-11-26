@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/app/config/app_colors.dart';
-import 'package:lettutor/presentation/modules/main/controllers/app_controller.dart';
+import 'package:lettutor/presentation/main/app_controller.dart';
 import '../theme/theme_helper.dart';
 
 import '../utils/size_utils.dart';

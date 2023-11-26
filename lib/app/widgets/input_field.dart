@@ -7,7 +7,7 @@ import 'package:lettutor/app/config/app_constants.dart';
 import 'package:lettutor/app/config/app_text_styles.dart';
 import 'package:lettutor/app/theme/theme_helper.dart';
 import 'package:lettutor/app/utils/size_utils.dart';
-import 'package:lettutor/presentation/modules/main/controllers/app_controller.dart';
+import 'package:lettutor/presentation/main/app_controller.dart';
 
 class InputField extends StatelessWidget {
   final void Function(String?)? onSaved;
