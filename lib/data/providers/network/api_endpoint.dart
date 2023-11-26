@@ -1,3 +1,3 @@
-class ApiEnpoint {
+class ApiEndpoint {
   static const baseApiUrl = '';
 }

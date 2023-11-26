@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:lettutor/data/models/tokens.dart';
+import 'package:lettutor/data/models/user/user_token_model.dart';
 
 class LocalStorage {
   final _getStorage = GetStorage();
@@ -44,10 +44,10 @@ class LocalStorage {
   }
 
   // User token data
-  Future<void> saveUserTokenData(Tokens? tokenModel) {
+  Future<void> saveUserTokenData(UserTokenModel? userTokenModel) {
     return Future.wait([
-      saveUserAccessToken(tokenModel?.accessToken),
-      saveUserRefreshToken(tokenModel?.refreshToken),
+      saveUserAccessToken(userTokenModel?.access?.token),
+      saveUserRefreshToken(userTokenModel?.refresh?.token),
     ]);
   }
 
