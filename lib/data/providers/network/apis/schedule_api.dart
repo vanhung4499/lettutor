@@ -12,10 +12,10 @@ abstract class ScheduleApi {
   factory ScheduleApi(Dio dio) = _ScheduleApi;
 
   @GET("/booking/list/student")
-  Future<BookingResponse?> getBooHistory(
+  Future<HttpResponse<BookingResponse?>> getBooHistory(
       @Queries() Map<String, dynamic> queries,
       );
 
   @GET("/booking/next?dateTime={time}")
-  Future<UpcomingResponse?> getUpComing(@Path('time') int time);
+  Future<HttpResponse<UpcomingResponse?>> getUpComing(@Path('time') int time);
 }

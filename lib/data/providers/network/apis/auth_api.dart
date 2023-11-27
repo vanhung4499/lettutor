@@ -11,30 +11,30 @@ abstract class AuthApi {
   factory AuthApi(Dio dio) = _AuthApi;
 
   @POST("/auth/login")
-  Future<LoginResponse?> login(
+  Future<HttpResponse<LoginResponse?>> login(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/auth/register")
-  Future<LoginResponse?> register(
+  Future<HttpResponse<LoginResponse?>> register(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/auth/logout")
-  Future<AuthenticateResponse> logout();
+  Future<HttpResponse<AuthenticateResponse>> logout();
 
   @POST("/auth/refresh-token")
-  Future<AuthenticateResponse> refreshToken(
+  Future<HttpResponse<AuthenticateResponse>> refreshToken(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/user/forgotPassword")
-  Future<void> resetPassword({
+  Future<HttpResponse> resetPassword({
     @Body() required Map<String, dynamic> body,
   });
 
   @POST("/auth/google")
-  Future<void> googleSignIn({
+  Future<HttpResponse> googleSignIn({
     @Body() required Map<String, dynamic> body,
   });
 
   @GET("/auth/verifyAccount?token={value}")
-  Future<void> verifyEmailAccount(@Path('value') String token);
+  Future<HttpResponse> verifyEmailAccount(@Path('value') String token);
 }

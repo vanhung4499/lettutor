@@ -1,13 +1,20 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ReviewTutorRequest {
+  final String booId;
+  final String userId;
+  final double ratting;
+  final String content;
 
-part 'review_tutor_request.freezed.dart';
+  ReviewTutorRequest({
+    required this.booId,
+    required this.userId,
+    required this.ratting,
+    required this.content,
+  });
 
-@freezed
-class ReviewTutorRequest with _$ReviewTutorRequest {
-  const factory ReviewTutorRequest({
-    required String booId,
-    required String userId,
-    required double ratting,
-    required String content,
-  }) = _ReviewTutorRequest;
+  Map<String, dynamic> get toMap => {
+    "bookingId": booId,
+    "userId": userId,
+    "rating": ratting,
+    "content": content
+  };
 }

@@ -10,11 +10,11 @@ abstract class CommonApi {
   factory CommonApi(Dio dio) = _CommonApi;
 
   @GET("/call/total")
-  Future<int> getTotalTime();
+  Future<HttpResponse<int>> getTotalTime();
 
   @GET("/learn-topic")
-  Future<List<TopicResponse>?> getTopic();
+  Future<HttpResponse<List<TopicResponse>?>> getTopic();
 
   @GET("/test-preparation")
-  Future<List<TopicResponse>?> getTestPreparation();
+  Future<HttpResponse<List<TopicResponse>?>> getTestPreparation();
 }

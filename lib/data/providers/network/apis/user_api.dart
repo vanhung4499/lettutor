@@ -7,41 +7,40 @@ part 'user_api.g.dart';
 
 @RestApi()
 abstract class UserApi {
-
   factory UserApi(Dio dio) = _UserApi;
 
   @POST("/report")
-  Future<void> reportTutor(
+  Future<HttpResponse> reportTutor(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/booking")
-  Future<void> bookingTutor(
+  Future<HttpResponse> bookingTutor(
       {@Body() required Map<String, dynamic> body});
 
   @DELETE("/booking")
-  Future<void> cancelTutor(
+  Future<HttpResponse> cancelTutor(
       {@Body() required Map<String, dynamic> body});
 
-  @POST("/booking/student-request/{booId}")
-  Future<void> updateStudentRequest(@Path('booId') String booId,
+  @POST("/booking/student-request/{bookingId}")
+  Future<HttpResponse> updateStudentRequest(@Path('bookingId') String bookingId,
       {@Body() required Map<String, dynamic> body});
 
   @GET("/call/total")
-  Future<TotalTimeResponse?> getTotalTime();
+  Future<HttpResponse<TotalTimeResponse?>> getTotalTime();
 
   @GET("/user/info")
-  Future<UserInfo?> getUserInfo();
+  Future<HttpResponse<UserInfo?>> getUserInfo();
 
   @PUT("/user/info")
-  Future<UserInfo?> updateUserInfo(
+  Future<HttpResponse<UserInfo?>> updateUserInfo(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/user/feedbackTutor")
-  Future<void> reviewTutor(
+  Future<HttpResponse> reviewTutor(
       {@Body() required Map<String, dynamic> body});
 
   @POST("/tutor/register")
-  Future<void> becomeTutor({
+  Future<HttpResponse> becomeTutor({
     @Body() required Map<String, dynamic> body,
     @Header("Content-Type") required String contentType,
   });

@@ -1,5 +1,6 @@
+import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/domain/entities/common/topic.dart';
 
-abstract class AppRepositories {
-  Future<List<Topic>> getTopics();
+abstract class CommonRepository {
+  SingleResult<List<Topic>> getTopics();
 }

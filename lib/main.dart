@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/app/config/app_colors.dart';
 import 'package:lettutor/app/utils/di.dart';
-import 'package:lettutor/data/providers/local/local_storage.dart';
+import 'package:lettutor/data/providers/local/preferences.dart';
 import 'package:lettutor/presentation/main/app.dart';
 
 void main() async {
@@ -17,8 +17,7 @@ void main() async {
 
 initServices() async {
   print('starting services ...');
-  await GetStorage.init();
-  Get.put(LocalStorage(), permanent: true);
+
   print('All services started...');
 }
 

@@ -1,31 +1,32 @@
 
+import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/become_tutor_request.dart';
 import 'package:lettutor/data/models/request/review_tutor_request.dart';
 import 'package:lettutor/data/models/request/update_profile_request.dart';
 import 'package:lettutor/domain/entities/user/user.dart';
 
-abstract class UserRepositories {
-  Future<bool> reportUser(
+abstract class UserRepository {
+  SingleResult<bool> reportUser(
       {required String userId, required String content});
 
-  Future<bool> booTutor(
+  SingleResult<bool> bookingTutor(
       {required List<String> scheduleDetailIds, required String note});
 
-  Future<bool> cancelBooTutor({required List<String> scheduleDetailIds});
+  SingleResult<bool> cancelBookingTutor({required List<String> scheduleDetailIds});
 
-  Future<bool> updateStudentRequest(
+  SingleResult<bool> updateStudentRequest(
       {required String booId, required String content});
 
-  Future<bool> reviewTutor(
+  SingleResult<bool> reviewTutor(
       {required ReviewTutorRequest reviewTutorRequest});
 
-  Future<int> getTotalTime();
+  SingleResult<int> getTotalTime();
 
-  Future<User> updateUserInfo(
+  SingleResult<User> updateUserInfo(
       {required UpdateProfileRequest updateProfileRequest});
 
   Future<User?> getUserInfo();
 
-  Future<bool> becomeTutor(
+  SingleResult<bool> becomeTutor(
       {required BecomeTutorRequest becomeTutorRequest});
 }

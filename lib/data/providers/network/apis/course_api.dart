@@ -11,15 +11,15 @@ abstract class CourseApi {
   factory CourseApi(Dio dio) = _CourseApi;
 
   @GET("/course")
-  Future<ListCourseResponse?> listCourses(
+  Future<HttpResponse<ListCourseResponse?>> listCourses(
       Map<String, dynamic> queries,
       );
 
   @GET("/course/{id}")
-  Future<CourseDetailResponse?> getCourse(
+  Future<HttpResponse<CourseDetailResponse?>> getCourse(
       @Path("id") String courseId,
       );
 
   @POST("/content-category")
-  Future<ContentCategoryResponse?> createCourse();
+  Future<HttpResponse<ContentCategoryResponse?>> getContentCategory();
 }

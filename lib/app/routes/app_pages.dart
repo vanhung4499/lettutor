@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:lettutor/data/models/topic.dart';
 import 'package:lettutor/presentation/course/course_detail/course_detail_binding.dart';
 import 'package:lettutor/presentation/course/course_detail/course_detail_screen.dart';
 import 'package:lettutor/presentation/course/topic/topic_binding.dart';

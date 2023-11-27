@@ -40,6 +40,10 @@ dependencies:
   retrofit: ^4.0.1
   image_picker: ^1.0.4
   http_parser: ^4.0.2
+  fpdart: ^1.1.0
+  uuid: ^4.2.1
+  rxdart_ext: ^0.2.9
+  google_sign_in: ^6.1.6
 
 dev_dependencies:
   flutter_test:

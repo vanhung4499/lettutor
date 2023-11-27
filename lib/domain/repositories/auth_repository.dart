@@ -1,15 +1,18 @@
+import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/user/user_token_model.dart';
 
 abstract class AuthRepository {
-  Future<UserTokenModel?> login(
+  SingleResult<UserTokenModel?> login(
       {required String email, required String password});
-  Future<UserTokenModel?> register(
+
+  SingleResult<UserTokenModel?> register(
       {required String email, required String password});
-  Future<bool?> resetPassword({required String email});
 
-  Future<bool?> googleSignIn();
+  SingleResult<bool?> resetPassword({required String email});
 
-  Future<bool?> facebookSignIn();
+  SingleResult<bool?> googleSignIn();
 
-  Future<bool?> verifyAccountEmail({required String token});
+  SingleResult<bool?> facebookSignIn();
+
+  SingleResult<bool?> verifyAccountEmail({required String token});
 }
