@@ -11,65 +11,100 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   cupertino_icons: ^1.0.2
-  animate_do: ^3.0.2
-  awesome_dialog: ^3.1.0
-  cached_network_image: ^3.2.3
-  dio: ^5.3.0
-  flutter_easyloading: ^3.0.5
-  flutter_svg: ^2.0.9
-  fluttertoast: ^8.0.9
-  freezed: ^2.3.5
-  freezed_annotation: 2.2.0
-  get: ^4.6.5
+  flutter_bloc: ^8.1.2
+  adaptive_theme: ^3.2.1
+  equatable: ^2.0.3
+  provider: ^6.0.5
+  get_it: ^7.2.0
+  collection: ^1.17.2
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.1
   intl: ^0.18.1
-  intl_phone_field: ^3.2.0
-  loading_animation_widget: ^1.2.0+4
-  permission_handler: ^11.0.1
-  photo_view: ^0.14.0
-  shared_preferences: ^2.0.15
-  tuple: ^2.0.2
-  get_storage: ^2.1.1
-  flutter_secure_storage: ^9.0.0
-  introduction_screen: ^3.1.12
-  pull_to_refresh: ^2.0.0
-  flutter_cached_pdfview: ^0.4.2
-  syncfusion_flutter_pdfviewer: ^23.1.43
-  flutter_rating_bar: ^4.0.1
+  intl_utils: ^2.8.5
+  injectable: ^2.1.0
+  flutter_swiper_null_safety: ^1.0.2
+  badges: ^3.1.1
+  extended_image: ^8.0.2
+  flutter_svg: ^2.0.5
+  fl_chart: ^0.65.0
+  calendar_timeline: ^1.1.2
   retrofit: ^4.0.1
+  dio: ^5.1.1
+  scrollable_positioned_list: ^0.3.8
+  dotted_decoration: ^2.0.0
+  flutter_rating_bar: ^4.0.1
+  tab_indicator_styler: ^2.0.0
+  flutter_adaptive_scaffold: ^0.1.4
+  syncfusion_flutter_datepicker: ^23.2.4
+  file_picker: ^6.1.1
   image_picker: ^1.0.4
-  http_parser: ^4.0.2
-  fpdart: ^1.1.0
-  uuid: ^4.2.1
+  dotted_border: ^2.0.0+3
+  readmore: ^2.2.0
+  flutter_timeline: ^0.3.0
+  ticket_widget: ^1.0.2
+  countries_world_map: ^1.0.3
+  dotted_line: ^3.1.0
+  table_calendar: ^3.0.9
+  bcrypt: ^1.1.3
+  screenshot: ^2.1.0
+  skeletons: ^0.0.3
+  skeleton_text: ^3.0.0
+  pdf: ^3.10.4
+  sentry_flutter: ^7.8.0
+  animations: ^2.0.7
+  flutter_staggered_grid_view: ^0.7.0
+  expansion_widget: ^0.0.3
+  carousel_slider: ^4.2.1
+  diffutil_dart: ^4.0.0
+  flutter_isolate: ^2.0.4
+  jumping_dot: ^0.0.6
+  flutter_spinkit: ^5.2.0
+  universal_platform: ^1.0.0+1
+  rx_bloc: ^5.0.0
+  flutter_bloc_pattern: ^2.3.0
+  rxdart: ^0.27.7
   rxdart_ext: ^0.2.9
-  google_sign_in: ^6.1.6
+  disposebag: ^1.5.1
+  video_player: ^2.7.2
+  youtube_player_iframe: ^4.0.4
+  visibility_detector: ^0.4.0+2
+  timeago: ^3.5.0
+  url_launcher: ^6.1.14
+  timer_count_down: ^2.2.2
+  country_code_picker: ^3.0.0
+  flutter_pdfview: ^1.3.1
+#  jitsi_meet_wrapper: ^0.2.0+1
+  jwt_decoder: ^2.0.1
+  http_parser: ^4.0.2
+  google_sign_in: ^6.1.5
+  dart_either: ^1.0.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
-  build_runner: ^2.1.7
-  json_serializable: ^6.7.1
-  retrofit_generator: ^7.0.8
+  flutter_lints: ^3.0.1
+  build_runner: ^2.3.3
+  freezed: ^2.3.2
+  json_serializable: ^6.6.1
+  dart_code_metrics: ^5.7.0
+  hive_generator: ^2.0.0
+  injectable_generator: ^2.1.5
+  retrofit_generator: ^8.0.4
+  isar_generator: ^3.0.5
+
+flutter_intl:
+  enabled: true
+  use_deferred_loading: true
 
 flutter:
-
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/images/
-    - assets/svgs/
     - assets/icons/
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/InterSemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/InterMedium.ttf
-          weight: 500
-        - asset: assets/fonts/InterRegular.ttf
-          weight: 400
-        - asset: assets/fonts/InterBold.ttf
-          weight: 700

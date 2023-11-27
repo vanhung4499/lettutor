@@ -1,6 +1,6 @@
+import 'package:dart_either/dart_either.dart';
 import 'package:dio/dio.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 
 abstract class DataState<T> {
   final T? data;
@@ -28,6 +28,6 @@ extension DataStateExtensions<T> on DataState<T> {
         AppException(message: dioError?.message ?? 'Error'),
       );
     }
-    return Either.right(true);
+    return const Either.right(true);
   }
 }

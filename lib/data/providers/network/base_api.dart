@@ -1,18 +1,18 @@
-
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:intl/intl.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
-import 'package:lettutor/app/utils/validator.dart';
+
+import 'package:dart_either/dart_either.dart';
+import 'package:lettutor/core/network/app_exception.dart';
+import 'package:lettutor/core/utils/validator.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/response/login_response.dart';
 import 'package:lettutor/data/models/user/user_token_model.dart';
 import 'package:lettutor/data/providers/local/preferences.dart';
 import 'package:lettutor/data/providers/network/data_state.dart';
 import 'package:retrofit/dio.dart';
+import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 
 abstract class BaseApi {
   Future<DataState<T>> getStateOf<T>({
@@ -38,7 +38,7 @@ abstract class BaseApi {
     }
   }
 
-  SingleResult<UserTokenModel?> authFunction({
+  SingleResult<UserTokenModel?>  authFunction({
     required Future<HttpResponse<LoginResponse?>> functionCall,
   }) {
     return SingleResult.fromCallable(

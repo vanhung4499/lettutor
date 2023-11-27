@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/user/user_token_model.dart';
 import 'package:lettutor/domain/repositories/auth_repository.dart';
 
+@injectable
 class LoginUseCase {
   final AuthRepository _authRepository;
 
@@ -15,7 +17,7 @@ class LoginUseCase {
       {required String email, required String password}) =>
       _authRepository.register(email: email, password: password);
 
-  SingleResult<bool?> googleSignIn() => _authRepository.googleSignIn();
+  SingleResult<bool?> googleLogin() => _authRepository.googleSignIn();
 
   SingleResult<bool?> verifyAccount() => _authRepository.verifyAccountEmail(
     token:

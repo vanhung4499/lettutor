@@ -1,5 +1,5 @@
-import 'package:fpdart/fpdart.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 class AppError {

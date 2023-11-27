@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/domain/repositories/schedule_repository.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
+@injectable
 class BookingUseCase {
   final ScheduleRepository _scheduleRepository;
   final UserRepository _userRepository;

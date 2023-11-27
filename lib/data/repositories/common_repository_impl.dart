@@ -1,7 +1,7 @@
 
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/providers/network/apis/common_api.dart';
 import 'package:lettutor/data/providers/network/base_api.dart';
@@ -9,8 +9,10 @@ import 'package:lettutor/data/providers/network/data_state.dart';
 import 'package:lettutor/domain/entities/common/topic.dart';
 import 'package:lettutor/domain/repositories/common_repository.dart';
 
+@Injectable(as: CommonRepository)
 class CommonRepositoryImpl extends BaseApi implements CommonRepository {
-  final CommonApi _appApi = Get.find();
+  final CommonApi _appApi;
+  CommonRepositoryImpl(this._appApi);
 
   @override
   SingleResult<List<Topic>> getTopics() {

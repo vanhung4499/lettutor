@@ -1,9 +1,6 @@
-
-
-
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/response/list_course_response.dart';
 import 'package:lettutor/data/providers/network/apis/course_api.dart';
@@ -13,9 +10,10 @@ import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 import 'package:lettutor/domain/entities/course/course_category.dart';
 import 'package:lettutor/domain/repositories/course_repository.dart';
-
+@Injectable(as: CourseRepository)
 class CourseRepositoryImpl extends BaseApi implements CourseRepository {
-  final CourseApi _courseApi = Get.find();
+  final CourseApi _courseApi;
+  CourseRepositoryImpl(this._courseApi);
 
   @override
   SingleResult<Pagination<Course>> getListCourse(

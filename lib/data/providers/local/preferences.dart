@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -6,9 +5,6 @@ class CommonAppSettingPref {
   static const String _accessToken = "_accessToken";
   static const String _refreshToken = "_refreshToken";
   static const String _expiredTime = "_expiredTime";
-
-  static const String _locale = 'locale';
-  static const String _themeMode = 'theme_mode';
 
   static const String _language = "language";
   static const String _currency = "currency";
@@ -166,34 +162,6 @@ class CommonAppSettingPref {
 
   static String? getTheme() {
     return Preferences.getString(_theme);
-  }
-
-  // Locale
-  String? get locale {
-    return Preferences.getString(_locale);
-  }
-
-  Future<void> saveLocale(String currentLocale) {
-    return Preferences.setString(_locale, currentLocale);
-  }
-
-  Future<void> removeLocale() {
-    return Preferences.remove(_locale);
-  }
-
-  // Dark mode
-  ThemeMode get themeMode {
-    final String themeMode = Preferences.getString(_themeMode) ?? 'system';
-
-    return ThemeMode.values.byName(themeMode);
-  }
-
-  Future<void> setThemeMode(ThemeMode themeMode) {
-    return Preferences.setString(_themeMode, themeMode.name);
-  }
-
-  Future<void> removeThemeMode() {
-    return Preferences.remove(_themeMode);
   }
 
   static Future<bool> setFont(String fontName) {

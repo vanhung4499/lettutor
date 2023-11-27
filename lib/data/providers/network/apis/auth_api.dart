@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/response/auth_response.dart';
 import 'package:lettutor/data/models/response/login_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'auth_api.g.dart';
 
+@injectable
 @RestApi()
 abstract class AuthApi {
 
+  @factoryMethod
   factory AuthApi(Dio dio) = _AuthApi;
 
   @POST("/auth/login")

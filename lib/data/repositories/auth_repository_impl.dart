@@ -1,7 +1,7 @@
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
+import 'package:dart_either/dart_either.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/user/user_token_model.dart';
 import 'package:lettutor/data/providers/network/apis/auth_api.dart';
@@ -9,12 +9,10 @@ import 'package:lettutor/data/providers/network/base_api.dart';
 import 'package:lettutor/data/providers/network/data_state.dart';
 import 'package:lettutor/domain/repositories/auth_repository.dart';
 
-void delayed() async {
-  await Future.delayed(const Duration(seconds: 6));
-}
-
+@Injectable(as: AuthRepository)
 class AuthRepositoryImpl extends BaseApi implements AuthRepository {
-  final AuthApi _authApi = Get.find();
+  final AuthApi _authApi;
+  AuthRepositoryImpl(this._authApi);
 
   @override
   SingleResult<UserTokenModel?> login(

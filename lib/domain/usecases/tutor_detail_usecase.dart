@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/domain/entities/tutor/review.dart';
@@ -5,6 +6,7 @@ import 'package:lettutor/domain/entities/tutor/tutor_detail.dart';
 import 'package:lettutor/domain/repositories/tutor_repository.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
+@injectable
 class TutorDetailUseCase {
   final TutorRepository _tutorRepository;
   final UserRepository _userRepository;

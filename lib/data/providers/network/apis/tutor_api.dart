@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/response/list_schedule_response.dart';
 import 'package:lettutor/data/models/response/list_tutor_response.dart';
 import 'package:lettutor/data/models/response/review_response.dart';
@@ -9,8 +10,10 @@ import 'package:retrofit/http.dart';
 
 part 'tutor_api.g.dart';
 
+@injectable
 @RestApi()
 abstract class TutorApi {
+  @factoryMethod
   factory TutorApi(Dio dio) = _TutorApi;
 
   @GET('/tutor/more?perPage={size}&page={page}')

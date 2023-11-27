@@ -1,14 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/response/booking_response.dart';
 import 'package:lettutor/data/models/response/upcoming_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'schedule_api.g.dart';
 
+@injectable
 @RestApi()
 abstract class ScheduleApi {
-  static const String getUpComingApi = "/booking/next";
 
+  @factoryMethod
   factory ScheduleApi(Dio dio) = _ScheduleApi;
 
   @GET("/booking/list/student")

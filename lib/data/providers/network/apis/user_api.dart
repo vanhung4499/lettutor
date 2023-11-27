@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/response/total_time_response.dart';
 import 'package:lettutor/data/models/user/user_info.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'user_api.g.dart';
 
+@injectable
 @RestApi()
 abstract class UserApi {
+  @factoryMethod
   factory UserApi(Dio dio) = _UserApi;
 
   @POST("/report")

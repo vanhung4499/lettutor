@@ -1,7 +1,7 @@
 
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/become_tutor_request.dart';
 import 'package:lettutor/data/models/request/review_tutor_request.dart';
@@ -12,8 +12,11 @@ import 'package:lettutor/data/providers/network/data_state.dart';
 import 'package:lettutor/domain/entities/user/user.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
+@Injectable(as: UserRepository)
 class UserRepositoriesImpl extends BaseApi implements UserRepository {
-  final UserApi _userApi = Get.find();
+  final UserApi _userApi;
+
+  UserRepositoriesImpl(this._userApi);
 
   @override
   SingleResult<bool> reportUser(

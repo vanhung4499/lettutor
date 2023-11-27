@@ -1,38 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/config/app_colors.dart';
-import 'package:lettutor/app/utils/di.dart';
-import 'package:lettutor/data/providers/local/preferences.dart';
-import 'package:lettutor/presentation/main/app.dart';
+import 'package:lettutor/core/environments/env_prod.dart';
 
-void main() async {
-  DenpendencyInjection.init();
-  WidgetsFlutterBinding.ensureInitialized();
-  await initServices();
-  runApp(App(Get.find()));
-  configLoading();
-}
+import 'app_delegate.dart';
 
-initServices() async {
-  print('starting services ...');
-
-  print('All services started...');
-}
-
-void configLoading() {
-  EasyLoading.instance
-    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-    ..loadingStyle = EasyLoadingStyle.custom
-    // ..indicatorSize = 45.0
-    ..radius = 10.0
-    // ..progressColor = Colors.yellow
-    ..backgroundColor = AppColors.lightGray
-    ..indicatorColor = AppColors.kPrimaryColor
-    ..textColor = AppColors.kPrimaryColor
-    // ..maskColor = Colors.red
-    ..userInteractions = false
-    ..dismissOnTap = false
-    ..animationStyle = EasyLoadingAnimationStyle.scale;
-}
+void main() => AppDelegate().run(environmentProd);

@@ -1,8 +1,6 @@
-
-
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/search_tutor_request.dart';
 import 'package:lettutor/data/models/response/list_tutor_response.dart';
@@ -17,8 +15,10 @@ import 'package:lettutor/domain/entities/tutor/tutor_detail.dart';
 import 'package:lettutor/domain/entities/tutor/tutor_fav.dart';
 import 'package:lettutor/domain/repositories/tutor_repository.dart';
 
+@Injectable(as: TutorRepository)
 class TutorRepositoryImpl extends BaseApi implements TutorRepository {
-  final TutorApi _tutorApi = Get.find();
+  final TutorApi _tutorApi;
+  TutorRepositoryImpl(this._tutorApi);
 
   @override
   SingleResult<TutorFav> getListTutor(

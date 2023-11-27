@@ -1,5 +1,6 @@
-import 'package:fpdart/fpdart.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/update_profile_request.dart';
 import 'package:lettutor/domain/entities/common/topic.dart';
@@ -7,6 +8,7 @@ import 'package:lettutor/domain/entities/user/user.dart';
 import 'package:lettutor/domain/repositories/common_repository.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
+@injectable
 class UserInfoUseCase {
   final UserRepository _userRepository;
   final CommonRepository _commonRepository;

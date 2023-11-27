@@ -1,9 +1,12 @@
+import 'package:injectable/injectable.dart';
 import 'package:lettutor/domain/entities/user/user.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 import 'package:lettutor/domain/usecases/common_usecase.dart';
 
+@injectable
 class SettingUseCase extends CommonUseCase<User> {
   final UserRepository _userRepository;
+
   SettingUseCase(this._userRepository);
 
   @override

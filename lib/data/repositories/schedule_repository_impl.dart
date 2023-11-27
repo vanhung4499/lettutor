@@ -1,6 +1,6 @@
-import 'package:fpdart/fpdart.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/app/core/data/network/app_exception.dart';
+import 'package:dart_either/dart_either.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/providers/network/apis/schedule_api.dart';
 import 'package:lettutor/data/providers/network/base_api.dart';
@@ -9,8 +9,10 @@ import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/domain/repositories/schedule_repository.dart';
 
+@Injectable(as: ScheduleRepository)
 class ScheduleRepositoryImpl extends BaseApi implements ScheduleRepository {
-  final ScheduleApi _scheduleApi = Get.find();
+  final ScheduleApi _scheduleApi;
+  ScheduleRepositoryImpl(this._scheduleApi);
 
   @override
   SingleResult<Pagination<BookingInfo>> getBookingInfo({
