@@ -3,6 +3,7 @@ class Routes {
   static const String home = '/home';
   static const String splash = '/splash';
   static const String testUi = '/test_ui';
+  static const String ebook = '/ebook';
   static const String ratting = '/ratting';
   static const String meeting = '/meeting';
   static const String pdfView = '/pdf_view';
@@ -11,7 +12,7 @@ class Routes {
   static const String passCode = '/pass-code';
   static const String userInfo = '/user-info';
   static const String dashboard = '/dashboard';
-  static const String tutorShow = '/tutor-show';
+  static const String tutorList = '/tutor-list';
   static const String tutorDetail = '/tutor-detail';
   static const String becomeTutor = '/become-tutor';
   static const String searchTutor = '/search-tutor';

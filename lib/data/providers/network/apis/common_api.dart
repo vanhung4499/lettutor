@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:lettutor/data/models/response/ebook_response.dart';
 import 'package:lettutor/data/models/response/topic_response.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -20,4 +21,8 @@ abstract class CommonApi {
 
   @GET("/test-preparation")
   Future<HttpResponse<List<TopicResponse>?>> getTestPreparation();
+
+  @GET("/e-book")
+  Future<HttpResponse<EbookResponse?>> getListEbook(
+      @Queries() Map<String, dynamic> queries);
 }

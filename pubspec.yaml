@@ -103,7 +103,7 @@ flutter_intl:
 
 flutter:
   uses-material-design: true
-  generate: true
+#  generate: true
 
   assets:
     - assets/images/

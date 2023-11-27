@@ -7,18 +7,18 @@ import 'package:lettutor/domain/repositories/tutor_repository.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
 @injectable
-class ShowTutorUseCase {
+class TutorListUseCase {
   final TutorRepository _tutorRepository;
   final UserRepository _userRepository;
   final ScheduleRepository _scheduleRepository;
 
-  ShowTutorUseCase(
+  TutorListUseCase(
       this._tutorRepository,
       this._userRepository,
       this._scheduleRepository,
       );
 
-  SingleResult<TutorFav?> pagFetchData(
+  SingleResult<TutorFav?> getListTutorFav(
       {required int page, required int size}) =>
       _tutorRepository.getListTutor(page: page, perPage: size);
 
