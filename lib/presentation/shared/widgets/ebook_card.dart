@@ -6,17 +6,17 @@ import 'package:lettutor/core/extensions/string_extension.dart';
 import 'package:lettutor/core/widgets/image_custom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class EbookItem extends StatelessWidget {
-  const EbookItem({
+class EbookCard extends StatelessWidget {
+  const EbookCard({
     super.key,
-    required this.item,
+    required this.ebook,
   });
 
-  final Ebook item;
+  final Ebook ebook;
 
   void _launcherURl() async {
-    if (item.fileUrl?.isNotEmpty ?? false) {
-      final Uri url = Uri.parse(item.fileUrl!);
+    if (ebook.fileUrl?.isNotEmpty ?? false) {
+      final Uri url = Uri.parse(ebook.fileUrl!);
       if (!await launchUrl(url)) {
         throw Exception("Could not launch url $url");
       }
@@ -50,7 +50,7 @@ class EbookItem extends StatelessWidget {
                 borderRadius:
                 const BorderRadius.vertical(top: Radius.circular(5.0)),
                 child: ImageCustom(
-                  imageUrl: item.imageUrl ?? ImageConstant.baseImageView,
+                  imageUrl: ebook.imageUrl ?? ImageConstant.defaultImage,
                   isNetworkImage: true,
                   width: double.infinity,
                 ),
@@ -62,7 +62,7 @@ class EbookItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.name,
+                    ebook.name,
                     style: context.titleMedium
                         .copyWith(fontWeight: FontWeight.w600),
                   ),
@@ -77,13 +77,13 @@ class EbookItem extends StatelessWidget {
                           TextStyle(color: Theme.of(context).primaryColor),
                         ),
                         TextSpan(
-                          text: (item.level ?? '0').renderExperienceText,
+                          text: (ebook.level ?? '0').renderExperienceText,
                         )
                       ],
                     ),
                   ),
                   Text(
-                    item.description ?? '',
+                    ebook.description ?? '',
                     style: context.titleSmall
                         .copyWith(color: Theme.of(context).hintColor),
                   ),

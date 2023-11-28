@@ -92,7 +92,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           pinned: true,
           backgroundColor: Theme.of(context).primaryColor,
           widgeExpanded: ImageCustom(
-            imageUrl: course.imageUrl ?? ImageConstant.baseImageView,
+            imageUrl: course.imageUrl ?? ImageConstant.defaultImage,
             isNetworkImage: true,
           ),
           expandedHeight: context.heightDevice * 0.3,

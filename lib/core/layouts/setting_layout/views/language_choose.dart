@@ -42,7 +42,7 @@ class _LangCodeShowsState extends State<LangCodeShows> {
                     (e) => ListTile(
                   onTap: () => context.popArgs(e.langCode),
                   leading: Image.network(
-                    e.image ?? ImageConstant.baseImageView,
+                    e.image ?? ImageConstant.defaultImage,
                     fit: BoxFit.cover,
                     width: 50.0,
                     height: 30.0,

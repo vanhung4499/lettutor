@@ -8,8 +8,8 @@ import 'package:lettutor/core/widgets/skeleton_custom.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 import 'package:lettutor/routes/routes.dart';
 
-class CourseItem extends StatelessWidget {
-  const CourseItem({super.key, required this.course});
+class CourseCard extends StatelessWidget {
+  const CourseCard({super.key, required this.course});
 
   final Course course;
 
@@ -39,7 +39,7 @@ class CourseItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
                 child: ImageCustom(
-                  imageUrl: course.imageUrl ?? ImageConstant.baseImageView,
+                  imageUrl: course.imageUrl ?? ImageConstant.defaultImage,
                   isNetworkImage: true,
                   width: 120,
                   height: 120,

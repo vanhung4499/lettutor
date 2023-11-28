@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/button_custom.dart';
+import 'package:lettutor/presentation/course_list/blocs/home_bloc.dart';
 import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
 
-import '../../home/blocs/home_bloc.dart';
 
 class CourseCategoryBottom extends StatefulWidget {
   const CourseCategoryBottom({
@@ -17,7 +17,7 @@ class CourseCategoryBottom extends StatefulWidget {
   "Error",
   );
 
-  final HomeBloc? bloc;
+  final CourseListBloc? bloc;
   final EbookBloc? ebookBloc;
 
   @override

@@ -170,15 +170,15 @@ class _TutorListScreenState extends State<TutorListScreen> {
               StreamBuilder<BookingInfo?>(
                 stream: _bloc.upComingClass$,
                 builder: (ctx1, sS1) {
-                  final booInfo = sS1.data;
-                  if (booInfo == null) {
+                  final bookingInfo = sS1.data;
+                  if (bookingInfo == null) {
                     return Text(
                       S.of(context).donHaveAnyUpcoming,
                       style: context.titleMedium.copyWith(
                           fontWeight: FontWeight.w500, color: Colors.white),
                     );
                   }
-                  final referencesTime = booInfo.scheduleDetailInfo!
+                  final referencesTime = bookingInfo.scheduleDetailInfo!
                       .startPeriodTimestamp.millisecondsSinceEpoch /
                       1000;
                   final currentTime = Constant.currentTimeMilliSeconds;
@@ -266,9 +266,9 @@ class _TutorListScreenState extends State<TutorListScreen> {
           return TutorCard(
             tutor: tutor,
             isLiked: fav.contains(tutor.userId),
-            tutorOnPress: () => context.openPageWithRouteAndParams(
+            onTap: () => context.openPageWithRouteAndParams(
                 Routes.tutorDetail, tutor.userId),
-            favOnPress: () {
+            onFavoriteTap: () {
               if (tutor.userId != null) {
                 _bloc.addTutorToFav(tutor.userId ?? '');
               }

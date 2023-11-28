@@ -19,7 +19,7 @@ class IconCategory extends StatelessWidget {
         switch (category.typeImage) {
           TypeImage.assetImage => '', // add assets image,
           TypeImage.assetSvg => ImageConstant.homeIcon,
-          _ => ImageConstant.baseImageView,
+          _ => ImageConstant.defaultImage,
         };
     if (category.isIcon) {
       return Icon(

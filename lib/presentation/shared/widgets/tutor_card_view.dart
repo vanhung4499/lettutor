@@ -39,7 +39,7 @@ class TutorCardView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TutorInfoHero(
-                tutor: tutor, favOnPress: favOnPress, isLiked: isLiked),
+                tutor: tutor, onFavoriteTap: favOnPress, isLiked: isLiked),
             if (tutor.specialties != null)
               Wrap(
                 children: [

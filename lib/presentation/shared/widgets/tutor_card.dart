@@ -7,12 +7,12 @@ import 'package:lettutor/core/widgets/tutor_info_hero.dart';
 class TutorCard extends StatelessWidget {
   final Tutor tutor;
   final bool isLiked;
-  final Function()? favOnPress;
-  final Function()? tutorOnPress;
+  final Function()? onFavoriteTap;
+  final Function()? onTap;
   const TutorCard({
     super.key,
-    this.favOnPress,
-    this.tutorOnPress,
+    this.onFavoriteTap,
+    this.onTap,
     this.isLiked = false,
     required this.tutor,
   });
@@ -21,7 +21,7 @@ class TutorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
-      onTap: tutorOnPress,
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10.0),
@@ -39,7 +39,7 @@ class TutorCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TutorInfoHero(
-                tutor: tutor, favOnPress: favOnPress, isLiked: isLiked),
+                tutor: tutor, onFavoriteTap: onFavoriteTap, isLiked: isLiked),
             if (tutor.specialties != null)
               Wrap(
                 children: [

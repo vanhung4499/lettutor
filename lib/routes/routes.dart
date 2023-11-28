@@ -1,6 +1,6 @@
 class Routes {
   static const String login = '/login';
-  static const String home = '/home';
+  static const String courseList = '/course-list';
   static const String splash = '/splash';
   static const String testUi = '/test-ui';
   static const String ebook = '/ebook';

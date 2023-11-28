@@ -24,6 +24,6 @@ abstract class CourseApi {
       @Path("id") String courseId,
       );
 
-  @POST("/content-category")
+  @GET("/content-category")
   Future<HttpResponse<ContentCategoryResponse?>> getContentCategory();
 }

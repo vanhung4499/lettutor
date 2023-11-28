@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
         children: <Widget>[
           const SizedBox(height: 20.0),
           Image.asset(
-            ImageConstant.loginImages,
+            ImageConstant.loginImage,
             height: context.heightDevice * 0.3,
             width: double.infinity,
           ),

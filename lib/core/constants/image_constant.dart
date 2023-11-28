@@ -10,11 +10,11 @@ class ImageConstant {
 
   ///[App assets images]
 
-  static const String loginImages = "assets/images/login.png";
+  static const String loginImage = "assets/images/login.png";
 
   static const String bannerImage = "assets/images/hero_img.png";
 
   //image
-  static const String baseImageView =
-      'https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg';
+  static const String defaultImage =
+      'https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_1280.jpg';
 }

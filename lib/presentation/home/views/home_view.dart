@@ -10,27 +10,27 @@ import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/utils/handle_time.dart';
 import 'package:lettutor/core/widgets/header_custom.dart';
 import 'package:lettutor/core/widgets/skeleton_custom.dart';
-import 'package:lettutor/presentation/main/blocs/main_state.dart';
-import 'package:lettutor/presentation/shared/widgets/course_horizontal_item.dart';
-import 'package:lettutor/presentation/shared/widgets/tutor_horizontal_item.dart';
+import 'package:lettutor/presentation/shared/widgets/simple_course_card.dart';
+import 'package:lettutor/presentation/shared/widgets/simple_tutor_card.dart';
 import 'package:lettutor/routes/routes.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
-import '../blocs/main_bloc.dart';
-import '../../shared/widgets/ebook_horizontal_item.dart';
+import '../blocs/home_bloc.dart';
+import '../../shared/widgets/simple_ebook_card.dart';
 import '../../shared/widgets/welcome_text.dart';
+import '../blocs/home_state.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MainView> createState() => MainViewState();
+  State<HomeScreen> createState() => HomeScreenState();
 }
 
-class MainViewState extends State<MainView> {
+class HomeScreenState extends State<HomeScreen> {
   Color get _primaryColor => Theme.of(context).primaryColor;
 
-  MainBloc get _bloc => BlocProvider.of<MainBloc>(context);
+  HomeBloc get _bloc => BlocProvider.of<HomeBloc>(context);
 
   Object? listen;
 
@@ -40,33 +40,33 @@ class MainViewState extends State<MainView> {
 
     listen ??= _bloc.state$.flatMap(handleState).collect();
 
-    _bloc.getTopTutors();
-    _bloc.getTopCourse();
-    _bloc.getTopEbooks();
+    _bloc.listTopTutor();
+    _bloc.listTopCourse();
+    _bloc.listTopEbook();
   }
 
   Stream handleState(state) async* {
-    if (state is GetTopTutorFailed) {
+    if (state is ListTopTutorFailed) {
       context.showSnackBar("🐛[Get top tutors error] ${state.toString()}");
       return;
     }
-    if (state is GetTopTutorSuccess) {
+    if (state is ListTopTutorSuccess) {
       log("🌟[Get top tutors] Get top tutors success");
       return;
     }
-    if (state is GetTopCourseFailed) {
+    if (state is ListTopCourseFailed) {
       context.showSnackBar("🐛[Get top Courses error] ${state.toString()}");
       return;
     }
-    if (state is GetTopCourseSuccess) {
+    if (state is ListTopCourseSuccess) {
       log("🌟[Get top Courses] Get top courses success");
       return;
     }
-    if (state is GetTopEbookFailed) {
+    if (state is ListTopEbookFailed) {
       context.showSnackBar("🐛[Get top Ebooks error] ${state.toString()}");
       return;
     }
-    if (state is GetTopEbookSuccess) {
+    if (state is ListTopEbookSuccess) {
       log("🌟[Get top Ebooks] Get top Ebooks success");
       return;
     }
@@ -84,7 +84,7 @@ class MainViewState extends State<MainView> {
           children: [
             Icon(Icons.school, color: _primaryColor),
             Text(
-              ' letTutor',
+              ' LetTutor',
               style: context.titleLarge.copyWith(
                 fontWeight: FontWeight.bold,
                 color: _primaryColor,
@@ -96,9 +96,9 @@ class MainViewState extends State<MainView> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          _bloc.getTopTutors();
-          _bloc.getTopCourse();
-          _bloc.getTopEbooks();
+          _bloc.listTopTutor();
+          _bloc.listTopCourse();
+          _bloc.listTopEbook();
         },
         child: ListView(children: [
           const WelcomeText(),
@@ -118,7 +118,7 @@ class MainViewState extends State<MainView> {
                       return;
                     }
                     if (index == 1) {
-                      context.openListPageWithRoute(Routes.home);
+                      context.openListPageWithRoute(Routes.courseList);
                       return;
                     }
                     if (index == 2) {
@@ -130,9 +130,9 @@ class MainViewState extends State<MainView> {
                       .copyWith(fontWeight: FontWeight.w600, fontSize: 17.0),
                 ),
                 switch (index) {
-                  0 => _renderTutorField(),
-                  1 => _renderCourseField(),
-                  2 => _renderEbookField(),
+                  0 => _renderTutorListView(),
+                  1 => _renderCourseListView(),
+                  2 => _renderEbookListView(),
                   _ => const SizedBox(),
                 },
                 const SizedBox(height: 5.0),
@@ -202,9 +202,9 @@ class MainViewState extends State<MainView> {
     );
   }
 
-  Widget _renderEbookField() {
+  Widget _renderEbookListView() {
     return StreamBuilder(
-      stream: _bloc.loadingGetEbooks,
+      stream: _bloc.loadingListEbook,
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
@@ -230,7 +230,7 @@ class MainViewState extends State<MainView> {
                       return const SizedBox();
                     }
                     final data = ebookS[index];
-                    return EbookHorizontalItem(
+                    return SimpleEbookCard(
                         ebook: data, isFirstItem: index == 0);
                   },
                 ),
@@ -243,9 +243,9 @@ class MainViewState extends State<MainView> {
     );
   }
 
-  Widget _renderCourseField() {
+  Widget _renderCourseListView() {
     return StreamBuilder(
-      stream: _bloc.loadingGetCourse,
+      stream: _bloc.loadingListCourse,
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
@@ -271,7 +271,7 @@ class MainViewState extends State<MainView> {
                       return const SizedBox();
                     }
                     final data = courses[index];
-                    return CourseHorizontalItem(
+                    return SimpleCourseCard(
                         course: data, isFirstItem: index == 0);
                   },
                 ),
@@ -284,9 +284,9 @@ class MainViewState extends State<MainView> {
     );
   }
 
-  Widget _renderTutorField() {
+  Widget _renderTutorListView() {
     return StreamBuilder(
-      stream: _bloc.loadingGetTutors,
+      stream: _bloc.loadingListTutor,
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
@@ -303,7 +303,7 @@ class MainViewState extends State<MainView> {
             if (tutors?.isNotEmpty ?? false) {
               return SizedBox(
                 width: double.infinity,
-                height: 210,
+                height: 220,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: tutors!.length + 1,
@@ -312,8 +312,8 @@ class MainViewState extends State<MainView> {
                         return const SizedBox();
                       }
                       final data = tutors[index];
-                      return TutorHorizontalItem(
-                          data: data, isFirstItem: index == 0);
+                      return SimpleTutorCard(
+                          tutor: data, isFirstItem: index == 0);
                     }),
               );
             }

@@ -77,9 +77,10 @@
     "courses": "Khóa học",
     "experienceLevel": "Cấp độ kinh nghiệm",
     "test": "Kiểm tra",
+    "searchTutor": "Tìm kiếm gia sư",
     "searchTutorResult": "Kết quả tìm kiếm gia sư",
     "upComing": "Sắp tới",
-    "bookTutor": "Đặt chỗ gia sư",
+    "bookTutor": "Đặt lịch gia sư",
     "tutorDetail": "Chi tiết gia sư",
     "history": "Lịch sử",
     "isFavorite": "Yêu thích",
@@ -116,5 +117,8 @@
     "EnterYourProfessions": "Nhập nghề nghiệp của bạn",
     "studentsWillViewThisInformation": "Học viên sẽ xem thông tin này trên hồ sơ của bạn để quyết định xem bạn có phù hợp với họ hay không",
     "mySpecialtiesAre": "Chuyên môn của tôi là",
-    "iAmTheBestAtTeaching": "Tôi là người giỏi nhất trong việc dạy học cho những học viên"
+    "iAmTheBestAtTeaching": "Tôi là người giỏi nhất trong việc dạy học cho những học viên",
+    "enterTutorName": "Nhập tên gia sư...",
+    "resultNotFound": "Không tìm thấy kết quả"
+
 }

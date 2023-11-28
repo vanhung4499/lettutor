@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/core/constants/constants.dart';
 import 'package:lettutor/core/constants/image_constant.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
+import 'package:lettutor/core/utils/country.dart';
 import 'package:lettutor/core/widgets/image_custom.dart';
 import 'package:lettutor/core/widgets/rating_bar_custom.dart';
 import 'package:lettutor/domain/entities/tutor/tutor.dart';
@@ -10,19 +11,19 @@ class TutorInfoHero extends StatelessWidget {
   const TutorInfoHero({
     super.key,
     required this.tutor,
-    this.favOnPress,
+    this.onFavoriteTap,
     this.showRatting = true,
     this.showFavorite = true,
     this.isLiked,
   }) : assert(showFavorite ? isLiked != null : true);
 
   final Tutor tutor;
-  final Function()? favOnPress;
+  final Function()? onFavoriteTap;
   final bool? isLiked;
   final bool showRatting;
   final bool showFavorite;
 
-  Widget get favIcon => (isLiked ?? false)
+  Widget get favoriteIcon => (isLiked ?? false)
       ? const Icon(Icons.favorite, color: Colors.red)
       : const Icon(Icons.favorite_outline, color: Colors.red);
   @override
@@ -32,7 +33,7 @@ class TutorInfoHero extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(100.0),
           child: ImageCustom(
-            imageUrl: tutor.avatar ?? ImageConstant.baseImageView,
+            imageUrl: tutor.avatar ?? ImageConstant.defaultImage,
             isNetworkImage: true,
           ),
         ),
@@ -51,7 +52,7 @@ class TutorInfoHero extends StatelessWidget {
               const SizedBox(height: 2.0),
               if (tutor.country?.isNotEmpty ?? false) ...[
                 Text(
-                  Constant.countries[tutor.country!.toUpperCase()] ?? 'Unknown',
+                  '${countryCodeToEmoji(tutor.country!)} ${Constant.countries[tutor.country!.toUpperCase()]!}',
                   style: context.titleSmall.copyWith(
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).hintColor,
@@ -64,7 +65,7 @@ class TutorInfoHero extends StatelessWidget {
           ),
         ),
         if (showFavorite && (isLiked != null))
-          IconButton(onPressed: favOnPress, icon: favIcon)
+          IconButton(onPressed: onFavoriteTap, icon: favoriteIcon)
       ],
     );
   }

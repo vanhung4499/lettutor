@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
-import 'package:lettutor/presentation/shared/widgets/not_found_field.dart';
+import 'package:lettutor/presentation/shared/widgets/not_found_widget.dart';
 import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
@@ -135,7 +135,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
           builder: (ctx, sS) {
             final history = sS.data;
             if (history == null) {
-              return const NotFoundField();
+              return const NotFoundWidget();
             }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +190,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
   Widget _listHBookingInfoField(
       {required Pagination<BookingInfo> history, required int currentTab}) {
     if (history.rows.isEmpty) {
-      return const NotFoundField();
+      return const NotFoundWidget();
     }
     return DefaultPagination(
       items: history.rows,

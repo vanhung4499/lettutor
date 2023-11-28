@@ -1229,6 +1229,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter tutor name...`
+  String get enterTutorName {
+    return Intl.message(
+      'Enter tutor name...',
+      name: 'enterTutorName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Result not found`
+  String get resultNotFound {
+    return Intl.message(
+      'Result not found',
+      name: 'resultNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

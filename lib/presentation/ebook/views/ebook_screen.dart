@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
-import 'package:lettutor/presentation/shared/widgets/not_found_field.dart';
+import 'package:lettutor/presentation/shared/widgets/not_found_widget.dart';
 import 'package:lettutor/domain/entities/common/ebook.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
@@ -14,7 +14,7 @@ import 'package:lettutor/generated/l10n.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:lettutor/presentation/shared/widgets/content_category_bottom.dart';
 import 'package:lettutor/presentation/shared/widgets/row_search_field.dart';
-import 'package:lettutor/presentation/shared/widgets/ebook_item.dart';
+import 'package:lettutor/presentation/shared/widgets/ebook_card.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 class EbookScreen extends StatefulWidget {
@@ -113,12 +113,12 @@ class _EbookScreenState extends State<EbookScreen> {
                   final listEbook =
                       sS.data?.rows ?? List<Ebook>.empty(growable: true);
                   if (listEbook.isEmpty && !loading) {
-                    return const NotFoundField();
+                    return const NotFoundWidget();
                   }
                   return DefaultPagination(
                     items: listEbook,
                     loading: false,
-                    itemBuilder: (_, index) => EbookItem(item: listEbook[index]),
+                    itemBuilder: (_, index) => EbookCard(ebook: listEbook[index]),
                     listenScrollBottom: () => _bloc.listEbook(null, null),
                   );
                 },

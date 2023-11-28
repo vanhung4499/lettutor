@@ -53,13 +53,13 @@ mixin AppMixin<T extends StatefulWidget> on State<T> {
   }) =>
       switch (splashType) {
         SplashType.animationSplash => AnimationSplash(
-          imageUrl: appConfig?.imageUrl ?? ImageConstant.baseImageView,
+          imageUrl: appConfig?.imageUrl ?? ImageConstant.defaultImage,
           isAssetImage: isAssetImage,
           width: width,
           height: height,
         ),
         _ => ImageCustom(
-          imageUrl: appConfig?.imageUrl ?? ImageConstant.baseImageView,
+          imageUrl: appConfig?.imageUrl ?? ImageConstant.defaultImage,
           isNetworkImage: !isAssetImage,
           width: width,
           height: height,

@@ -41,7 +41,7 @@ class SettingConfig {
         SettingLayout.fromString(data['setting_layout']?.toString() ?? 'view1');
 
     behindBackground =
-        data['behindBackground']?.toString() ?? ImageConstant.baseImageView;
+        data['behindBackground']?.toString() ?? ImageConstant.defaultImage;
 
     appBarColor = data['app_bar_color'].toString().toColor();
 

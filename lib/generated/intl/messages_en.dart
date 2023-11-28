@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your education"),
         "enterStudySchedule":
             MessageLookupByLibrary.simpleMessage("Enter study schedule"),
+        "enterTutorName":
+            MessageLookupByLibrary.simpleMessage("Enter tutor name..."),
         "enterYourBio": MessageLookupByLibrary.simpleMessage("Enter your bio"),
         "enterYourName":
             MessageLookupByLibrary.simpleMessage("Enter your name"),
@@ -116,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "reportTutor": MessageLookupByLibrary.simpleMessage("Report tutor"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "resultNotFound":
+            MessageLookupByLibrary.simpleMessage("Result not found"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "sayHellToYour": MessageLookupByLibrary.simpleMessage(
             "Say hello to your English tutors"),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
+import 'package:lettutor/generated/l10n.dart';
 
-class NotFoundField extends StatelessWidget {
-  const NotFoundField({
+class NotFoundWidget extends StatelessWidget {
+  const NotFoundWidget({
     super.key,
   });
 
@@ -17,7 +18,7 @@ class NotFoundField extends StatelessWidget {
               color: Theme.of(context).primaryColor, size: 30.0),
           const SizedBox(height: 10.0),
           Text(
-            'Don\'t have any result',
+            S.of(context).resultNotFound,
             style: context.titleMedium.copyWith(fontWeight: FontWeight.w500),
           )
         ],

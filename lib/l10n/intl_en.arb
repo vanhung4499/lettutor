@@ -116,5 +116,7 @@
     "EnterYourProfessions": "Enter your professions",
     "studentsWillViewThisInformation": "Students will view this information on your profile to decide if you're good fit for them Yeah yeah yeah",
     "mySpecialtiesAre": "My specialties are",
-    "iAmTheBestAtTeaching": "I am a best at teaching students who are"
+    "iAmTheBestAtTeaching": "I am a best at teaching students who are",
+    "enterTutorName": "Enter tutor name...",
+    "resultNotFound": "Result not found"
 }

@@ -37,7 +37,7 @@ class ImageCustom extends StatelessWidget {
         color: color,
         errorBuilder: (_, __, ____) =>
         errorWidget ??
-            Image.network(ImageConstant.baseImageView,
+            Image.network(ImageConstant.defaultImage,
                 width: _width, height: _width, fit: BoxFit.cover),
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent? loadingProgress) {

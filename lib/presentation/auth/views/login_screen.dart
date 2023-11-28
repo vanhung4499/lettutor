@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
         children: <Widget>[
           const SizedBox(height: 20.0),
           Image.asset(
-            ImageConstant.loginImages,
+            ImageConstant.loginImage,
             width: double.infinity,
             height: context.heightDevice * 0.36,
           ),

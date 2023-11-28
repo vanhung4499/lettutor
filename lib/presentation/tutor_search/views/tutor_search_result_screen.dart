@@ -6,7 +6,7 @@ import 'package:lettutor/domain/entities/tutor/tutor.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/pagination_view/default_pagination.dart';
 import 'package:lettutor/generated/l10n.dart';
-import 'package:lettutor/presentation/shared/widgets/not_found_field.dart';
+import 'package:lettutor/presentation/shared/widgets/not_found_widget.dart';
 import 'package:lettutor/presentation/shared/widgets/tutor_card_view.dart';
 import 'package:lettutor/routes/routes.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
@@ -15,14 +15,14 @@ import 'package:rxdart_ext/rxdart_ext.dart';
 import '../blocs/tutor_search_result_bloc.dart';
 import '../blocs/tutor_search_result_state.dart';
 
-class TutorSearchResultView extends StatefulWidget {
-  const TutorSearchResultView({super.key});
+class TutorSearchResultScreen extends StatefulWidget {
+  const TutorSearchResultScreen({super.key});
 
   @override
-  State<TutorSearchResultView> createState() => _TutorSearchResultViewState();
+  State<TutorSearchResultScreen> createState() => _TutorSearchResultScreenState();
 }
 
-class _TutorSearchResultViewState extends State<TutorSearchResultView> {
+class _TutorSearchResultScreenState extends State<TutorSearchResultScreen> {
   TutorSearchResultBloc get _bloc =>
       BlocProvider.of<TutorSearchResultBloc>(context);
 
@@ -76,7 +76,7 @@ class _TutorSearchResultViewState extends State<TutorSearchResultView> {
                     builder: (ctx2, sS2) {
                       final loading = sS2.data ?? false;
                       if (!loading && listItem.isEmpty) {
-                        return const NotFoundField();
+                        return const NotFoundWidget();
                       }
                       return DefaultPagination(
                         items: listItem,

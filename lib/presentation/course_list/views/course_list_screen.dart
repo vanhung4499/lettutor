@@ -8,23 +8,23 @@ import 'package:lettutor/core/utils/state_mixins/did_change_dependencies_mixin.d
 import 'package:lettutor/core/widgets/loading_page.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 import 'package:lettutor/generated/l10n.dart';
-import 'package:lettutor/presentation/home/blocs/home_bloc.dart';
 import 'package:lettutor/presentation/shared/widgets/content_category_bottom.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
+import '../blocs/home_bloc.dart';
 import '../blocs/home_state.dart';
-import '../../shared/widgets/course_item.dart';
+import '../../shared/widgets/course_card.dart';
 import '../../shared/widgets/row_search_field.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class CourseListScreen extends StatefulWidget {
+  const CourseListScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CourseListScreen> createState() => _CourseListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with DidChangeDependencies {
-  HomeBloc get _bloc => BlocProvider.of<HomeBloc>(context);
+class _CourseListScreenState extends State<CourseListScreen> with DidChangeDependencies {
+  CourseListBloc get _bloc => BlocProvider.of<CourseListBloc>(context);
 
   Color get _primaryColor => Theme.of(context).primaryColor;
 
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> with DidChangeDependencies {
       itemCount: listItem.length + 1,
       itemBuilder: (context, index) {
         if (index < listItem.length) {
-          return CourseItem(course: listItem[index]);
+          return CourseCard(course: listItem[index]);
         }
         if (index >= listItem.length && (loading)) {
           Timer(const Duration(milliseconds: 30), () {

@@ -44,7 +44,7 @@ class _RenderAppBarState extends State<RenderAppBar> {
                       (e) => DropdownMenuItem(
                     value: e.langCode,
                     child: Image.network(
-                        e.image ?? ImageConstant.baseImageView,
+                        e.image ?? ImageConstant.defaultImage,
                         width: 40,
                         height: 20),
                   ),

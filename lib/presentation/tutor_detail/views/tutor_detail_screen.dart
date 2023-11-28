@@ -369,7 +369,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
         ClipRRect(
           borderRadius: BorderRadius.circular(100.0),
           child: ImageCustom(
-            imageUrl: tutorUser.avatar ?? ImageConstant.baseImageView,
+            imageUrl: tutorUser.avatar ?? ImageConstant.defaultImage,
             isNetworkImage: true,
             width: 70.0,
           ),

@@ -10,12 +10,12 @@ import 'package:lettutor/presentation/auth/views/reset_password_screen.dart';
 import 'package:lettutor/presentation/course_detail/blocs/course_detail_bloc.dart';
 import 'package:lettutor/presentation/course_detail/views/course_detail_screen.dart';
 import 'package:lettutor/presentation/course_detail/views/pdf_viewer_screen.dart';
+import 'package:lettutor/presentation/course_list/blocs/home_bloc.dart';
+import 'package:lettutor/presentation/course_list/views/course_list_screen.dart';
 import 'package:lettutor/presentation/dashboard/blocs/dashboard_bloc.dart';
 import 'package:lettutor/presentation/dashboard/views/dashboard_view.dart';
 import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
 import 'package:lettutor/presentation/ebook/views/ebook_screen.dart';
-import 'package:lettutor/presentation/home/blocs/home_bloc.dart';
-import 'package:lettutor/presentation/home/views/home_screen.dart';
 import 'package:lettutor/presentation/splash/bloc/splash_bloc.dart';
 import 'package:lettutor/presentation/splash/views/splash_screen.dart';
 import 'package:lettutor/presentation/tutor_detail/blocs/tutor_detail_bloc.dart';
@@ -26,7 +26,7 @@ import 'package:lettutor/presentation/tutor_list/blocs/tutor_list_bloc.dart';
 import 'package:lettutor/presentation/tutor_list/views/tutor_list_screen.dart';
 import 'package:lettutor/presentation/tutor_search/blocs/tutor_search_bloc.dart';
 import 'package:lettutor/presentation/tutor_search/blocs/tutor_search_result_bloc.dart';
-import 'package:lettutor/presentation/tutor_search/views/tutor_search_result.dart';
+import 'package:lettutor/presentation/tutor_search/views/tutor_search_result_screen.dart';
 import 'package:lettutor/presentation/tutor_search/views/tutor_search_screen.dart';
 import 'package:lettutor/presentation/user_profile/blocs/user_profile_bloc.dart';
 import 'package:lettutor/presentation/user_profile/views/user_profile_screen.dart';
@@ -79,12 +79,12 @@ class MainRoutes {
           ),
         );
 
-      case Routes.home:
+      case Routes.courseList:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => BlocProvider<HomeBloc>(
+          builder: (_) => BlocProvider<CourseListBloc>(
             initBloc: (_) => injector.get(),
-            child: const HomeScreen(),
+            child: const CourseListScreen(),
           ),
         );
 
@@ -123,7 +123,7 @@ class MainRoutes {
               return BlocProvider<TutorSearchResultBloc>(
                 initBloc: (_) => injector.get<TutorSearchResultBloc>(
                     param1: settings.arguments),
-                child: const TutorSearchResultView(),
+                child: const TutorSearchResultScreen(),
               );
             }
             return const SizedBox();

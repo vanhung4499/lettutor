@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Trở thành giáo viên"),
         "bio": MessageLookupByLibrary.simpleMessage("Tiểu sử"),
         "birthDay": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
-        "bookTutor": MessageLookupByLibrary.simpleMessage("Đặt chỗ gia sư"),
+        "bookTutor": MessageLookupByLibrary.simpleMessage("Đặt lịch gia sư"),
         "byPrice": MessageLookupByLibrary.simpleMessage("Theo giá"),
         "codeAndFingerPrints":
             MessageLookupByLibrary.simpleMessage("Mã và dấu vân tay"),
@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterEducation": MessageLookupByLibrary.simpleMessage("Nhâp hoc vấn"),
         "enterStudySchedule":
             MessageLookupByLibrary.simpleMessage("Nhập lịch học"),
+        "enterTutorName":
+            MessageLookupByLibrary.simpleMessage("Nhập tên gia sư..."),
         "enterYourBio":
             MessageLookupByLibrary.simpleMessage("Nhập tiểu sử của bạn"),
         "enterYourName":
@@ -119,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportTutor": MessageLookupByLibrary.simpleMessage("Báo cáo gia sư"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
+        "resultNotFound":
+            MessageLookupByLibrary.simpleMessage("Không tìm thấy kết quả"),
         "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "sayHellToYour": MessageLookupByLibrary.simpleMessage(
             "Chào các gia sư tiếng Anh của bạn"),

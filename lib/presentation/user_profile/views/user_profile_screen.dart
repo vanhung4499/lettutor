@@ -404,7 +404,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 borderRadius: BorderRadius.circular(100),
                 child: memory == null
                     ? ImageCustom(
-                  imageUrl: user.avatar ?? ImageConstant.baseImageView,
+                  imageUrl: user.avatar ?? ImageConstant.defaultImage,
                   isNetworkImage: true,
                   width: 120,
                   height: 120,

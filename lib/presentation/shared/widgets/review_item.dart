@@ -19,7 +19,7 @@ class ReviewItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100.0),
             child: ImageCustom(
-              imageUrl: review.reviewUser.avatar ?? ImageConstant.baseImageView,
+              imageUrl: review.reviewUser.avatar ?? ImageConstant.defaultImage,
               isNetworkImage: true,
             ),
           ),

@@ -1,33 +1,43 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 abstract class HomeState {}
 
-class GetCourseCategorySuccess implements HomeState {
-  const GetCourseCategorySuccess();
+class ListTopTutorSuccess implements HomeState {
+  const ListTopTutorSuccess();
 }
 
-class FetchDataCourseSuccess implements HomeState {
-  final String message;
-  const FetchDataCourseSuccess({this.message = "Fetch data success"});
-}
-
-class FetchDataCourseFailed implements HomeState {
-  final Object? error;
+class ListTopTutorFailed implements HomeState {
   final String? message;
-  const FetchDataCourseFailed({this.error, this.message});
+  final Object? error;
 
+  const ListTopTutorFailed({this.message, this.error});
   @override
-  String toString() =>
-      "FetchDataFailed => {message=${message ?? ''}, error=${error ?? ''}}";
+  String toString() => "message $message error $error";
 }
 
-class GetCourseCategoryFailed implements HomeState {
-  final Object? error;
-  final String? message;
-  const GetCourseCategoryFailed({this.error, this.message});
+class ListTopCourseSuccess implements HomeState {
+  const ListTopCourseSuccess();
+}
 
+class ListTopCourseFailed implements HomeState {
+  final String? message;
+  final Object? error;
+
+  const ListTopCourseFailed({this.message, this.error});
   @override
-  String toString() =>
-      "Get course category failed => {message=${message ?? ''}, error=${error ?? ''}}";
+  String toString() => "message $message error $error";
+}
+
+class ListTopEbookSuccess implements HomeState {
+  const ListTopEbookSuccess();
+}
+
+class ListTopEbookFailed implements HomeState {
+  final String? message;
+  final Object? error;
+
+  const ListTopEbookFailed({this.message, this.error});
+  @override
+  String toString() => "message $message error $error";
 }

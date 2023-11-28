@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/presentation/course_list/blocs/home_bloc.dart';
+import 'package:lettutor/presentation/course_list/views/course_list_screen.dart';
 import 'package:lettutor/presentation/dashboard/blocs/dashboard_bloc.dart';
 import 'package:lettutor/presentation/home/blocs/home_bloc.dart';
-import 'package:lettutor/presentation/home/views/home_screen.dart';
-import 'package:lettutor/presentation/main/blocs/main_bloc.dart';
-import 'package:lettutor/presentation/main/views/main_view.dart';
+import 'package:lettutor/presentation/home/views/home_view.dart';
 import 'package:lettutor/presentation/schedule/blocs/schedule_bloc.dart';
 import 'package:lettutor/presentation/schedule/views/schedule_screen.dart';
 import 'package:lettutor/presentation/tutor_list/blocs/tutor_list_bloc.dart';
@@ -40,14 +40,14 @@ class _DashboardViewState extends State<DashboardView> {
     TabBarModel(
       svgAsset: ImageConstant.homeIcon,
       title: 'Home',
-      screen: BlocProvider<MainBloc>(
+      screen: BlocProvider<HomeBloc>(
         initBloc: (_) => injector.get(),
-        child: const MainView(),
+        child: const HomeScreen(),
       ),
     ),
     TabBarModel(
       svgAsset: ImageConstant.documentIcon,
-      title: 'Home',
+      title: 'Tutor',
       screen: BlocProvider<TutorListBloc>(
         initBloc: (_) => injector.get(),
         child: const TutorListScreen(),
@@ -55,15 +55,15 @@ class _DashboardViewState extends State<DashboardView> {
     ),
     TabBarModel(
       svgAsset: ImageConstant.searchIcon,
-      title: 'Search',
-      screen: BlocProvider<HomeBloc>(
+      title: 'Course',
+      screen: BlocProvider<CourseListBloc>(
         initBloc: (_) => injector.get(),
-        child: const HomeScreen(),
+        child: const CourseListScreen(),
       ),
     ),
     TabBarModel(
       svgAsset: ImageConstant.calendarIcon,
-      title: 'Favorite',
+      title: 'Schedule',
       screen: BlocProvider<ScheduleBloc>(
         initBloc: (_) => injector.get(),
         child: const ScheduleScreen(),
@@ -71,7 +71,7 @@ class _DashboardViewState extends State<DashboardView> {
     ),
     TabBarModel(
       svgAsset: ImageConstant.personIcon,
-      title: 'Profile',
+      title: 'Setting',
       screen: SettingScreen(
         settingConfig: SettingConfig.fromJson({
           'enable_user': true,
@@ -81,14 +81,13 @@ class _DashboardViewState extends State<DashboardView> {
           'vPadding': 10.0,
           'shadow_elevation': 0.2,
           'pop_up_route': Routes.splash,
-          'behindBackground':
-          'https://wallpapers.com/images/featured/panda-background-ymceqx76sixgb2ni.jpg',
+          'behindBackground': 'https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_1280.jpg',
           'list_view': [
             'security',
+            'becomeTutor',
             'lang',
             'appearance',
             'about',
-            'becomeTutor',
           ],
         }),
       ),
@@ -103,29 +102,30 @@ class _DashboardViewState extends State<DashboardView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      bottomNavigationBar: TabBarCustom(
-        radius: 15,
-        elevation: 0.1, // => elevation
-        tabBarType: TabBarType
-            .dotTabBar, //if you want display test change to textTabBar
-        iconSize: 23.0,
-        iconSelectedColor: Theme.of(context).primaryColor,
-        duration: 200, // => set animation when change tab
-        isSvgIcon: true,
-        animatedTabStyle: const AnimatedTabStyle(posHeight: 5),
-        items: <TabBarItemStyle>[
-          ...dashboardItem.map(
-                (e) => TabBarItemStyle(
-              title: e.title,
-              assetIcon: e.svgAsset,
-              iconData: e.iconData,
-              screen: e.screen,
+      bottomNavigationBar: SafeArea(
+        child: TabBarCustom(
+          radius: 0,
+          elevation: 0.1,
+          tabBarType: TabBarType.dotTabBar,
+          iconSize: 23.0,
+          iconSelectedColor: Theme.of(context).primaryColor,
+          duration: 200,
+          isSvgIcon: true,
+          animatedTabStyle: const AnimatedTabStyle(posHeight: 5),
+          items: <TabBarItemStyle>[
+            ...dashboardItem.map(
+                  (e) => TabBarItemStyle(
+                title: e.title,
+                assetIcon: e.svgAsset,
+                iconData: e.iconData,
+                screen: e.screen,
+              ),
             ),
-          ),
-        ],
-        onChangeTab: (index) {
-          _bloc.changeTabView(index);
-        },
+          ],
+          onChangeTab: (index) {
+            _bloc.changeTabView(index);
+          },
+        ),
       ),
       body: StreamBuilder<int>(
         stream: _bloc.tabIndex$,

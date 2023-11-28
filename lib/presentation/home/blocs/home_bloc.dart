@@ -4,232 +4,227 @@ import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lettutor/core/utils/stream_extension.dart';
 import 'package:lettutor/core/utils/type_defs.dart';
-import 'package:lettutor/core/utils/validator.dart';
-import 'package:lettutor/domain/entities/common/pagination.dart';
+import 'package:lettutor/domain/entities/common/ebook.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
-import 'package:lettutor/domain/entities/course/course_category.dart';
-import 'package:lettutor/domain/usecases/course_usecase.dart';
+import 'package:lettutor/domain/entities/tutor/tutor.dart';
+import 'package:lettutor/domain/usecases/main_usecase.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 import 'home_state.dart';
 
-class CredentialCourseSearch {
-  final Pagination<Course> pagination;
-  final String searchText;
-  final String category;
-
-  CredentialCourseSearch(this.pagination, this.searchText, this.category);
-}
-
 @injectable
 class HomeBloc extends DisposeCallbackBaseBloc {
-  ///[functions] input
-  final Function0<void> fetchData;
+  ///[Input function]
 
-  final Function0<void> onRefreshData;
+  final Function0<void> listTopCourse;
 
-  final Function0<void> listCourseCategory;
+  final Function0<void> listTopEbook;
 
-  final Function1<String, void> submitWithText;
+  final Function0<void> listTopTutor;
 
-  final Function1<String, void> applyCategory;
-
-  ///[Stream] response
-
-  final Stream<bool?> loading$;
-
-  final Stream<Pagination<Course>> courses$;
-
-  final Stream<List<CourseCategory>> courseCategories$;
+  ///[State]
 
   final Stream<HomeState> state$;
 
+  ///[loading stream]
+
+  final Stream<bool?> loadingListTutor;
+
+  final Stream<bool?> loadingListCourse;
+
+  final Stream<bool?> loadingListEbook;
+
+  ///[data stream]
+  final Stream<List<Tutor>> tutors$;
+
+  final Stream<List<Course>> courses$;
+
+  final Stream<List<Ebook>> ebooks$;
+
   HomeBloc._({
     required Function0<void> dispose,
-
-    ///[Event functions]
-    required this.fetchData,
-    required this.onRefreshData,
-    required this.submitWithText,
-    required this.courseCategories$,
-    required this.listCourseCategory,
-    required this.applyCategory,
-
-    ///[States]
-    required this.loading$,
+    required this.listTopCourse,
+    required this.listTopEbook,
+    required this.listTopTutor,
+    //-----------------------------
     required this.state$,
+    required this.loadingListCourse,
+    required this.loadingListEbook,
+    required this.loadingListTutor,
+    //----------------------------
+    required this.tutors$,
     required this.courses$,
+    required this.ebooks$,
   }) : super(dispose);
 
-  factory HomeBloc({required CourseUseCase courseUseCase}) {
-    ///[controllers]
+  factory HomeBloc({required MainUseCase mainUseCase}) {
+    ///[Data controller]
 
-    final paginationController = BehaviorSubject<Pagination<Course>>.seeded(
-      const Pagination<Course>(
-          rows: <Course>[], count: 0, perPage: 10, currentPage: 0),
-    );
+    final loadingListTutorController = BehaviorSubject<bool>.seeded(false);
 
-    final searchTextController = BehaviorSubject<String>.seeded("");
+    final loadingListCourseController = BehaviorSubject<bool>.seeded(false);
 
-    final categoryController = BehaviorSubject<String>.seeded("");
+    final loadingListEbookController = BehaviorSubject<bool>.seeded(false);
 
-    final loadingController = BehaviorSubject<bool>.seeded(false);
+    ///[Data controller]
 
-    final courseCategoriesController =
-    BehaviorSubject.seeded(List<CourseCategory>.empty(growable: true));
+    final tutorController =
+    BehaviorSubject<List<Tutor>>.seeded(List.empty(growable: true));
 
-    final fetchDataController = PublishSubject<void>();
+    final courseController =
+    BehaviorSubject<List<Course>>.seeded(List.empty(growable: true));
 
-    final getCourseCategoryController = PublishSubject<void>();
+    final ebookController =
+    BehaviorSubject<List<Ebook>>.seeded(List.empty(growable: true));
 
-    void refreshPaginationData() {
-      paginationController.add(const Pagination<Course>(
-          rows: <Course>[], count: 0, perPage: 10, currentPage: 0));
-    }
+    ///[Function controller]
 
-    ///
-    ///[Streams]
-    ///
+    final listTutorController = PublishSubject<void>();
 
-    final isValid$ = Rx.combineLatest2(
-        paginationController.stream.map(Validator.paginationValid),
-        loadingController.stream,
-            (paginationValid, loading) => !loading || paginationValid)
-        .shareValueSeeded(false);
+    final listCourseController = PublishSubject<void>();
 
-    final fetchData$ = fetchDataController.stream
-        .withLatestFrom(isValid$, (_, isValid) => isValid)
+    final listEbookController = PublishSubject<void>();
+
+    ///[List tutor handle]
+
+    final listTutor$ = listTutorController.stream
+        .withLatestFrom(
+        loadingListTutorController.stream, (_, loading) => !loading)
         .share();
 
-    final getCourseCategories$ = getCourseCategoryController.stream.share();
-
-    final state$ = Rx.merge<HomeState>([
-      getCourseCategories$.exhaustMap((value) {
-        try {
-          return courseUseCase.getCourseCategory().map((data) => data.fold(
-              ifLeft: (error) => GetCourseCategoryFailed(
-                  message: error.message, error: error.code),
-              ifRight: (pData) {
-                courseCategoriesController.add(pData);
-                return const GetCourseCategorySuccess();
-              }));
-        } catch (e) {
-          return Stream.error(
-            GetCourseCategoryFailed(message: e.toString()),
-          );
-        }
-      }),
-      fetchData$
+    final listTutorState$ = Rx.merge<HomeState>([
+      listTutor$
           .where((isValid) => isValid)
           .debug(log: debugPrint)
-          .withLatestFrom(
-          Rx.combineLatest3(
-              categoryController.stream,
-              paginationController.stream,
-              searchTextController.stream,
-                  (category, pagination, searchText) => CredentialCourseSearch(
-                  pagination, searchText, category)).share(),
-              (_, cre) => cre)
-          .exhaustMap((cre) {
-        final pagination = cre.pagination;
-        final searchText = cre.searchText;
-        final category = cre.category;
+          .exhaustMap((_) {
         try {
-          return courseUseCase
-              .getListCourse(
-            page: pagination.currentPage + 1,
-            size: pagination.perPage,
-            q: searchText,
-            categoryId: category,
-          )
+          return mainUseCase
+              .getTopTutors()
               .doOn(
-            listen: () => loadingController.add(true),
-            cancel: () => loadingController.add(false),
+            listen: () => loadingListTutorController.add(true),
+            cancel: () => loadingListTutorController.add(false),
+          )
+              .map((data) => data.fold(
+            ifLeft: (error) =>
+                ListTopTutorFailed(message: error.message, error: error),
+            ifRight: (cData) {
+              tutorController.add(cData.tutors.rows as List<Tutor>);
+              return const ListTopTutorSuccess();
+            },
+          ));
+        } catch (e) {
+          return Stream.error(ListTopTutorFailed(message: e.toString()));
+        }
+      }),
+      listTutor$
+          .where((isValid) => !isValid)
+          .map((_) => const ListTopTutorFailed(message: "Data is loading"))
+    ]).whereNotNull().share();
+
+    ///[Get course handler]
+
+    final listCourse$ = listCourseController.stream
+        .withLatestFrom(
+        loadingListCourseController.stream, (_, loading) => !loading)
+        .share();
+
+    final listCourseState$ = Rx.merge<HomeState>([
+      listCourse$
+          .where((isValid) => isValid)
+          .debug(log: debugPrint)
+          .exhaustMap((_) {
+        try {
+          return mainUseCase
+              .getTopCourse()
+              .doOn(
+            listen: () => loadingListCourseController.add(true),
+            cancel: () => loadingListCourseController.add(false),
           )
               .map(
                 (data) => data.fold(
-              ifLeft: (error) => FetchDataCourseFailed(
-                  error: error.code, message: error.message),
-              ifRight: (data) {
-                if (data != null) {
-                  paginationController.add(Pagination<Course>(
-                    count: data.count,
-                    perPage: data.perPage,
-                    currentPage: data.currentPage,
-                    rows: [...pagination.rows, ...data.rows],
-                  ));
-                  return const FetchDataCourseSuccess();
-                }
-                return const FetchDataCourseFailed(message: 'Data null');
-              },
-            ),
+                ifLeft: (error) => ListTopCourseFailed(
+                    message: error.message, error: error),
+                ifRight: (cData) {
+                  courseController.add(cData?.rows as List<Course>);
+                  return const ListTopCourseSuccess();
+                }),
           );
         } catch (e) {
-          return Stream<HomeState>.error(
-            FetchDataCourseFailed(message: e.toString()),
-          );
+          return Stream.error(ListTopCourseFailed(message: e.toString()));
         }
-      }).debug(identifier: 'Fetch courses data', log: debugPrint),
-      fetchData$
+      }),
+      listCourse$
           .where((isValid) => !isValid)
-          .map((_) => const FetchDataCourseFailed(message: "Invalid format"))
+          .map((_) => const ListTopCourseFailed(message: "Data is loading"))
     ]).whereNotNull().share();
+
+
+    final listEbook$ = listEbookController.stream
+        .withLatestFrom(
+        loadingListEbookController.stream, (_, loading) => !loading)
+        .share();
+
+    final listEbookState$ = Rx.merge<HomeState>([
+      listEbook$.where((isValid) => isValid).debug(log: debugPrint).exhaustMap(
+            (_) => mainUseCase
+            .getListEbook()
+            .doOn(
+          listen: () => loadingListEbookController.add(true),
+          cancel: () => loadingListEbookController.add(false),
+        )
+            .map(
+              (data) => data.fold(
+            ifLeft: (error) =>
+                ListTopEbookFailed(message: error.message, error: error),
+            ifRight: (cData) {
+              ebookController.add(cData.rows as List<Ebook>);
+              return const ListTopEbookSuccess();
+            },
+          ),
+        ),
+      ),
+      listEbook$
+          .where((isValid) => !isValid)
+          .map((_) => const ListTopEbookFailed(message: "Data is loading"))
+    ]).whereNotNull().share();
+
+    final state$ =
+    Rx.merge<HomeState>([listTutorState$, listCourseState$, listEbookState$])
+        .whereNotNull()
+        .share();
 
     final subscriptions = <String, Stream>{
       'state': state$,
-      'loadingController': loadingController,
-      'isValid': isValid$,
+      'loadingTutorController': loadingListTutorController,
+      'loadingCourseController': loadingListCourseController,
+      'loadingEbookController': loadingListEbookController,
     }.debug();
 
     return HomeBloc._(
+      state$: state$,
+      loadingListTutor: loadingListTutorController,
+      loadingListCourse: loadingListCourseController,
+      loadingListEbook: loadingListEbookController,
+      courses$: courseController,
+      tutors$: tutorController,
+      ebooks$: ebookController,
+      listTopEbook: () => listEbookController.add(null),
+      listTopCourse: () => listCourseController.add(null),
+      listTopTutor: () => listTutorController.add(null),
       dispose: () async => await DisposeBag([
-        paginationController,
-        fetchDataController,
-        loadingController,
-        searchTextController,
-        getCourseCategoryController,
-        courseCategoriesController,
-        categoryController,
+        loadingListTutorController,
+        tutorController,
+        listTutorController,
+        //----------------------------
+        loadingListCourseController,
+        courseController,
+        listCourseController,
+        //----------------------------
+        loadingListEbookController,
+        ebookController,
+        listEbookController,
         ...subscriptions,
       ]).dispose(),
-      fetchData: () => fetchDataController.add(null),
-      listCourseCategory: () => getCourseCategoryController.add(null),
-      courseCategories$: courseCategoriesController,
-      applyCategory: (text) {
-        final loading = loadingController.value;
-        if (loading) {
-          return;
-        }
-        final currentCategory = categoryController.value;
-        if (text != currentCategory) {
-          refreshPaginationData();
-          categoryController.add(text);
-        }
-        fetchDataController.add(null);
-      },
-      submitWithText: (searchText) {
-        final loading = loadingController.value;
-        final currentSearchText = searchTextController.value;
-        if (loading) {
-          return;
-        }
-        if (searchText != currentSearchText) {
-          refreshPaginationData();
-          searchTextController.add(searchText);
-        }
-        fetchDataController.add(null);
-      },
-      onRefreshData: () {
-        final loading = loadingController.value;
-        if (loading) {
-          return;
-        }
-        refreshPaginationData();
-        fetchDataController.add(null);
-      },
-      loading$: loadingController,
-      state$: state$,
-      courses$: paginationController,
     );
   }
 }

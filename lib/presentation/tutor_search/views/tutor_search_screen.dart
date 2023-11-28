@@ -69,18 +69,20 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
       ),
       body: ListView(
         children: [
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 10.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: S.of(context).searchHere,
+                hintText: S.of(context).enterTutorName,
               ),
             ),
           ),
+          const SizedBox(height: 10.0),
           HeaderTextCustom(headerText: S.of(context).nationality),
           _nationalityTutorsField(context),
+          const SizedBox(height: 10.0),
           HeaderTextCustom(headerText: S.of(context).topics),
           StreamBuilder<bool?>(
             stream: _bloc.loading$,
@@ -207,7 +209,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
     if (state is OpenSearchTutorResultPageSuccess) {
       log("🐼 [Open search tutor result page] ${state.searchTutorRequest.toString()}");
       context.openPageWithRouteAndParams(
-          Routes.tutorSearch, state.searchTutorRequest);
+          Routes.tutorSearchResult, state.searchTutorRequest);
       return;
     }
   }

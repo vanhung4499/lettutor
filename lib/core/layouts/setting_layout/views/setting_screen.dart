@@ -40,7 +40,7 @@ class _SettingScreenState extends State<SettingScreen> {
   SettingLayout get _layout => widget.settingConfig.settingLayout;
   List<dynamic> get _items => widget.settingConfig.listView;
   String get _behindImage =>
-      widget.settingConfig.behindBackground ?? ImageConstant.baseImageView;
+      widget.settingConfig.behindBackground ?? ImageConstant.defaultImage;
 
   EdgeInsets get _padding => widget.settingConfig.edgeInsets;
   bool get _enableUser => widget.settingConfig.enableUser;
@@ -272,7 +272,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ? AvatarWidget(
               width: 40.0,
               height: 40.0,
-              imageUrl: _currentUser?.avatar ?? ImageConstant.baseImageView,
+              imageUrl: _currentUser?.avatar ?? ImageConstant.defaultImage,
             )
                 : Icon(
                 switch (index) {

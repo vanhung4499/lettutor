@@ -3,10 +3,10 @@ import 'package:lettutor/core/constants/image_constant.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/domain/entities/common/ebook.dart';
 
-class EbookHorizontalItem extends StatelessWidget {
+class SimpleEbookCard extends StatelessWidget {
   final Ebook ebook;
   final bool isFirstItem;
-  const EbookHorizontalItem({
+  const SimpleEbookCard({
     super.key,
     required this.ebook,
     required this.isFirstItem,
@@ -36,7 +36,7 @@ class EbookHorizontalItem extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               ),
               image: DecorationImage(
-                image: NetworkImage(ebook.imageUrl ?? ImageConstant.baseImageView),
+                image: NetworkImage(ebook.imageUrl ?? ImageConstant.defaultImage),
                 fit: BoxFit.cover,
               ),
             ),

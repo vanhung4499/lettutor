@@ -179,7 +179,7 @@ class PageTest5 extends StatelessWidget {
         return <ModelImageTest>[
           for (int t = 0; t < 10; t++)
             ModelImageTest(
-              imageUrl: ImageConstant.baseImageView,
+              imageUrl: ImageConstant.defaultImage,
               title: 'Product t$text',
               subTitle: 'This is product $t of page $currentPage',
             ),

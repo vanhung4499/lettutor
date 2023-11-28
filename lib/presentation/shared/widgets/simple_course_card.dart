@@ -7,11 +7,11 @@ import 'package:lettutor/core/extensions/string_extension.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 import 'package:lettutor/routes/routes.dart';
 
-class CourseHorizontalItem extends StatelessWidget {
+class SimpleCourseCard extends StatelessWidget {
   final Course course;
 
   final bool isFirstItem;
-  const CourseHorizontalItem({
+  const SimpleCourseCard({
     super.key,
     required this.course,
     required this.isFirstItem,
@@ -30,7 +30,7 @@ class CourseHorizontalItem extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: context.widthDevice * 0.4,
+            width: context.widthDevice * 0.5,
             height: double.infinity,
             margin: _margin,
             decoration: BoxDecoration(
@@ -43,13 +43,13 @@ class CourseHorizontalItem extends StatelessWidget {
               ],
               image: DecorationImage(
                 image:
-                NetworkImage(course.imageUrl ?? ImageConstant.baseImageView),
+                NetworkImage(course.imageUrl ?? ImageConstant.defaultImage),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Container(
-            width: context.widthDevice * 0.4,
+            width: context.widthDevice * 0.5,
             height: double.infinity,
             padding: const EdgeInsets.all(10.0),
             margin: _margin,

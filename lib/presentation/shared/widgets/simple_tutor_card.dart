@@ -4,27 +4,28 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:lettutor/app_coordinator.dart';
 import 'package:lettutor/core/constants/image_constant.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
+import 'package:lettutor/core/utils/country.dart';
 import 'package:lettutor/core/utils/validator.dart';
 import 'package:lettutor/core/widgets/image_custom.dart';
 import 'package:lettutor/core/widgets/rating_bar_custom.dart';
 import 'package:lettutor/domain/entities/tutor/tutor.dart';
 import 'package:lettutor/routes/routes.dart';
 
-class TutorHorizontalItem extends StatelessWidget {
-  const TutorHorizontalItem({
+class SimpleTutorCard extends StatelessWidget {
+  const SimpleTutorCard({
     super.key,
-    required this.data,
+    required this.tutor,
     required this.isFirstItem,
   });
   final bool isFirstItem;
 
-  final Tutor data;
+  final Tutor tutor;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () =>
-          context.openPageWithRouteAndParams(Routes.tutorDetail, data.userId),
+          context.openPageWithRouteAndParams(Routes.tutorDetail, tutor.userId),
       child: Container(
         width: context.widthDevice * 0.55,
         margin: EdgeInsets.only(
@@ -45,16 +46,16 @@ class TutorHorizontalItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Row(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: ImageCustom(
-                      imageUrl: data.avatar ?? ImageConstant.baseImageView,
+                      imageUrl: tutor.avatar ?? ImageConstant.defaultImage,
                       isNetworkImage: true,
-                      width: 35.0,
-                      height: 35.0,
+                      width: 50.0,
+                      height: 50.0,
                     ),
                   ),
                   const SizedBox(width: 10.0),
@@ -63,9 +64,9 @@ class TutorHorizontalItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(data.name ?? '', style: context.titleSmall),
+                        Text(tutor.name ?? '', style: context.titleMedium),
                         RatingBarCustom(
-                            rating: data.rating ?? 0.0, itemSize: 10.0)
+                            rating: tutor.rating ?? 0.0, itemSize: 15.0)
                       ],
                     ),
                   ),
@@ -74,10 +75,11 @@ class TutorHorizontalItem extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Text(
-                data.bio ?? '',
-                maxLines: 6,
+                tutor.bio ?? '',
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 style: context.titleSmall
                     .copyWith(fontWeight: FontWeight.w400, fontSize: 12.0),
               ),
@@ -98,7 +100,7 @@ class TutorHorizontalItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
-                        data.level?.toLowerCase() ?? 'Unknown',
+                        tutor.targetStudent ?? '',
                         style: context.titleSmall
                             .copyWith(color: Colors.white, fontSize: 12.0),
                       ),
@@ -106,13 +108,13 @@ class TutorHorizontalItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 10.0),
                   Expanded(
-                    child: Validator.countryCodeValid(data.country)
+                    child: Validator.countryCodeValid(tutor.country)
                         ? Text(
-                      CountryCode.fromCountryCode(
-                        data.country!.toUpperCase(),
-                      ).name ??
-                          '',
-                      style: context.titleSmall.copyWith(fontSize: 12.0),
+                      // CountryCode.fromCountryCode(
+                      //   data.country!.toUpperCase(),
+                      // ).name ??
+                      countryCodeToEmoji(tutor.country!) ?? '',
+                      style: context.titleSmall.copyWith(fontSize: 24.0),
                     )
                         : const SizedBox(),
                   )
