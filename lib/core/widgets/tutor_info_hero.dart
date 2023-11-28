@@ -59,7 +59,7 @@ class TutorInfoHero extends StatelessWidget {
                 ),
                 const SizedBox(height: 2.0),
               ],
-              if (showRatting) RattingBarCustom(rating: tutor.rating ?? 0.0)
+              if (showRatting) RatingBarCustom(rating: tutor.rating ?? 0.0)
             ],
           ),
         ),

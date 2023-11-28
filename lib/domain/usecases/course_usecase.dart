@@ -16,9 +16,9 @@ class CourseUseCase {
         required int size,
         String? q,
         String? categoryId}) =>
-      _courseRepository.getListCourse(
+      _courseRepository.listCourse(
           page: page, perPage: size, q: q, categoryId: categoryId);
 
   SingleResult<List<CourseCategory>> getCourseCategory() =>
-      _courseRepository.getCourseCategory();
+      _courseRepository.listCourseCategory();
 }

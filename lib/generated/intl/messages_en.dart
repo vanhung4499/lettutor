@@ -28,12 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your interest"),
         "EnterYourProfessions":
             MessageLookupByLibrary.simpleMessage("Enter your professions"),
-        "Report": MessageLookupByLibrary.simpleMessage("report"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "addReportContent":
             MessageLookupByLibrary.simpleMessage("Add report content"),
         "addReview": MessageLookupByLibrary.simpleMessage("Add review"),
-        "allEBoo": MessageLookupByLibrary.simpleMessage("All e-book"),
+        "allEbook": MessageLookupByLibrary.simpleMessage("All ebook"),
         "allLevels": MessageLookupByLibrary.simpleMessage("All levels"),
         "allTopics": MessageLookupByLibrary.simpleMessage("All topics"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
@@ -78,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("General settings"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "hours": MessageLookupByLibrary.simpleMessage("hours"),
-        "iAmABestAtTeaching": MessageLookupByLibrary.simpleMessage(
+        "iAmTheBestAtTeaching": MessageLookupByLibrary.simpleMessage(
             "I am a best at teaching students who are"),
         "interests": MessageLookupByLibrary.simpleMessage("Interests"),
         "introduction": MessageLookupByLibrary.simpleMessage("Introduction"),
@@ -165,14 +164,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User information"),
         "userLevels": MessageLookupByLibrary.simpleMessage("User levels"),
         "view": MessageLookupByLibrary.simpleMessage("View"),
-        "viewEBoo": MessageLookupByLibrary.simpleMessage("View e-book"),
+        "viewEbook": MessageLookupByLibrary.simpleMessage("View ebook"),
         "welcomeToLetTutor":
             MessageLookupByLibrary.simpleMessage("🌟 Welcome to LetTutor"),
-        "whatTTCourses":
-            MessageLookupByLibrary.simpleMessage("Why take this course?"),
         "whatWYBe": MessageLookupByLibrary.simpleMessage(
             "What will you be able to do?"),
         "whoITech": MessageLookupByLibrary.simpleMessage("Who i tech"),
+        "whyTTCourse":
+            MessageLookupByLibrary.simpleMessage("Why take this course?"),
         "writeYourReview":
             MessageLookupByLibrary.simpleMessage("Write your review..."),
         "yourReview": MessageLookupByLibrary.simpleMessage("Your review"),

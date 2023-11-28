@@ -20,9 +20,9 @@ class MainUseCase {
       _tutorRepository.getListTutor(page: 1, perPage: 5);
 
   SingleResult<Pagination<Course>?> getTopCourse() => _courseRepository
-      .getListCourse(page: 1, perPage: 5, q: null, categoryId: null);
+      .listCourse(page: 1, perPage: 5, q: null, categoryId: null);
 
   SingleResult<Pagination<Ebook>> getListEbook() => _commonRepository
-      .getListEbook(page: 1, size: 5, q: null, categoryId: null);
+      .listEbook(page: 1, size: 5, q: null, categoryId: null);
 
 }

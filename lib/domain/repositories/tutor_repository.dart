@@ -13,7 +13,7 @@ abstract class TutorRepository {
   SingleResult<bool> addTutorToFavorite({required String userId});
 
   SingleResult<TutorFav?> searchTutor({
-    required SearchTutorRequest searchTutorRequest,
+    required SearchTutorRequest request,
   });
 
   SingleResult<TutorDetail?> getTutorById({required String userId});

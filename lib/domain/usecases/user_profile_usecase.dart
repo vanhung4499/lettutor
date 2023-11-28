@@ -9,11 +9,11 @@ import 'package:lettutor/domain/repositories/common_repository.dart';
 import 'package:lettutor/domain/repositories/user_repository.dart';
 
 @injectable
-class UserInfoUseCase {
+class UserProfileUseCase {
   final UserRepository _userRepository;
   final CommonRepository _commonRepository;
 
-  UserInfoUseCase(this._userRepository, this._commonRepository);
+  UserProfileUseCase(this._userRepository, this._commonRepository);
 
   SingleResult<User> getUserInfo() => SingleResult.fromCallable(
         () async {
@@ -28,10 +28,11 @@ class UserInfoUseCase {
       }
     },
   );
+
   SingleResult<User> updateUserInf(
       {required UpdateProfileRequest updateProfileRequest}) =>
       _userRepository.updateUserInfo(
-          updateProfileRequest: updateProfileRequest);
+          request: updateProfileRequest);
 
-  SingleResult<List<Topic>> getTopics() =>_commonRepository.getTopics();
+  SingleResult<List<Topic>> listTopic() =>_commonRepository.listTopic();
 }

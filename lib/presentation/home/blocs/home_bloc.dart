@@ -28,7 +28,7 @@ class HomeBloc extends DisposeCallbackBaseBloc {
 
   final Function0<void> onRefreshData;
 
-  final Function0<void> getCourseCategory;
+  final Function0<void> listCourseCategory;
 
   final Function1<String, void> submitWithText;
 
@@ -52,7 +52,7 @@ class HomeBloc extends DisposeCallbackBaseBloc {
     required this.onRefreshData,
     required this.submitWithText,
     required this.courseCategories$,
-    required this.getCourseCategory,
+    required this.listCourseCategory,
     required this.applyCategory,
 
     ///[States]
@@ -193,7 +193,7 @@ class HomeBloc extends DisposeCallbackBaseBloc {
         ...subscriptions,
       ]).dispose(),
       fetchData: () => fetchDataController.add(null),
-      getCourseCategory: () => getCourseCategoryController.add(null),
+      listCourseCategory: () => getCourseCategoryController.add(null),
       courseCategories$: courseCategoriesController,
       applyCategory: (text) {
         final loading = loadingController.value;

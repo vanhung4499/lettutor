@@ -28,12 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nhập sở thích của bạn"),
         "EnterYourProfessions":
             MessageLookupByLibrary.simpleMessage("Nhập nghề nghiệp của bạn"),
-        "Report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "about": MessageLookupByLibrary.simpleMessage("Về chúng tôi"),
         "addReportContent":
             MessageLookupByLibrary.simpleMessage("Thêm nội dung báo cáo"),
         "addReview": MessageLookupByLibrary.simpleMessage("Thêm đánh giá"),
-        "allEBoo": MessageLookupByLibrary.simpleMessage("Tất cả sách điện tử"),
+        "allEbook": MessageLookupByLibrary.simpleMessage("Tất cả sách điện tử"),
         "allLevels": MessageLookupByLibrary.simpleMessage("Tất cả các cấp độ"),
         "allTopics": MessageLookupByLibrary.simpleMessage("Tất cả chủ đề"),
         "and": MessageLookupByLibrary.simpleMessage("và"),
@@ -45,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Trở thành giáo viên"),
         "bio": MessageLookupByLibrary.simpleMessage("Tiểu sử"),
         "birthDay": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
-        "bookTutor": MessageLookupByLibrary.simpleMessage("Đặt gia sư"),
+        "bookTutor": MessageLookupByLibrary.simpleMessage("Đặt chỗ gia sư"),
         "byPrice": MessageLookupByLibrary.simpleMessage("Theo giá"),
         "codeAndFingerPrints":
             MessageLookupByLibrary.simpleMessage("Mã và dấu vân tay"),
@@ -57,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "donHaveAnyUpcoming":
             MessageLookupByLibrary.simpleMessage("Không có lớp học sắp tới"),
-        "education": MessageLookupByLibrary.simpleMessage("Giáo dục"),
+        "education": MessageLookupByLibrary.simpleMessage("Học vấn"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "endTime": MessageLookupByLibrary.simpleMessage("Thời gian kết thúc"),
         "enterCode": MessageLookupByLibrary.simpleMessage("Nhâp mã"),
@@ -70,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nhập tên của bạn"),
         "errorCode": MessageLookupByLibrary.simpleMessage("Mã lỗi"),
         "experienceLevel":
-            MessageLookupByLibrary.simpleMessage("Trình độ kinh nghiệm"),
+            MessageLookupByLibrary.simpleMessage("Cấp độ kinh nghiệm"),
         "experiences": MessageLookupByLibrary.simpleMessage("Kinh nghiệm"),
         "favorite": MessageLookupByLibrary.simpleMessage("Yêu thích"),
         "forGotPassword": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
@@ -78,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cài đặt chung"),
         "history": MessageLookupByLibrary.simpleMessage("Lịch sử"),
         "hours": MessageLookupByLibrary.simpleMessage("giờ"),
-        "iAmABestAtTeaching": MessageLookupByLibrary.simpleMessage(
+        "iAmTheBestAtTeaching": MessageLookupByLibrary.simpleMessage(
             "Tôi là người giỏi nhất trong việc dạy học cho những học viên"),
         "interests": MessageLookupByLibrary.simpleMessage("Sở thích"),
         "introduction": MessageLookupByLibrary.simpleMessage("Giới thiệu"),
@@ -110,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "professions": MessageLookupByLibrary.simpleMessage("Nghề nghiệp"),
         "profilePreview":
             MessageLookupByLibrary.simpleMessage("Xem trước hồ sơ"),
-        "rateStar": MessageLookupByLibrary.simpleMessage("Đánh giá sao"),
+        "rateStar": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "registerAccount":
             MessageLookupByLibrary.simpleMessage("Đăng ký tài khoản"),
         "registerAccountToUse": MessageLookupByLibrary.simpleMessage(
@@ -123,7 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "sayHellToYour": MessageLookupByLibrary.simpleMessage(
             "Chào các gia sư tiếng Anh của bạn"),
-        "schedule": MessageLookupByLibrary.simpleMessage("Lịch hẹn"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Lịch học"),
         "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
         "searchHere": MessageLookupByLibrary.simpleMessage("Tìm kiếm ở đây"),
         "searchTutorResult":
@@ -168,18 +167,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Thông tin người dùng"),
         "userLevels": MessageLookupByLibrary.simpleMessage("Cấp độ người dùng"),
         "view": MessageLookupByLibrary.simpleMessage("Xem"),
-        "viewEBoo": MessageLookupByLibrary.simpleMessage("Xem sách điện tử"),
+        "viewEbook": MessageLookupByLibrary.simpleMessage("Xem sách điện tử"),
         "welcomeToLetTutor": MessageLookupByLibrary.simpleMessage(
             "🌟 Chào mừng đến với LetTutor"),
-        "whatTTCourses": MessageLookupByLibrary.simpleMessage(
-            "Tại sao tham gia khóa học này?"),
         "whatWYBe":
             MessageLookupByLibrary.simpleMessage("Bạn sẽ có thể làm gì?"),
         "whoITech": MessageLookupByLibrary.simpleMessage("Người tôi dạy"),
+        "whyTTCourse": MessageLookupByLibrary.simpleMessage(
+            "Tại sao tham gia khóa học này?"),
         "writeYourReview":
             MessageLookupByLibrary.simpleMessage("Viết đánh giá của bạn..."),
         "yourReview": MessageLookupByLibrary.simpleMessage("Đánh giá của bạn"),
         "yourTutorProfile": MessageLookupByLibrary.simpleMessage(
-            "Hồ sơ gia sư của bạn là cơ hội để quảng bá bản thân với học viên trên Tutoring")
+            "Hồ sơ gia sư của bạn là cơ hội để quảng bá bản thân với học viên")
       };
 }

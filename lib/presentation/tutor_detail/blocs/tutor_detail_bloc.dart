@@ -144,19 +144,19 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
           )
               .map(
                 (data) => data.fold(
-                ifLeft: (error) => GetTutorByIdFailed(
+                ifLeft: (error) => GetTutorFailed(
                     error: error.code, message: error.message),
                 ifRight: (tData) {
                   if (tData != null) {
                     tutorController.add(tData);
-                    return const GetTutorByIdSuccess();
+                    return const GetTutorSuccess();
                   }
-                  return GetTutorByIdFailed(message: "Data null");
+                  return GetTutorFailed(message: "Data null");
                 }),
           );
         } catch (e) {
           return Stream<TutorDetailState>.error(
-            GetTutorByIdFailed(message: e.toString()),
+            GetTutorFailed(message: e.toString()),
           );
         }
       }),
@@ -195,7 +195,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
           )
               .map(
                 (data) => data.fold(
-              ifLeft: (error) => GetReviewsFailed(
+              ifLeft: (error) => ListReviewFailed(
                   message: error.message, error: error.code),
               ifRight: (rData) {
                 final currentData = reviewsController.value;
@@ -205,13 +205,13 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
                   currentPage: rData.currentPage,
                   perPage: rData.perPage,
                 ));
-                return const GetReviewsSuccess();
+                return const ListReviewSuccess();
               },
             ),
           );
         } catch (e) {
           return Stream<TutorDetailState>.error(
-            GetReviewsFailed(message: e.toString()),
+            ListReviewFailed(message: e.toString()),
           );
         }
       }),

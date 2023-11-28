@@ -1,8 +1,9 @@
 
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/become_tutor_request.dart';
-import 'package:lettutor/data/models/request/review_tutor_request.dart';
+import 'package:lettutor/data/models/request/tutor_feedback_request.dart';
 import 'package:lettutor/data/models/request/update_profile_request.dart';
+import 'package:lettutor/data/models/request/upload_avatar_request.dart';
 import 'package:lettutor/domain/entities/user/user.dart';
 
 abstract class UserRepository {
@@ -17,16 +18,19 @@ abstract class UserRepository {
   SingleResult<bool> updateStudentRequest(
       {required String booId, required String content});
 
-  SingleResult<bool> reviewTutor(
-      {required ReviewTutorRequest reviewTutorRequest});
+  SingleResult<bool> feedbackTutor(
+      {required TutorFeedbackRequest request});
 
   SingleResult<int> getTotalTime();
 
   SingleResult<User> updateUserInfo(
-      {required UpdateProfileRequest updateProfileRequest});
+      {required UpdateProfileRequest request});
+
+  SingleResult<bool> uploadAvatar(
+      {required UploadAvatarRequest request});
 
   Future<User?> getUserInfo();
 
   SingleResult<bool> becomeTutor(
-      {required BecomeTutorRequest becomeTutorRequest});
+      {required BecomeTutorRequest request});
 }

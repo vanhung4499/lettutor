@@ -11,14 +11,14 @@ import 'package:lettutor/core/utils/handle_time.dart';
 import 'package:lettutor/core/widgets/header_custom.dart';
 import 'package:lettutor/core/widgets/skeleton_custom.dart';
 import 'package:lettutor/presentation/main/blocs/main_state.dart';
-import 'package:lettutor/presentation/main/views/widgets/course_horizontal_item.dart';
-import 'package:lettutor/presentation/main/views/widgets/tutor_horizontal_item.dart';
+import 'package:lettutor/presentation/shared/widgets/course_horizontal_item.dart';
+import 'package:lettutor/presentation/shared/widgets/tutor_horizontal_item.dart';
 import 'package:lettutor/routes/routes.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 import '../blocs/main_bloc.dart';
-import 'widgets/ebook_horizontal_item.dart';
-import 'widgets/welcome_view.dart';
+import '../../shared/widgets/ebook_horizontal_item.dart';
+import '../../shared/widgets/welcome_text.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

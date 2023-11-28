@@ -12,9 +12,9 @@ class SearchTutorUseCase {
   final TutorRepository _tutorRepository;
   SearchTutorUseCase(this._commonRepository, this._tutorRepository);
 
-  SingleResult<List<Topic>> getTopics() => _commonRepository.getTopics();
+  SingleResult<List<Topic>> listTopic() => _commonRepository.listTopic();
 
-  SingleResult<TutorFav?> searchTutors(
-      {required SearchTutorRequest searchTutorRequest}) =>
-      _tutorRepository.searchTutor(searchTutorRequest: searchTutorRequest);
+  SingleResult<TutorFav?> searchTutor(
+      {required SearchTutorRequest request}) =>
+      _tutorRepository.searchTutor(request: request);
 }

@@ -11,10 +11,10 @@ class BecomeTutorUseCase {
   final CommonRepository _commonRepository;
   BecomeTutorUseCase(this._userRepository, this._commonRepository);
 
-  SingleResult<List<Topic>> getTopics() => _commonRepository.getTopics();
+  SingleResult<List<Topic>> getTopics() => _commonRepository.listTopic();
 
   SingleResult<bool> registeringTutor(
       {required BecomeTutorRequest becomeTutorRequest}) =>
-      _userRepository.becomeTutor(becomeTutorRequest: becomeTutorRequest);
+      _userRepository.becomeTutor(request: becomeTutorRequest);
 
 }

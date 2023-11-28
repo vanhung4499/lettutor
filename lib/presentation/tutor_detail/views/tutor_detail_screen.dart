@@ -17,6 +17,7 @@ import 'package:lettutor/core/widgets/rating_bar_custom.dart';
 import 'package:lettutor/core/widgets/video_player.dart';
 import 'package:lettutor/core/di/di.dart';
 import 'package:lettutor/generated/l10n.dart';
+import 'package:lettutor/presentation/shared/widgets/tutor_report_bottom.dart';
 import 'package:lettutor/routes/routes.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:readmore/readmore.dart';
@@ -25,8 +26,8 @@ import 'package:rxdart_ext/rxdart_ext.dart';
 import '../blocs/tutor_detail_bloc.dart';
 import '../blocs/tutor_detail_state.dart';
 import '../blocs/tutor_report_bloc.dart';
-import 'widgets/bottom_review_list.dart';
-import 'widgets/tutor_report_bottom.dart';
+import '../../shared/widgets/bottom_review_list.dart';
+
 
 class TutorDetailScreen extends StatefulWidget {
   const TutorDetailScreen({super.key});
@@ -94,7 +95,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
       enableDrag: false,
       builder: (context) {
         return BlocProvider(
-          initBloc: (_) => injector.get<TutorFeedbackBloc>(param1: userId),
+          initBloc: (_) => injector.get<TutorReportBloc>(param1: userId),
           child: const TutorReportBottom(),
         );
         // return const SizedBox();
@@ -401,7 +402,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  RattingBarCustom(
+                  RatingBarCustom(
                       rating: tutor.rating ?? 0.0, itemSize: 17.0),
                   Text(
                     ' ${tutor.rating?.toStringAsFixed(1) ?? ''} . ${tutor.totalFeedback}',
@@ -421,11 +422,11 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
   }
 
   Stream handleState(state) async* {
-    if (state is GetTutorByIdSuccess) {
+    if (state is GetTutorSuccess) {
       log("🌟[Get tutor by id] Success");
       return;
     }
-    if (state is GetTutorByIdFailed) {
+    if (state is GetTutorFailed) {
       log("🌟[Get tutor by id] Failed ${state.toString()}");
       return;
     }
@@ -437,11 +438,11 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
       log("🌟[Fav tutor] Success");
       return;
     }
-    if (state is GetReviewsFailed) {
+    if (state is ListReviewFailed) {
       log("🌟 [Get reviews] Failed ${state.toString()}");
       return;
     }
-    if (state is GetReviewsSuccess) {
+    if (state is ListReviewSuccess) {
       log("🌟 [Get reviews] Success");
       return;
     }

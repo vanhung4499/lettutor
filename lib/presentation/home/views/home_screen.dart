@@ -9,12 +9,12 @@ import 'package:lettutor/core/widgets/loading_page.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 import 'package:lettutor/generated/l10n.dart';
 import 'package:lettutor/presentation/home/blocs/home_bloc.dart';
-import 'package:lettutor/presentation/home/views/widgets/content_category_bottom.dart';
+import 'package:lettutor/presentation/shared/widgets/content_category_bottom.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 import '../blocs/home_state.dart';
-import 'widgets/course_item.dart';
-import 'widgets/row_search_field.dart';
+import '../../shared/widgets/course_item.dart';
+import '../../shared/widgets/row_search_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> with DidChangeDependencies {
       isDismissible: false,
       enableDrag: false,
       builder: (context) {
-        return CourseCategoryUI(bloc: _bloc);
+        return CourseCategoryBottom(bloc: _bloc);
         // return const SizedBox();
       },
     );

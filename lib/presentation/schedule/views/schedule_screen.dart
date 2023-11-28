@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
-import 'package:lettutor/core/widgets/not_found_field.dart';
+import 'package:lettutor/presentation/shared/widgets/not_found_field.dart';
 import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
@@ -17,7 +17,7 @@ import 'package:rxdart_ext/rxdart_ext.dart';
 
 import '../blocs/schedule_bloc.dart';
 import '../blocs/schedule_state.dart';
-import './widgets/booking_info_item.dart';
+import '../../shared/widgets/booking_info_item.dart';
 
 
 class ScheduleScreen extends StatefulWidget {
@@ -203,7 +203,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
           cancelFunction: () => _bloc.cancelBookingTutor(bookingItem),
           editRequestFunction: () => _openEditRequestDialog(bookingId: bookingItem.id),
           rattingFunction: () =>
-              context.openPageWithRouteAndParams(Routes.ratting, bookingItem.id),
+              context.openPageWithRouteAndParams(Routes.tutorFeedback, bookingItem.id),
         );
       },
       listenScrollBottom: () => _bloc.getBookingInfo(),

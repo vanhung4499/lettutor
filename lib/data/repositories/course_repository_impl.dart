@@ -16,7 +16,7 @@ class CourseRepositoryImpl extends BaseApi implements CourseRepository {
   CourseRepositoryImpl(this._courseApi);
 
   @override
-  SingleResult<Pagination<Course>> getListCourse(
+  SingleResult<Pagination<Course>> listCourse(
       {required int page,
         required int perPage,
         String? q,
@@ -85,7 +85,7 @@ class CourseRepositoryImpl extends BaseApi implements CourseRepository {
       );
 
   @override
-  SingleResult<List<CourseCategory>> getCourseCategory() =>
+  SingleResult<List<CourseCategory>> listCourseCategory() =>
       SingleResult.fromCallable(() async {
         final response = await getStateOf(
           request: () async => await _courseApi.getContentCategory(),

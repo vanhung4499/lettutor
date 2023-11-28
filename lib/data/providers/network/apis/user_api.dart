@@ -37,6 +37,10 @@ abstract class UserApi {
   @PUT("/user/info")
   Future<HttpResponse<UserInfo?>> updateUserInfo(
       {@Body() required Map<String, dynamic> body});
+  
+  @POST('/user/uploadAvatar')
+  Future<HttpResponse<UserInfo?>> uploadAvatar(
+      {@Body() required Map<String, dynamic> body});
 
   @POST("/user/feedbackTutor")
   Future<HttpResponse> reviewTutor(

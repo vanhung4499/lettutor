@@ -17,7 +17,7 @@ import 'package:timer_count_down/timer_count_down.dart';
 
 import '../blocs/tutor_list_bloc.dart';
 import '../blocs/tutor_list_state.dart';
-import 'widgets/tutor_card.dart';
+import '../../shared/widgets/tutor_card.dart';
 
 class TutorListScreen extends StatefulWidget {
   const TutorListScreen({super.key});
@@ -65,8 +65,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    // dom something
+    // do something
   }
 
   @override
@@ -94,7 +93,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
                 const Spacer(),
                 IconButton(
                   onPressed: () =>
-                      context.openListPageWithRoute(Routes.searchTutor),
+                      context.openListPageWithRoute(Routes.tutorSearch),
                   icon: Icon(Icons.search, color: Theme.of(context).hintColor),
                 ),
                 IconButton(

@@ -650,21 +650,21 @@ class S {
     );
   }
 
-  /// `All e-book`
-  String get allEBoo {
+  /// `All ebook`
+  String get allEbook {
     return Intl.message(
-      'All e-book',
-      name: 'allEBoo',
+      'All ebook',
+      name: 'allEbook',
       desc: '',
       args: [],
     );
   }
 
-  /// `View e-book`
-  String get viewEBoo {
+  /// `View ebook`
+  String get viewEbook {
     return Intl.message(
-      'View e-book',
-      name: 'viewEBoo',
+      'View ebook',
+      name: 'viewEbook',
       desc: '',
       args: [],
     );
@@ -1090,16 +1090,6 @@ class S {
     );
   }
 
-  /// `report`
-  String get Report {
-    return Intl.message(
-      'report',
-      name: 'Report',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Tutor schedule`
   String get tutorSchedule {
     return Intl.message(
@@ -1141,10 +1131,10 @@ class S {
   }
 
   /// `Why take this course?`
-  String get whatTTCourses {
+  String get whyTTCourse {
     return Intl.message(
       'Why take this course?',
-      name: 'whatTTCourses',
+      name: 'whyTTCourse',
       desc: '',
       args: [],
     );
@@ -1231,10 +1221,10 @@ class S {
   }
 
   /// `I am a best at teaching students who are`
-  String get iAmABestAtTeaching {
+  String get iAmTheBestAtTeaching {
     return Intl.message(
       'I am a best at teaching students who are',
-      name: 'iAmABestAtTeaching',
+      name: 'iAmTheBestAtTeaching',
       desc: '',
       args: [],
     );

@@ -4,8 +4,9 @@ import 'package:injectable/injectable.dart';
 import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/request/become_tutor_request.dart';
-import 'package:lettutor/data/models/request/review_tutor_request.dart';
+import 'package:lettutor/data/models/request/tutor_feedback_request.dart';
 import 'package:lettutor/data/models/request/update_profile_request.dart';
+import 'package:lettutor/data/models/request/upload_avatar_request.dart';
 import 'package:lettutor/data/providers/network/apis/user_api.dart';
 import 'package:lettutor/data/providers/network/base_api.dart';
 import 'package:lettutor/data/providers/network/data_state.dart';
@@ -96,11 +97,11 @@ class UserRepositoriesImpl extends BaseApi implements UserRepository {
 
   @override
   SingleResult<User> updateUserInfo(
-      {required UpdateProfileRequest updateProfileRequest}) =>
+      {required UpdateProfileRequest request}) =>
       SingleResult.fromCallable(() async {
         final response = await getStateOf(
           request: () async =>
-          await _userApi.updateUserInfo(body: updateProfileRequest.toMap),
+          await _userApi.updateUserInfo(body: request.toMap),
         );
         if (response is DataFailed) {
           return Either.left(
@@ -114,22 +115,34 @@ class UserRepositoriesImpl extends BaseApi implements UserRepository {
         return Either.left(AppException(message: "Data null"));
       });
 
+
   @override
-  SingleResult<bool> reviewTutor(
-      {required ReviewTutorRequest reviewTutorRequest}) =>
+  SingleResult<bool> uploadAvatar(
+      {required UploadAvatarRequest request}) =>
       SingleResult.fromCallable(() async {
         final response = await getStateOf(
           request: () async =>
-              _userApi.reviewTutor(body: reviewTutorRequest.toMap),
+          await _userApi.uploadAvatar(body: request.toJson()),
+        );
+        return response.toBoolResult();
+      });
+
+  @override
+  SingleResult<bool> feedbackTutor(
+      {required TutorFeedbackRequest request}) =>
+      SingleResult.fromCallable(() async {
+        final response = await getStateOf(
+          request: () async =>
+              _userApi.reviewTutor(body: request.toJson()),
         );
         return response.toBoolResult();
       });
 
   @override
   SingleResult<bool> becomeTutor(
-      {required BecomeTutorRequest becomeTutorRequest}) =>
+      {required BecomeTutorRequest request}) =>
       SingleResult.fromCallable(() async {
-        final body = await becomeTutorRequest.toMap();
+        final body = await request.toJson();
         final response = await getStateOf(
           request: () async => _userApi.becomeTutor(
             body: body,
@@ -138,4 +151,5 @@ class UserRepositoriesImpl extends BaseApi implements UserRepository {
         );
         return response.toBoolResult();
       });
+
 }

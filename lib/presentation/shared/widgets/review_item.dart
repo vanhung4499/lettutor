@@ -52,7 +52,7 @@ class ReviewItem extends StatelessWidget {
                     color: Theme.of(context).hintColor,
                   ),
                 ),
-                RattingBarCustom(rating: review.rating)
+                RatingBarCustom(rating: review.rating)
               ],
             ),
           ),

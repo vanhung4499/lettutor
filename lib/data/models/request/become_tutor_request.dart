@@ -32,7 +32,7 @@ class BecomeTutorRequest {
         required this.avatar,
         required this.price});
 
-  Future<Map<String, dynamic>> toMap() async => {
+  Future<Map<String, dynamic>> toJson() async => {
     "avatar": await MultipartFile.fromFile(
       avatar,
       filename: avatar.split('/').last,

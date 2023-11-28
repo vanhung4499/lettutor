@@ -9,7 +9,7 @@ import 'package:lettutor/generated/l10n.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
-import '../../blocs/tutor_report_bloc.dart';
+import '../../tutor_detail/blocs/tutor_report_bloc.dart';
 
 class TutorReportBottom extends StatefulWidget {
   const TutorReportBottom({super.key});
@@ -19,7 +19,7 @@ class TutorReportBottom extends StatefulWidget {
 }
 
 class _TutorReportBottomState extends State<TutorReportBottom> {
-  TutorFeedbackBloc get _bloc => BlocProvider.of<TutorFeedbackBloc>(context);
+  TutorReportBloc get _bloc => BlocProvider.of<TutorReportBloc>(context);
 
   Object? listen;
 
@@ -116,12 +116,12 @@ class _TutorReportBottomState extends State<TutorReportBottom> {
   }
 
   Stream handleState(state) async* {
-    if (state is TutorFeedbackSuccess) {
+    if (state is TutorReportSuccess) {
       log("🌟[Tutor Feedback] success");
       context.popArgs(true);
       return;
     }
-    if (state is TutorFeedbackFailed) {
+    if (state is TutorReportFailed) {
       log(state.toString());
       return;
     }

@@ -64,7 +64,7 @@ class TutorHorizontalItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(data.name ?? '', style: context.titleSmall),
-                        RattingBarCustom(
+                        RatingBarCustom(
                             rating: data.rating ?? 0.0, itemSize: 10.0)
                       ],
                     ),

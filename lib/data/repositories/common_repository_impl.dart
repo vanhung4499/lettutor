@@ -17,7 +17,7 @@ class CommonRepositoryImpl extends BaseApi implements CommonRepository {
   CommonRepositoryImpl(this._commonApi);
 
   @override
-  SingleResult<List<Topic>> getTopics() {
+  SingleResult<List<Topic>> listTopic() {
     return SingleResult.fromCallable(() async {
       final response = await getStateOf(
         request: () async => await _commonApi.getTopic(),
@@ -53,7 +53,7 @@ class CommonRepositoryImpl extends BaseApi implements CommonRepository {
   }
 
   @override
-  SingleResult<Pagination<Ebook>> getListEbook({
+  SingleResult<Pagination<Ebook>> listEbook({
     required int page,
     required int size,
     String? q,

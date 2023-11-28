@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class RattingBarCustom extends StatelessWidget {
+class RatingBarCustom extends StatelessWidget {
   final IconData? iconData;
   final double? itemPadding;
   final double rating;
@@ -11,7 +11,7 @@ class RattingBarCustom extends StatelessWidget {
   final Color? color;
   final Function(double)? ratingUpdate;
 
-  const RattingBarCustom({
+  const RatingBarCustom({
     super.key,
     this.itemPadding,
     this.iconData,

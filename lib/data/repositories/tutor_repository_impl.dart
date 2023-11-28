@@ -62,22 +62,22 @@ class TutorRepositoryImpl extends BaseApi implements TutorRepository {
               AppException(message: response.dioError?.message ?? 'Error'),
             );
           }
-          return Either.right(true);
+          return const Either.right(true);
         },
       );
 
   @override
   SingleResult<TutorFav?> searchTutor(
-      {required SearchTutorRequest searchTutorRequest}) =>
+      {required SearchTutorRequest request}) =>
       SingleResult.fromCallable(() async {
         await Future.delayed(const Duration(seconds: 2));
         final body = {
-          'page': searchTutorRequest.page,
-          'perPage': searchTutorRequest.perPage,
-          'search': searchTutorRequest.search,
+          'page': request.page,
+          'perPage': request.perPage,
+          'search': request.search,
           'filters': {
-            'specialties': searchTutorRequest.topics,
-            'nationality': searchTutorRequest.nationality,
+            'specialties': request.topics,
+            'nationality': request.nationality,
           },
         };
         final response = await getStateOf(
@@ -97,7 +97,7 @@ class TutorRepositoryImpl extends BaseApi implements TutorRepository {
           TutorFav(
             tutors: Pagination<Tutor>(
               count: tutorResponse.count,
-              currentPage: searchTutorRequest.page,
+              currentPage: request.page,
               rows: tutorResponse.tutors.map((e) => e.toEntity()).toList(),
             ),
           ),

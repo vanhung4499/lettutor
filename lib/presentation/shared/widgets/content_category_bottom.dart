@@ -3,30 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/button_custom.dart';
+import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
 
-import '../../blocs/home_bloc.dart';
+import '../../home/blocs/home_bloc.dart';
 
-class CourseCategoryUI extends StatefulWidget {
-  const CourseCategoryUI({
+class CourseCategoryBottom extends StatefulWidget {
+  const CourseCategoryBottom({
     super.key,
     this.bloc,
+    this.ebookBloc,
   }) : assert(
-  (bloc != null) || (bloc == null),
+  (bloc != null && ebookBloc == null) || (bloc == null && ebookBloc != null),
   "Error",
   );
 
   final HomeBloc? bloc;
+  final EbookBloc? ebookBloc;
 
   @override
-  State<CourseCategoryUI> createState() => _CourseCategoryUIState();
+  State<CourseCategoryBottom> createState() => _CourseCategoryBottomState();
 }
 
-class _CourseCategoryUIState extends State<CourseCategoryUI> {
+class _CourseCategoryBottomState extends State<CourseCategoryBottom> {
   @override
   void initState() {
     super.initState();
     if (widget.bloc != null) {
-      widget.bloc?.getCourseCategory();
+      widget.bloc?.listCourseCategory();
+    }
+    if (widget.ebookBloc != null) {
+      widget.ebookBloc?.listCourseCategory();
     }
   }
 
@@ -63,7 +69,8 @@ class _CourseCategoryUIState extends State<CourseCategoryUI> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: StreamBuilder(
-            stream: widget.bloc?.courseCategories$,
+            stream: widget.bloc?.courseCategories$ ??
+                widget.ebookBloc?.courseCategories$,
             builder: (ctx, sS) {
               final data = sS.data ?? [];
               return ValueListenableBuilder(

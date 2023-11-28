@@ -8,24 +8,24 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 @immutable
-abstract class TutorFeedbackState {}
+abstract class TutorReportState {}
 
-class TutorFeedbackSuccess implements TutorFeedbackState {
-  const TutorFeedbackSuccess();
+class TutorReportSuccess implements TutorReportState {
+  const TutorReportSuccess();
 }
 
-class TutorFeedbackFailed implements TutorFeedbackState {
+class TutorReportFailed implements TutorReportState {
   final String? message;
   final Object? error;
 
-  const TutorFeedbackFailed({this.message, this.error});
+  const TutorReportFailed({this.message, this.error});
 
   @override
   String toString() => "[Report tutor failed] message $message error $error";
 }
 
 @injectable
-class TutorFeedbackBloc extends DisposeCallbackBaseBloc {
+class TutorReportBloc extends DisposeCallbackBaseBloc {
   ///[Functions] input function
 
   final Function1<String, void> reportTutor;
@@ -34,16 +34,16 @@ class TutorFeedbackBloc extends DisposeCallbackBaseBloc {
 
   final Stream<bool?> loading$;
 
-  final Stream<TutorFeedbackState> state$;
+  final Stream<TutorReportState> state$;
 
-  TutorFeedbackBloc._({
+  TutorReportBloc._({
     required Function0<void> dispose,
     required this.reportTutor,
     required this.loading$,
     required this.state$,
   }) : super(dispose);
 
-  factory TutorFeedbackBloc(@factoryParam String userId,
+  factory TutorReportBloc(@factoryParam String userId,
       {required TutorDetailUseCase tutorDetailUseCase}) {
     ///[Values controller]
 
@@ -67,7 +67,7 @@ class TutorFeedbackBloc extends DisposeCallbackBaseBloc {
         .withLatestFrom(isValid$, (_, isValid) => isValid)
         .share();
 
-    final state$ = Rx.merge<TutorFeedbackState>([
+    final state$ = Rx.merge<TutorReportState>([
       reportTutor$
           .where((isValid) => isValid)
           .debug(log: debugPrint)
@@ -82,20 +82,20 @@ class TutorFeedbackBloc extends DisposeCallbackBaseBloc {
           )
               .map(
                 (data) => data.fold(
-              ifLeft: (error) => TutorFeedbackFailed(
+              ifLeft: (error) => TutorReportFailed(
                   message: error.message, error: error.code),
-              ifRight: (_) => const TutorFeedbackSuccess(),
+              ifRight: (_) => const TutorReportSuccess(),
             ),
           );
         } catch (e) {
-          return Stream<TutorFeedbackState>.error(
-            TutorFeedbackFailed(message: e.toString()),
+          return Stream<TutorReportState>.error(
+            TutorReportFailed(message: e.toString()),
           );
         }
       }),
       reportTutor$
           .where((isValid) => !isValid)
-          .map((_) => const TutorFeedbackFailed(message: 'Invalid data'))
+          .map((_) => const TutorReportFailed(message: 'Invalid data'))
     ]).whereNotNull().share();
 
     final subscriptions = <String, Stream>{
@@ -104,7 +104,7 @@ class TutorFeedbackBloc extends DisposeCallbackBaseBloc {
       'isValid': isValid$,
     }.debug();
 
-    return TutorFeedbackBloc._(
+    return TutorReportBloc._(
       dispose: () async => await DisposeBag([
         loadingController,
         reportTutorController,

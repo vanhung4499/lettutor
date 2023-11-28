@@ -4,8 +4,8 @@ import 'package:lettutor/domain/entities/common/pagination.dart';
 import 'package:lettutor/domain/entities/common/topic.dart';
 
 abstract class CommonRepository {
-  SingleResult<List<Topic>> getTopics();
+  SingleResult<List<Topic>> listTopic();
 
-  SingleResult<Pagination<Ebook>> getListEbook(
+  SingleResult<Pagination<Ebook>> listEbook(
       {required int page, required int size, String? q, String? categoryId});
 }
