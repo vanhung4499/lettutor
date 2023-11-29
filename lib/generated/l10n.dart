@@ -890,10 +890,10 @@ class S {
     );
   }
 
-  /// `Tutor detailr`
+  /// `Tutor detail`
   String get tutorDetail {
     return Intl.message(
-      'Tutor detailr',
+      'Tutor detail',
       name: 'tutorDetail',
       desc: '',
       args: [],

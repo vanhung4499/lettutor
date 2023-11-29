@@ -16,11 +16,11 @@ import '../blocs/tutor_detail_state.dart';
 @injectable
 class TutorDetailBloc extends DisposeCallbackBaseBloc {
   ///[Functions] input
-  final Function0<void> getTutorBydId;
+  final Function0<void> getTutor;
 
   final Function0<void> favTutor;
 
-  final Function0<void> getReviews;
+  final Function0<void> listReview;
 
   final Function0<void> reportTutor;
 
@@ -34,7 +34,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
 
   final Stream<bool?> loadingFav$;
 
-  final Stream<bool?> loadingRev$;
+  final Stream<bool?> loadingReview$;
 
   final Stream<TutorDetail> tutor$;
 
@@ -43,11 +43,11 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
   TutorDetailBloc._({
     required Function0<void> dispose,
     required this.openTutorSchedulePage,
-    required this.getTutorBydId,
+    required this.getTutor,
     required this.reportTutor,
     required this.loadingFav$,
-    required this.loadingRev$,
-    required this.getReviews,
+    required this.loadingReview$,
+    required this.listReview,
     required this.favTutor,
     required this.loading$,
     required this.reviews$,
@@ -59,11 +59,11 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
       {required TutorDetailUseCase tutorDetailUseCase}) {
     ///[Define value]
 
-    final getTutorByIdController = PublishSubject<void>();
+    final getTutorController = PublishSubject<void>();
 
     final favTutorController = PublishSubject<void>();
 
-    final getReviewsController = PublishSubject<void>();
+    final listReviewController = PublishSubject<void>();
 
     final reportTutorController = PublishSubject<void>();
 
@@ -80,7 +80,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
 
     final reviewsController = BehaviorSubject<Pagination<Review>>.seeded(
         const Pagination<Review>(
-            rows: <Review>[], count: 0, perPage: 10, currentPage: 0));
+            rows: <Review>[], count: 0, perPage: 10, currentPage: 1));
 
     ///[Handle]
 
@@ -126,7 +126,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
     ]).whereNotNull().share();
 
     ///[Get tutors]
-    final getTutor$ = getTutorByIdController.stream
+    final getTutor$ = getTutorController.stream
         .withLatestFrom(loadingController.stream, (_, loading) => !loading)
         .share();
 
@@ -172,12 +172,12 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
             (paginationValid, loading) => paginationValid || !loading)
         .shareValueSeeded(false);
 
-    final getReviews$ = getReviewsController.stream
+    final listReview$ = listReviewController.stream
         .withLatestFrom(isValid$, (_, isValid) => isValid)
         .share();
 
-    final getReviewsState$ = Rx.merge<TutorDetailState>([
-      getReviews$
+    final listReviewState$ = Rx.merge<TutorDetailState>([
+      listReview$
           .where((isValid) => isValid)
           .debug(log: debugPrint)
           .withLatestFrom(reviewsController.stream,
@@ -215,7 +215,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
           );
         }
       }),
-      getReviews$
+      listReview$
           .where((isValid) => !isValid)
           .map((_) => const InvalidTutorDetail()),
     ]).whereNotNull().share();
@@ -231,7 +231,7 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
     final state$ = Rx.merge<TutorDetailState>([
       getTutorState$,
       favTutorState$,
-      getReviewsState$,
+      listReviewState$,
       openReportTutorState$,
       openTutorSchedulePageState$,
     ]).whereNotNull().share();
@@ -244,29 +244,29 @@ class TutorDetailBloc extends DisposeCallbackBaseBloc {
 
     return TutorDetailBloc._(
       dispose: () async => await DisposeBag([
-        getTutorByIdController,
+        getTutorController,
         reportTutorController,
         tutorController,
         loadingController,
         loadingFavController,
         favTutorController,
         loadingRevController,
-        getReviewsController,
+        listReviewController,
         reviewsController,
         openTutorSchedulePageController,
         ...subscriptions,
       ]).dispose(),
       favTutor: () => favTutorController.add(null),
-      getReviews: () => getReviewsController.add(null),
+      listReview: () => listReviewController.add(null),
       reportTutor: () => reportTutorController.add(null),
-      getTutorBydId: () => getTutorByIdController.add(null),
+      getTutor: () => getTutorController.add(null),
       openTutorSchedulePage: () => openTutorSchedulePageController.add(null),
       state$: state$,
       tutor$: tutorController,
       reviews$: reviewsController,
       loading$: loadingController,
       loadingFav$: loadingFavController,
-      loadingRev$: loadingRevController,
+      loadingReview$: loadingRevController,
     );
   }
 }

@@ -26,7 +26,7 @@ class _TutorReportBottomState extends State<TutorReportBottom> {
   final _contentController = TextEditingController();
 
   EdgeInsets get _horizontalEdgeInsets =>
-      const EdgeInsets.symmetric(horizontal: 10.0);
+      const EdgeInsets.symmetric(horizontal: 20.0);
 
   @override
   void initState() {
@@ -48,68 +48,78 @@ class _TutorReportBottomState extends State<TutorReportBottom> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.widthDevice,
-      constraints: BoxConstraints(
-        maxHeight: context.heightDevice * 0.35,
-        minHeight: context.heightDevice * 0.3,
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        extendBody: true,
-        bottomNavigationBar: StreamBuilder<bool?>(
-          stream: _bloc.loading$,
-          builder: (ctx, sS) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ButtonCustom(
-                height: 45.0,
-                radius: 5.0,
-                loading: sS.data ?? false,
-                onPress: () => _bloc.reportTutor(_contentController.text),
-                child: Text(
-                  S.of(context).report,
-                  style: context.titleMedium.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            );
-          },
+    return SafeArea(
+      child: Container(
+        width: context.widthDevice,
+        constraints: BoxConstraints(
+          maxHeight: context.heightDevice * 0.35,
+          minHeight: context.heightDevice * 0.3,
         ),
-        body: ListView(
-          children: [
-            const SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 60,
-                  height: 3.0,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Theme.of(context).hintColor.withOpacity(0.2),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          extendBody: true,
+          bottomNavigationBar: StreamBuilder<bool?>(
+            stream: _bloc.loading$,
+            builder: (ctx, sS) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ButtonCustom(
+                  height: 45.0,
+                  radius: 5.0,
+                  loading: sS.data ?? false,
+                  onPress: () => _bloc.reportTutor(_contentController.text),
+                  child: Text(
+                    S.of(context).report,
+                    style: context.titleMedium.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 10.0),
-            HeaderTextCustom(
-              headerText: S.of(context).reportTutor,
-              padding: _horizontalEdgeInsets,
-            ),
-            Padding(
-              padding: _horizontalEdgeInsets,
-              child: TextField(
-                controller: _contentController,
-                decoration:  InputDecoration(
-                  hintText: S.of(context).addReportContent,
+              );
+            },
+          ),
+          body: ListView(
+            children: [
+              const SizedBox(height: 10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 60,
+                    height: 3.0,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Theme.of(context).hintColor.withOpacity(0.2),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10.0),
+              HeaderTextCustom(
+                headerText: S.of(context).reportTutor,
+                padding: _horizontalEdgeInsets,
+              ),
+              const SizedBox(height: 20.0),
+              Padding(
+                padding: _horizontalEdgeInsets,
+                child: TextField(
+                  controller: _contentController,
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).hintColor.withOpacity(0.2),
+                      ),
+                    ),
+                    hintText: S.of(context).addReportContent,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

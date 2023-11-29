@@ -56,7 +56,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
 
     listen ??= _bloc.state$.flatMap(handleState).collect();
 
-    _bloc.getTutorBydId();
+    _bloc.getTutor();
   }
 
   @override
@@ -91,7 +91,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(14.0)),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      isDismissible: false,
+      isDismissible: true,
       enableDrag: false,
       builder: (context) {
         return BlocProvider(
@@ -111,15 +111,17 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: _backgroundColor,
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ButtonCustom(
-          height: 45.0,
-          onPress: () => _bloc.openTutorSchedulePage(),
-          child: Text(
-            S.of(context).bookTutor,
-            style: context.titleMedium
-                .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: ButtonCustom(
+            height: 45.0,
+            onPress: () => _bloc.openTutorSchedulePage(),
+            child: Text(
+              S.of(context).bookTutor,
+              style: context.titleMedium
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+            ),
           ),
         ),
       ),
@@ -135,41 +137,43 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
           style: context.titleLarge.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      body: StreamBuilder<bool?>(
-        stream: _bloc.loading$,
-        builder: (ctx, sS) {
-          final loading = sS.data ?? false;
-          if (loading) {
-            return _loading();
-          }
-          return StreamBuilder<TutorDetail>(
-            stream: _bloc.tutor$,
-            builder: (ctx1, sS1) {
-              final tutor = sS1.data;
-              if (tutor == null) {
-                return const SizedBox();
-              }
-              return StreamBuilder(
-                stream: _bloc.loadingFav$,
-                builder: (ctx2, sS2) {
-                  final loadingFav = sS.data ?? false;
-                  return Stack(
-                    children: [
-                      _tutorView(tutor),
-                      if (loadingFav)
-                        Container(
-                          color: Colors.black45,
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
-                          child: _loading(),
-                        )
-                    ],
-                  );
-                },
-              );
-            },
-          );
-        },
+      body: SafeArea(
+        child: StreamBuilder<bool?>(
+          stream: _bloc.loading$,
+          builder: (ctx, sS) {
+            final loading = sS.data ?? false;
+            if (loading) {
+              return _loading();
+            }
+            return StreamBuilder<TutorDetail>(
+              stream: _bloc.tutor$,
+              builder: (ctx1, sS1) {
+                final tutor = sS1.data;
+                if (tutor == null) {
+                  return const SizedBox();
+                }
+                return StreamBuilder(
+                  stream: _bloc.loadingFav$,
+                  builder: (ctx2, sS2) {
+                    final loadingFav = sS.data ?? false;
+                    return Stack(
+                      children: [
+                        _tutorView(tutor),
+                        if (loadingFav)
+                          Container(
+                            color: Colors.black45,
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            child: _loading(),
+                          )
+                      ],
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -203,7 +207,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                     (index, e) => Expanded(
                   child: ButtonCustom(
                     color: switch (index) {
-                      0 => Colors.red.withOpacity(0.7),
+                      0 => Colors.grey.withOpacity(0.7),
                       _ => _primaryColor
                     },
                     radius: 5.0,
@@ -265,13 +269,6 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               : const SizedBox(),
         ),
         HeaderTextCustom(
-          headerText: S.of(context).review,
-          padding: _horizontalEdgeInsets,
-          textStyle: context.titleMedium.copyWith(fontWeight: FontWeight.w500),
-          isShowSeeMore: true,
-          onPress: _viewMoreReviews,
-        ),
-        HeaderTextCustom(
           headerText: S.of(context).suggestedCourses,
           textStyle: context.titleMedium.copyWith(fontWeight: FontWeight.w500),
           padding: _horizontalEdgeInsets,
@@ -300,7 +297,14 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 ],
               ),
             ),
-          )
+          ),
+        HeaderTextCustom(
+          headerText: S.of(context).review,
+          padding: _horizontalEdgeInsets,
+          textStyle: context.titleMedium.copyWith(fontWeight: FontWeight.w500),
+          isShowSeeMore: true,
+          onPress: _viewMoreReviews,
+        ),
       ].expand((e) => [e, const SizedBox(height: 10.0)]).toList(),
     );
   }

@@ -46,14 +46,17 @@ abstract class BaseApi {
         final response = await getStateOf<LoginResponse?>(
           request: () async => await functionCall,
         );
+
         if (response is DataFailed) {
           return Either.left(
             AppException(message: response.dioError?.message ?? 'Error'),
           );
         }
+
         if (response.data == null) {
           return Either.left(AppException(message: 'Data error'));
         }
+
         final userTokenModel = response.data!.tokens;
         if (Validator.tokenNull(userTokenModel)) {
           return Either.left(AppException(message: 'Data null'));

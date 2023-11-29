@@ -164,7 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalLessonsTimesIs":
             MessageLookupByLibrary.simpleMessage("Total lessons times is "),
         "tutor": MessageLookupByLibrary.simpleMessage("Tutor"),
-        "tutorDetail": MessageLookupByLibrary.simpleMessage("Tutor detailr"),
+        "tutorDetail": MessageLookupByLibrary.simpleMessage("Tutor detail"),
         "tutorRegister": MessageLookupByLibrary.simpleMessage("Tutor register"),
         "tutorSchedule": MessageLookupByLibrary.simpleMessage("Tutor schedule"),
         "tutorSearch": MessageLookupByLibrary.simpleMessage("Tutor search"),

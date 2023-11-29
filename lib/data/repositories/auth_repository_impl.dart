@@ -1,6 +1,7 @@
 import 'package:dart_either/dart_either.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:lettutor/core/config/app_env.dart';
 import 'package:lettutor/core/network/app_exception.dart';
 import 'package:lettutor/core/services/google_sign_in_service.dart';
 import 'package:lettutor/core/utils/validator.dart';
@@ -54,7 +55,7 @@ class AuthRepositoryImpl extends BaseApi implements AuthRepository {
   SingleResult<UserTokenModel?> googleSignIn() => SingleResult.fromCallable(() async {
       final GoogleSignIn googleSignIn = GoogleSignIn(
         clientId:
-          "450036471337-ke0gj573jo7m1gmjtgimndfvdgti2gjt.apps.googleusercontent.com",
+          AppEnv.googleClientId,
         scopes: [
           'email',
           'https://www.googleapis.com/auth/userinfo.profile',

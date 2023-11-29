@@ -35,34 +35,38 @@ class _BottomReviewListState extends State<BottomReviewList> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBody: true,
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ButtonCustom(
-            height: 45.0,
-            radius: 5.0,
-            onPress: () {},
-            child: Text(
-              'Add new reviews',
-              style: context.titleMedium.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: ButtonCustom(
+              height: 45.0,
+              radius: 5.0,
+              onPress: () {},
+              child: Text(
+                'Add reviews',
+                style: context.titleMedium.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
         ),
-        body: StreamBuilder<bool?>(
-          stream: widget.tutorDetailBloc.loadingRev$,
-          builder: (ctx, sS) {
-            final loading = sS.data ?? false;
-            return StreamBuilder<Pagination<Review>>(
-              stream: widget.tutorDetailBloc.reviews$,
-              builder: (ctx1, sS1) {
-                final listReview = sS1.data;
-                final rows = listReview?.rows ?? List.empty();
-                return _viewField(context, listReview, rows, loading);
-              },
-            );
-          },
+        body: SafeArea(
+          child: StreamBuilder<bool?>(
+            stream: widget.tutorDetailBloc.loadingReview$,
+            builder: (ctx, sS) {
+              final loading = sS.data ?? false;
+              return StreamBuilder<Pagination<Review>>(
+                stream: widget.tutorDetailBloc.reviews$,
+                builder: (ctx1, sS1) {
+                  final listReview = sS1.data;
+                  final rows = listReview?.rows ?? List.empty();
+                  return _viewField(context, listReview, rows, loading);
+                },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -95,7 +99,7 @@ class _BottomReviewListState extends State<BottomReviewList> {
         if (listReview != null) ...rows.map((e) => ReviewItem(review: e)),
         if (loading) _loading(),
         TextButton(
-          onPressed: () => widget.tutorDetailBloc.getReviews(),
+          onPressed: () => widget.tutorDetailBloc.listReview(),
           child: Text(
             S.of(context).seeMore,
             style: context.titleSmall.copyWith(

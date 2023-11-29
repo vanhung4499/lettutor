@@ -104,7 +104,7 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
       listener: (_, __) {},
       builder: (context, state) {
         return MaterialApp(
-          title: 'Flight booking',
+          title: 'LetTutor',
           navigatorKey: widget.widget.navigationKey,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRoutes.getRoute,
@@ -117,13 +117,13 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
           ],
           supportedLocales: S.delegate.supportedLocales,
           theme: widget.light?.copyWith(
-            primaryColor: '#07AEAF'.toColor(),
-            primaryColorDark: '#07AEAF'.toColor(),
+            primaryColor: '#1890ff'.toColor(),
+            primaryColorDark: '#1890ff'.toColor(),
             // fontFamily: 'Montserrat',
           ) ??
               ThemeData(),
           darkTheme: widget.dark.copyWith(
-            primaryColor: '#07AEAF'.toColor(),
+            primaryColor: '#1890ff'.toColor(),
           ),
           locale: state.data.currentLocale,
         );
