@@ -83,7 +83,6 @@ class _DashboardViewState extends State<DashboardView> {
           'pop_up_route': Routes.splash,
           'behindBackground': 'https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_1280.jpg',
           'list_view': [
-            'security',
             'becomeTutor',
             'lang',
             'appearance',

@@ -81,7 +81,7 @@ class _TutorFeedbackScreenState extends State<TutorFeedbackScreen> {
 
   Center _loading() {
     return Center(
-      child: StyleLoadingWidget.foldingCube
+      child: StyleLoadingWidget.fadingCube
           .renderWidget(size: 40.0, color: Theme.of(context).primaryColor),
     );
   }

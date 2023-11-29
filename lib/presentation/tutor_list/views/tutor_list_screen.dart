@@ -93,7 +93,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
                 const Spacer(),
                 IconButton(
                   onPressed: () =>
-                      context.openListPageWithRoute(Routes.tutorSearch),
+                      context.openPageWithRoute(Routes.tutorSearch),
                   icon: Icon(Icons.search, color: Theme.of(context).hintColor),
                 ),
                 IconButton(
@@ -181,7 +181,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
                   final referencesTime = bookingInfo.scheduleDetailInfo!
                       .startPeriodTimestamp.millisecondsSinceEpoch /
                       1000;
-                  final currentTime = Constant.currentTimeMilliSeconds;
+                  final currentTime = Constants.currentTimeMilliSeconds;
                   if (currentTime > referencesTime) {
                     return const SizedBox();
                   }
@@ -284,7 +284,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Center(
-              child: StyleLoadingWidget.foldingCube
+              child: StyleLoadingWidget.fadingCube
                   .renderWidget(size: 40.0, color: _primaryColor),
             ),
           );

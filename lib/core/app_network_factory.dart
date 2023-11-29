@@ -9,7 +9,7 @@ import 'package:lettutor/core/di/di.dart';
 import 'package:lettutor/data/providers/network/apis/auth_api.dart';
 
 
-class AppCoreFactory {
+class AppNetworkFactory {
   static Dio createDio(String baseUrl) {
     final dio = Dio(
       BaseOptions(

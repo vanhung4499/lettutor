@@ -90,7 +90,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
               final loading = sS1.data ?? false;
               if (loading) {
                 return Center(
-                  child: StyleLoadingWidget.foldingCube
+                  child: StyleLoadingWidget.fadingCube
                       .renderWidget(size: 40.0, color: _primaryColor),
                 );
               }

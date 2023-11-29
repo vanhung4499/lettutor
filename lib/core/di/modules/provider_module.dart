@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:lettutor/core/app_core_factory.dart';
+import 'package:lettutor/core/app_network_factory.dart';
 import 'package:lettutor/core/config/app_env.dart';
 
 @module
-abstract class DataSourceModule {
+abstract class ProviderModule {
   @prod
-  Dio dioProd() => AppCoreFactory.createDio(
+  Dio dioProd() => AppNetworkFactory.createDio(
     AppEnv.baseUrl,
   );
 }

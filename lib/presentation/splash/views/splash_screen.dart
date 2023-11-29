@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
         builder: (context, snapShot) {
           if (snapShot.data ?? false) {
             return Center(
-              child: StyleLoadingWidget.foldingCube.renderWidget(
+              child: StyleLoadingWidget.fadingCube.renderWidget(
                 color: Theme.of(context).primaryColor,
                 size: 80.0,
               ),

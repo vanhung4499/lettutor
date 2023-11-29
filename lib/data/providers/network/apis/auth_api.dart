@@ -34,7 +34,7 @@ abstract class AuthApi {
   });
 
   @POST("/auth/google")
-  Future<HttpResponse> googleSignIn({
+  Future<HttpResponse<LoginResponse?>> googleSignIn({
     @Body() required Map<String, dynamic> body,
   });
 

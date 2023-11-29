@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/core/di/di.dart';
 import 'package:lettutor/core/extensions/string_extension.dart';
 import 'package:lettutor/core/layouts/setting_layout/controllers/setting_bloc.dart';
-import 'package:lettutor/routes/main_routes.dart';
+import 'package:lettutor/routes/app_routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lettutor/generated/l10n.dart';
 
@@ -107,7 +107,7 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
           title: 'Flight booking',
           navigatorKey: widget.widget.navigationKey,
           debugShowCheckedModeBanner: false,
-          onGenerateRoute: MainRoutes.getRoute,
+          onGenerateRoute: AppRoutes.getRoute,
           initialRoute: widget.widget.initialRoute,
           localizationsDelegates: const [
             S.delegate,

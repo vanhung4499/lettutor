@@ -42,7 +42,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
 
   Stream handleState(state) async* {
     if (state is ResetPasswordSuccess) {
-      context.showSnackBar("🌟[ Reset password ] Email send success");
+      context.showSnackBar("🌟[Reset password] Email send success");
       return;
     }
     if (state is ResetPasswordFailed) {
@@ -57,7 +57,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
       appBar: AppBar(
         backgroundColor: scaffoldBackgroundColor,
         title: Text(
-          "Reset password",
+          S.of(context).resetPassword,
           style: context.titleLarge.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
@@ -78,18 +78,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
               ),
             ),
             const SizedBox(height: 10.0),
-            Text(
-              S.of(context).pleaseEnterYourEmail,
-              style: context.titleSmall.copyWith(
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).hintColor,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Text(
+                S.of(context).pleaseEnterYourEmail,
+                style: context.titleSmall.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).hintColor,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20.0),
-            _emailTextField(),
+            _buildEmailWidget(),
             const SizedBox(height: 20.0),
-            _resetButton(),
+            _buildResetButton(),
             const SizedBox(height: kToolbarHeight),
           ],
         ),
@@ -97,7 +100,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
     );
   }
 
-  Widget _emailTextField() {
+  Widget _buildEmailWidget() {
     return StreamBuilder<String?>(
       stream: _bloc.emailError$,
       builder: (context, snapshot) {
@@ -121,7 +124,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
     );
   }
 
-  Widget _resetButton() {
+  Widget _buildResetButton() {
     return ProgressButton(
       call: () async {
         _bloc.submitReset();

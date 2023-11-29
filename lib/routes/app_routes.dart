@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/di/di.dart';
+import 'package:lettutor/core/layouts/setting_layout/views/passcode_screen.dart';
 import 'package:lettutor/data/models/request/search_tutor_request.dart';
 import 'package:lettutor/presentation/auth/blocs/login/login_bloc.dart';
 import 'package:lettutor/presentation/auth/blocs/register/register_bloc.dart';
@@ -7,6 +8,8 @@ import 'package:lettutor/presentation/auth/blocs/reset_password/reset_password_b
 import 'package:lettutor/presentation/auth/views/login_screen.dart';
 import 'package:lettutor/presentation/auth/views/register_screen.dart';
 import 'package:lettutor/presentation/auth/views/reset_password_screen.dart';
+import 'package:lettutor/presentation/become_tutor/blocs/become_tutor_bloc.dart';
+import 'package:lettutor/presentation/become_tutor/views/becom_tutor_screen.dart';
 import 'package:lettutor/presentation/course_detail/blocs/course_detail_bloc.dart';
 import 'package:lettutor/presentation/course_detail/views/course_detail_screen.dart';
 import 'package:lettutor/presentation/course_detail/views/pdf_viewer_screen.dart';
@@ -24,6 +27,8 @@ import 'package:lettutor/presentation/tutor_feedback/blocs/tutor_feedback_bloc.d
 import 'package:lettutor/presentation/tutor_feedback/views/tutor_feedback_screen.dart';
 import 'package:lettutor/presentation/tutor_list/blocs/tutor_list_bloc.dart';
 import 'package:lettutor/presentation/tutor_list/views/tutor_list_screen.dart';
+import 'package:lettutor/presentation/tutor_schedule/blocs/tutor_schedule_bloc.dart';
+import 'package:lettutor/presentation/tutor_schedule/views/tutor_schedule_screen.dart';
 import 'package:lettutor/presentation/tutor_search/blocs/tutor_search_bloc.dart';
 import 'package:lettutor/presentation/tutor_search/blocs/tutor_search_result_bloc.dart';
 import 'package:lettutor/presentation/tutor_search/views/tutor_search_result_screen.dart';
@@ -33,7 +38,7 @@ import 'package:lettutor/presentation/user_profile/views/user_profile_screen.dar
 import 'package:lettutor/routes/routes.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 
-class MainRoutes {
+class AppRoutes {
   static Map<String, WidgetBuilder> getRoutesWithSettings() {
     final routes = {Routes.login: (context) => const SizedBox()};
     return routes;
@@ -145,6 +150,21 @@ class MainRoutes {
           },
         );
 
+      case Routes.tutorSchedule:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            if (settings.arguments is String) {
+              return BlocProvider<TutorScheduleBloc>(
+                initBloc: (_) =>
+                    injector.get<TutorScheduleBloc>(param1: settings.arguments),
+                child: const TutorScheduleScreen(),
+              );
+            }
+            return const SizedBox();
+          },
+        );
+
       case Routes.tutorFeedback:
         return MaterialPageRoute(
           settings: settings,
@@ -208,6 +228,14 @@ class MainRoutes {
           },
         );
 
+      case Routes.becomeTutor:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => BlocProvider<BecomeTutorBloc>(
+            initBloc: (_) => injector.get(),
+            child: const BecomeTutorScreen(),
+          ),
+        );
 
       default:
         return unDefinedRoute();

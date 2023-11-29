@@ -4,7 +4,7 @@ import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-enum StyleLoadingWidget { rotatingPlain, foldingCube, none }
+enum StyleLoadingWidget { rotatingCircle, fadingCube, none }
 
 extension StyleLoadingWidgetExtension on StyleLoadingWidget {
   Widget renderWidget({
@@ -13,9 +13,9 @@ extension StyleLoadingWidgetExtension on StyleLoadingWidget {
     AnimationController? animationController,
   }) =>
       switch (this) {
-        StyleLoadingWidget.rotatingPlain =>
+        StyleLoadingWidget.rotatingCircle =>
             SpinKitRotatingCircle(color: color, size: size),
-        StyleLoadingWidget.foldingCube => SpinKitFoldingCube(
+        StyleLoadingWidget.fadingCube => SpinKitFadingCube(
             color: color, size: size, controller: animationController),
         _ => const SizedBox(),
       };

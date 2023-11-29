@@ -54,7 +54,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     required this.passwordError$,
   }) : super(dispose);
 
-  factory LoginBloc({required LoginUseCase login}) {
+  factory LoginBloc({required LoginUseCase loginUseCase}) {
     ///[controllers]
     final emailController = PublishSubject<String>();
 
@@ -109,17 +109,15 @@ class LoginBloc extends DisposeCallbackBaseBloc {
           .withLatestFrom(credential$, (_, Credential credential) => credential)
           .exhaustMap((credential) {
         try {
-          return login
+          return loginUseCase
               .login(
-            email: credential.email,
-            password: credential.password,
-          )
-              .doOn(
+                email: credential.email,
+                password: credential.password,
+              ).doOn(
             ///[loading state] set loading after submit
-            listen: () => loadingController.add(true),
-            cancel: () => loadingController.add(false),
-          )
-              .map(_responseToMessage);
+                listen: () => loadingController.add(true),
+                cancel: () => loadingController.add(false),
+              ).map(_responseToMessage);
         } catch (e) {
           return Stream<LoginState>.error(
             LoginErrorMessage(message: e.toString()),
@@ -131,7 +129,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
           .map((_) => const InvalidFormatMessage()),
       submitGoogleLogin$.where((isValid) => isValid).exhaustMap((_) {
         try {
-          return login
+          return loginUseCase
               .googleLogin()
               .doOn(
               listen: () => loadingController.add(true),
@@ -140,7 +138,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
                 (data) => data.fold(
                 ifLeft: (error) => LoginErrorMessage(
                     message: error.message, error: error.code),
-                ifRight: (_) => const LoginErrorMessage()),
+                ifRight: (_) => const LoginSuccessMessage()),
           );
         } catch (e) {
           return Stream.error(LoginErrorMessage(message: e.toString()));

@@ -15,7 +15,7 @@ class PassCodeScreen extends StatefulWidget {
 
 class _PassCodeScreenState extends State<PassCodeScreen> {
   // style
-  final List<String> input = Constant.boardNumber;
+  final List<String> input = Constants.boardNumber;
   final List<String> _passCodeConfirm = List<String>.empty(growable: true);
   Color get _backgroundColor => Theme.of(context).scaffoldBackgroundColor;
   Color get _primaryColor => Theme.of(context).primaryColor;
@@ -64,7 +64,7 @@ class _PassCodeScreenState extends State<PassCodeScreen> {
     if (_passCode?.isNotEmpty ?? false) {
       if (result == _passCode) {
         if (widget.routes?.isNotEmpty ?? false) {
-          context.openListPageWithRoute(widget.routes!);
+          context.openPageWithRoute(widget.routes!);
         } else {
           context.popArgs(result);
         }

@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
@@ -10,6 +9,7 @@ import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/utils/handle_time.dart';
 import 'package:lettutor/core/widgets/header_custom.dart';
 import 'package:lettutor/core/widgets/skeleton_custom.dart';
+import 'package:lettutor/generated/l10n.dart';
 import 'package:lettutor/presentation/shared/widgets/simple_course_card.dart';
 import 'package:lettutor/presentation/shared/widgets/simple_tutor_card.dart';
 import 'package:lettutor/routes/routes.dart';
@@ -51,23 +51,23 @@ class HomeScreenState extends State<HomeScreen> {
       return;
     }
     if (state is ListTopTutorSuccess) {
-      log("🌟[Get top tutors] Get top tutors success");
+      log("🌟[List top tutors] Get top tutors success");
       return;
     }
     if (state is ListTopCourseFailed) {
-      context.showSnackBar("🐛[Get top Courses error] ${state.toString()}");
+      context.showSnackBar("🅱️[List top Courses error] ${state.toString()}");
       return;
     }
     if (state is ListTopCourseSuccess) {
-      log("🌟[Get top Courses] Get top courses success");
+      log("🌟[List top Courses] List top courses success");
       return;
     }
     if (state is ListTopEbookFailed) {
-      context.showSnackBar("🐛[Get top Ebooks error] ${state.toString()}");
+      context.showSnackBar("🅱️[List top Ebooks error] ${state.toString()}");
       return;
     }
     if (state is ListTopEbookSuccess) {
-      log("🌟[Get top Ebooks] Get top Ebooks success");
+      log("🌟[List top Ebooks] Get top Ebooks success");
       return;
     }
   }
@@ -102,9 +102,13 @@ class HomeScreenState extends State<HomeScreen> {
         },
         child: ListView(children: [
           const WelcomeText(),
-          _bannerField(context),
+          _buildBannerWidget(context),
           const SizedBox(height: 15.0),
-          ...['👨‍🏫 Top tutors', '💻 Recommend courses', '📖 Free ebook']
+          ...[
+            S.of(context).topTutors,
+            S.of(context).recommendCourses,
+            S.of(context).recommendEbooks
+          ]
               .mapIndexed(
                 (index, e) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,15 +118,15 @@ class HomeScreenState extends State<HomeScreen> {
                   isShowSeeMore: true,
                   onPress: () {
                     if (index == 0) {
-                      context.openListPageWithRoute(Routes.tutorList);
+                      context.openPageWithRoute(Routes.tutorList);
                       return;
                     }
                     if (index == 1) {
-                      context.openListPageWithRoute(Routes.courseList);
+                      context.openPageWithRoute(Routes.courseList);
                       return;
                     }
                     if (index == 2) {
-                      context.openListPageWithRoute(Routes.ebook);
+                      context.openPageWithRoute(Routes.ebook);
                       return;
                     }
                   },
@@ -130,9 +134,9 @@ class HomeScreenState extends State<HomeScreen> {
                       .copyWith(fontWeight: FontWeight.w600, fontSize: 17.0),
                 ),
                 switch (index) {
-                  0 => _renderTutorListView(),
-                  1 => _renderCourseListView(),
-                  2 => _renderEbookListView(),
+                  0 => _buildTutorListView(),
+                  1 => _buildCourseListView(),
+                  2 => _buildEbookListView(),
                   _ => const SizedBox(),
                 },
                 const SizedBox(height: 5.0),
@@ -146,7 +150,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Padding _bannerField(BuildContext context) {
+  Padding _buildBannerWidget(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Stack(
@@ -175,15 +179,15 @@ class HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 5.0),
                   ...[
-                    "Free ebook material",
-                    "Free one to one with tutors",
-                    "Free courses with pdf material",
-                  ].map(
-                        (e) => Text(
-                      '🐼 $e',
-                      style: context.titleSmall.copyWith(
-                          fontWeight: FontWeight.w500, color: Colors.white),
-                    ),
+                    "💯Learn one to one with tutors",
+                    "📔A lot of courses for any level",
+                    "📚Many ebook material",
+                  ].map((e) =>
+                      Text(
+                        e,
+                        style: context.titleSmall.copyWith(
+                            fontWeight: FontWeight.w500, color: Colors.white),
+                      ),
                   ),
                 ].expand((e) => [e, const SizedBox(height: 2.0)]).toList()
                   ..removeLast(),
@@ -202,7 +206,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _renderEbookListView() {
+  Widget _buildEbookListView() {
     return StreamBuilder(
       stream: _bloc.loadingListEbook,
       builder: (ctx, sS) {
@@ -243,7 +247,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _renderCourseListView() {
+  Widget _buildCourseListView() {
     return StreamBuilder(
       stream: _bloc.loadingListCourse,
       builder: (ctx, sS) {
@@ -284,7 +288,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _renderTutorListView() {
+  Widget _buildTutorListView() {
     return StreamBuilder(
       stream: _bloc.loadingListTutor,
       builder: (ctx, sS) {

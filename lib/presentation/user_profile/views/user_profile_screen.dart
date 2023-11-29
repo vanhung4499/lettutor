@@ -39,7 +39,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studySchedule = TextEditingController();
 
-  final ValueNotifier _birthDay = ValueNotifier<DateTime>(DateTime.now());
+  final ValueNotifier _birthday = ValueNotifier<DateTime>(DateTime.now());
   final ValueNotifier _countryCode = ValueNotifier<String>('');
   final ValueNotifier<String> _levels = ValueNotifier<String>('');
 
@@ -56,7 +56,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   void _onSelectedTime() async {
     final time = await context.pickDate(DatePickerMode.day);
     if (time != null) {
-      _birthDay.value = time;
+      _birthday.value = time;
     }
   }
 
@@ -98,27 +98,29 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: ButtonCustom(
-            onPress: () => _bloc.updateProfile(
-              UpdateProfileRequest(
-                name: _nameController.text,
-                country: _countryCode.value,
-                birthDay: _birthDay.value,
-                level: _levels.value,
-                studySchedule: _studySchedule.text,
+          child: SafeArea(
+            child: ButtonCustom(
+              onPress: () => _bloc.updateProfile(
+                UpdateProfileRequest(
+                  name: _nameController.text,
+                  country: _countryCode.value,
+                  birthDay: _birthday.value,
+                  level: _levels.value,
+                  studySchedule: _studySchedule.text,
+                ),
               ),
-            ),
-            width: double.infinity,
-            radius: 10.0,
-            height: 45.0,
-            child: Text(
-              S.of(context).updateProfile,
-              style: context.titleMedium
-                  .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+              width: double.infinity,
+              radius: 10.0,
+              height: 45.0,
+              child: Text(
+                S.of(context).updateProfile,
+                style: context.titleMedium
+                    .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
           ),
         ),
-        appBar: _appBarField(context),
+        appBar: _buildAppBar(context),
         body: StreamBuilder(
           stream: _bloc.user$,
           builder: (ctx, sS) {
@@ -126,17 +128,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             if (user == null) {
               return const SizedBox();
             }
-            return _mainView(user, context);
+            return _buildMainView(user, context);
           },
         ),
       ),
     );
   }
 
-  ListView _mainView(User user, BuildContext context) {
+  ListView _buildMainView(User user, BuildContext context) {
     return ListView(
       children: [
-        _avatarField(user),
+        _buildAvatarWidget(user),
         ...[user.email ?? '', user.phone ?? ''].map(
               (e) => Text(
             e,
@@ -172,9 +174,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               ),
               const SizedBox(height: 5.0),
               switch (index) {
-                0 => _calendarField(context),
-                1 => _selectedCountryField(user, context),
-                2 => _levelField(),
+                0 => _buildCalendarWidget(context),
+                1 => _buildSelectCountryWidget(user, context),
+                2 => _buildLevelWidget(),
                 _ => StreamBuilder<List<Topic>>(
                   stream: _bloc.topics$,
                   builder: (ctx2, sS2) {
@@ -183,7 +185,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       stream: _bloc.selectedTopics$,
                       builder: (ctx3, sS3) {
                         final topicSelected = sS3.data ?? <Topic>[];
-                        return _topicsField(
+                        return _buildListTopicWidget(
                           topics: topics,
                           topicsSelected: topicSelected,
                         );
@@ -213,7 +215,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  Widget _topicsField(
+  Widget _buildListTopicWidget(
       {required List<Topic> topics, required List<Topic> topicsSelected}) {
     return Wrap(
       spacing: 6.0,
@@ -250,7 +252,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  ValueListenableBuilder<String> _levelField() {
+  ValueListenableBuilder<String> _buildLevelWidget() {
     return ValueListenableBuilder<String>(
       valueListenable: _levels,
       builder: (_, level, __) {
@@ -259,14 +261,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           child: DropdownButtonCustom<String?>(
             borderWidth: 1.5,
             radius: 10.0,
-            items: Constant.userLevels.entries
-                .mapIndexed(
-                  (index, element) => DropdownMenuItem(
-                value: element.key,
-                child: Text(element.value),
+            items: Constants.userLevels.entries
+              .mapIndexed(
+                (index, element) =>
+                  DropdownMenuItem(value: element.key, child: Text(element.value)
               ),
-            )
-                .toList(),
+            ).toList(),
             value: level.toUpperCase(),
             onChange: (value) {
               if (value?.isNotEmpty ?? false) {
@@ -279,7 +279,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  Container _selectedCountryField(User user, BuildContext context) {
+  Container _buildSelectCountryWidget(User user, BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
       decoration: BoxDecoration(
@@ -294,8 +294,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 CountryCodePicker(
                   padding: const EdgeInsets.all(0),
                   initialSelection: user.country,
-                  showCountryOnly: false,
-                  showOnlyCountryWhenClosed: false,
+                  showCountryOnly: true,
+                  showOnlyCountryWhenClosed: true,
                   enabled: true,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   dialogBackgroundColor:
@@ -316,9 +316,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  ValueListenableBuilder<dynamic> _calendarField(BuildContext context) {
+  ValueListenableBuilder<dynamic> _buildCalendarWidget(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: _birthDay,
+      valueListenable: _birthday,
       builder: (_, birthDay, __) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -375,7 +375,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  AppBar _appBarField(BuildContext context) {
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
@@ -390,7 +390,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     );
   }
 
-  Row _avatarField(User user) {
+  Row _buildAvatarWidget(User user) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -399,17 +399,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           child: StreamBuilder(
             stream: _bloc.imageBytes,
             builder: (ctx, sS) {
-              final memory = sS.data;
+              final imageData = sS.data;
               return ClipRRect(
                 borderRadius: BorderRadius.circular(100),
-                child: memory == null
+                child: imageData == null
                     ? ImageCustom(
                   imageUrl: user.avatar ?? ImageConstant.defaultImage,
                   isNetworkImage: true,
                   width: 120,
                   height: 120,
                 )
-                    : Image.memory(memory,
+                    : Image.memory(imageData,
                     width: 120, height: 120, fit: BoxFit.cover),
               );
             },
@@ -424,7 +424,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       log("🌟[Get user information] success");
       _nameController.text = state.user.name;
       _studySchedule.text = state.user.studySchedule ?? '';
-      _birthDay.value = state.user.birthday;
+      _birthday.value = state.user.birthday;
       _countryCode.value = state.user.country;
       if (state.user.level?.isNotEmpty ?? false) {
         _levels.value = state.user.level!.toUpperCase();
@@ -452,7 +452,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   Center _loading() {
     return Center(
-      child: StyleLoadingWidget.foldingCube
+      child: StyleLoadingWidget.fadingCube
           .renderWidget(size: 40.0, color: _primaryColor),
     );
   }

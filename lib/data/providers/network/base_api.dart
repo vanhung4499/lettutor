@@ -38,7 +38,7 @@ abstract class BaseApi {
     }
   }
 
-  SingleResult<UserTokenModel?>  authFunction({
+  SingleResult<UserTokenModel?> authFunction({
     required Future<HttpResponse<LoginResponse?>> functionCall,
   }) {
     return SingleResult.fromCallable(
@@ -59,21 +59,29 @@ abstract class BaseApi {
           return Either.left(AppException(message: 'Data null'));
         }
 
-        ///[Print] log data
-        log("[Access] ${userTokenModel.access?.token}");
-        log("[Refresh] ${userTokenModel.refresh?.token}");
-        log("[Expired time] ${DateFormat().add_yMd().format(userTokenModel.access?.expires ?? DateTime.now())}");
-
-        await CommonAppSettingPref.setExpiredTime(
-            (userTokenModel.access?.expires ?? DateTime.now())
-                .millisecondsSinceEpoch);
-        await CommonAppSettingPref.setAccessToken(
-            userTokenModel.access?.token ?? '');
-        await CommonAppSettingPref.setRefreshToken(
-            userTokenModel.refresh?.token ?? '');
+        await saveToken(userTokenModel);
 
         return Either.right(userTokenModel);
       },
     );
+  }
+
+  Future? saveToken(UserTokenModel? userTokenModel) async {
+    if (userTokenModel == null) {
+      return;
+    }
+
+    ///[Print] log data
+    log("[Access] ${userTokenModel.access?.token}");
+    log("[Refresh] ${userTokenModel.refresh?.token}");
+    log("[Expired time] ${DateFormat().add_yMd().format(userTokenModel.access?.expires ?? DateTime.now())}");
+
+    await CommonAppSettingPref.setExpiredTime(
+        (userTokenModel.access?.expires ?? DateTime.now())
+            .millisecondsSinceEpoch);
+    await CommonAppSettingPref.setAccessToken(
+        userTokenModel.access?.token ?? '');
+    await CommonAppSettingPref.setRefreshToken(
+        userTokenModel.refresh?.token ?? '');
   }
 }

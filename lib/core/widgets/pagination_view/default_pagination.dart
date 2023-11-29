@@ -72,7 +72,7 @@ class _DefaultPaginationState<T> extends State<DefaultPagination<T>> {
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: widget.loadingWidget ??
                 Center(
-                  child: StyleLoadingWidget.foldingCube.renderWidget(
+                  child: StyleLoadingWidget.fadingCube.renderWidget(
                       size: 40.0, color: Theme.of(context).primaryColor),
                 ),
           );

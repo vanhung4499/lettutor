@@ -44,8 +44,8 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void initState() {
-    _emailController = TextEditingController(text: 'phhai@ymail.co');
-    _passwordController = TextEditingController(text: '12345');
+    _emailController = TextEditingController(text: 'student@lettutor.com');
+    _passwordController = TextEditingController(text: '123456');
     super.initState();
     didChangeDependencies$
         .exhaustMap((_) => _bloc.message$)
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen>
           Image.asset(
             ImageConstant.loginImage,
             width: double.infinity,
-            height: context.heightDevice * 0.36,
+            height: context.heightDevice * 0.25,
           ),
           const SizedBox(height: 20.0),
           Text(
@@ -120,9 +120,9 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           const SizedBox(height: 10.0),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
-              S.of(context).beComeFluent,
+              S.of(context).becomeFluent,
               style: context.titleSmall,
               textAlign: TextAlign.center,
             ),
@@ -130,31 +130,31 @@ class _LoginScreenState extends State<LoginScreen>
           const SizedBox(height: 20.0),
           Padding(
             padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-            child: _emailTextField(),
+            const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+            child: _buildEmailWidget(),
           ),
           Padding(
             padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-            child: _passwordField(),
+            const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+            child: _buildPasswordWidget(),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
                   onPressed: () =>
-                      context.openListPageWithRoute(Routes.resetPassword),
+                      context.openPageWithRoute(Routes.resetPassword),
                   child: Text(
-                    S.of(context).forGotPassword,
+                    S.of(context).forgotPassword,
                     style: context.titleSmall.copyWith(color: primaryColor),
                   ),
                 ),
                 TextButton(
                   onPressed: () =>
-                      context.openListPageWithRoute(Routes.register),
-                  child: Text(S.of(context).signUp, style: context.titleSmall),
+                      context.openPageWithRoute(Routes.register),
+                  child: Text(S.of(context).register, style: context.titleSmall),
                 )
               ],
             ),
@@ -192,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  Widget _passwordField() {
+  Widget _buildPasswordWidget() {
     return StreamBuilder<String?>(
       stream: _bloc.passwordError$,
       builder: (context, snapshot) {
@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen>
                 suffixIcon: GestureDetector(
                   onTap: _onChangeObscureText,
                   child: Icon(
-                    obscureText ? Icons.lock_outline : Icons.lock_open_sharp,
+                    obscureText ? Icons.visibility_off : Icons.visibility,
                   ),
                 ),
                 labelText: S.of(context).password,
@@ -221,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  Widget _emailTextField() {
+  Widget _buildEmailWidget() {
     return StreamBuilder<String?>(
       stream: _bloc.emailError$,
       builder: (context, snapshot) {
@@ -256,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen>
       },
       width: 300,
       isAnimation: true,
-      textInside: S.of(context).logIn,
+      textInside: S.of(context).login,
       radius: 10.0,
     );
   }

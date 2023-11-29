@@ -253,7 +253,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
   List<Widget> get _renderUserField {
     final logText =
-    _currentUser != null ? S.of(context).logOut : S.of(context).logIn;
+    _currentUser != null ? S.of(context).logOut : S.of(context).login;
     final logIcon = _currentUser != null ? Icons.restart_alt : Icons.person;
     return [
       const SizedBox(height: 10.0),
@@ -291,7 +291,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: index == 0
                     ? () async {
                   final user = await context
-                      .openListPageWithRoute(Routes.userProfile);
+                      .openPageWithRoute(Routes.userProfile);
                   if (user is User) {
                     _settingController.add(
                       SettingEvent.updateNewUser(newUser: user),
@@ -439,7 +439,7 @@ class _SettingScreenState extends State<SettingScreen> {
       case 'becomeTutor':
         icon = Icons.school;
         title = S.of(context).becomeTutor;
-        onPress = () => context.openListPageWithRoute(Routes.becomeTutor);
+        onPress = () => context.openPageWithRoute(Routes.becomeTutor);
       default:
       //do something here
     }

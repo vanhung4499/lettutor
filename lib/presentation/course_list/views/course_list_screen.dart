@@ -160,7 +160,7 @@ class _CourseListScreenState extends State<CourseListScreen> with DidChangeDepen
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Center(
-              child: StyleLoadingWidget.foldingCube.renderWidget(
+              child: StyleLoadingWidget.fadingCube.renderWidget(
                   size: 40.0, color: Theme.of(context).primaryColor),
             ),
           );

@@ -42,8 +42,8 @@ extension AppCoordinator<T> on BuildContext {
   Future<TimeOfDay?> pickTime() => showTimePicker(
     context: this,
     initialTime: TimeOfDay(
-      hour: Constant.timeNow.hour,
-      minute: Constant.timeNow.minute,
+      hour: Constants.timeNow.hour,
+      minute: Constants.timeNow.minute,
     ),
   );
 
@@ -136,8 +136,12 @@ extension AppCoordinator<T> on BuildContext {
     return null;
   }
 
-  Future<T?> openListPageWithRoute(String route) {
+  Future<T?> openPageWithRoute(String route) {
     return Navigator.of(this).pushNamed(route);
+  }
+
+  Future<T?> backToPageWithRoute(String route) {
+    return Navigator.of(this).popAndPushNamed(route);
   }
 
   Future<T?> pushAndRemoveAll(String route) {

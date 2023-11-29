@@ -189,7 +189,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
       try {
         {
           return tutorListUseCase
-              .getUpComingClass(dateTime: Constant.currentTime)
+              .getUpComingClass(dateTime: Constants.currentTime)
               .doOn(
             listen: () => loadingHeaderController.add(true),
             cancel: () => loadingHeaderController.add(false),

@@ -120,11 +120,11 @@ class S {
     );
   }
 
-  /// `Log in`
-  String get logIn {
+  /// `Login`
+  String get login {
     return Intl.message(
-      'Log in',
-      name: 'logIn',
+      'Login',
+      name: 'login',
       desc: '',
       args: [],
     );
@@ -331,20 +331,30 @@ class S {
   }
 
   /// `Become fluent faster through one on one video chat lessons tailored to your goals`
-  String get beComeFluent {
+  String get becomeFluent {
     return Intl.message(
       'Become fluent faster through one on one video chat lessons tailored to your goals',
-      name: 'beComeFluent',
+      name: 'becomeFluent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start learning with LetTutor`
+  String get startLearning {
+    return Intl.message(
+      'Start learning with LetTutor',
+      name: 'startLearning',
       desc: '',
       args: [],
     );
   }
 
   /// `Forgot your password`
-  String get forGotPassword {
+  String get forgotPassword {
     return Intl.message(
       'Forgot your password',
-      name: 'forGotPassword',
+      name: 'forgotPassword',
       desc: '',
       args: [],
     );
@@ -370,21 +380,51 @@ class S {
     );
   }
 
-  /// `Registering`
-  String get registering {
+  /// `Register`
+  String get register {
     return Intl.message(
-      'Registering',
-      name: 'registering',
+      'Register',
+      name: 'register',
       desc: '',
       args: [],
     );
   }
 
-  /// `Tutor registering`
+  /// `Tutor register`
   String get tutorRegister {
     return Intl.message(
-      'Tutor registering',
+      'Tutor register',
       name: 'tutorRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top tutors`
+  String get topTutors {
+    return Intl.message(
+      'Top tutors',
+      name: 'topTutors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommend courses`
+  String get recommendCourses {
+    return Intl.message(
+      'Recommend courses',
+      name: 'recommendCourses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommend ebooks`
+  String get recommendEbooks {
+    return Intl.message(
+      'Recommend ebooks',
+      name: 'recommendEbooks',
       desc: '',
       args: [],
     );
@@ -411,10 +451,10 @@ class S {
   }
 
   /// `Who i tech`
-  String get whoITech {
+  String get aboutTeaching {
     return Intl.message(
       'Who i tech',
-      name: 'whoITech',
+      name: 'aboutTeaching',
       desc: '',
       args: [],
     );
@@ -430,10 +470,10 @@ class S {
     );
   }
 
-  /// `Enter your interest`
+  /// `Enter your interests`
   String get EnterYourInterests {
     return Intl.message(
-      'Enter your interest',
+      'Enter your interests',
       name: 'EnterYourInterests',
       desc: '',
       args: [],
@@ -470,10 +510,10 @@ class S {
     );
   }
 
-  /// `Basic info`
+  /// `Basic information`
   String get basicInfo {
     return Intl.message(
-      'Basic info',
+      'Basic information',
       name: 'basicInfo',
       desc: '',
       args: [],
@@ -490,10 +530,10 @@ class S {
     );
   }
 
-  /// `Report tutor`
+  /// `Report Tutor`
   String get reportTutor {
     return Intl.message(
-      'Report tutor',
+      'Report Tutor',
       name: 'reportTutor',
       desc: '',
       args: [],
@@ -1221,10 +1261,10 @@ class S {
   }
 
   /// `I am a best at teaching students who are`
-  String get iAmTheBestAtTeaching {
+  String get iAmBestAtTeaching {
     return Intl.message(
       'I am a best at teaching students who are',
-      name: 'iAmTheBestAtTeaching',
+      name: 'iAmBestAtTeaching',
       desc: '',
       args: [],
     );
@@ -1245,6 +1285,36 @@ class S {
     return Intl.message(
       'Result not found',
       name: 'resultNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CV`
+  String get cv {
+    return Intl.message(
+      'CV',
+      name: 'cv',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birthday`
+  String get birthday {
+    return Intl.message(
+      'Birthday',
+      name: 'birthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I'm from`
+  String get iAmFrom {
+    return Intl.message(
+      'I\'m from',
+      name: 'iAmFrom',
       desc: '',
       args: [],
     );

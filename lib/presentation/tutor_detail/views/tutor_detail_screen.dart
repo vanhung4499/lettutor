@@ -176,7 +176,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
 
   Center _loading() {
     return Center(
-      child: StyleLoadingWidget.foldingCube
+      child: StyleLoadingWidget.fadingCube
           .renderWidget(size: 40.0, color: _primaryColor),
     );
   }
@@ -390,7 +390,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               const SizedBox(height: 1.0),
               if (tutorUser.country?.isNotEmpty ?? false) ...[
                 Text(
-                  Constant.countries[tutorUser.country!.toUpperCase()] ??
+                  Constants.countries[tutorUser.country!.toUpperCase()] ??
                       'Unknown',
                   style: context.titleSmall.copyWith(
                     fontWeight: FontWeight.w500,

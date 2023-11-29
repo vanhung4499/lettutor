@@ -132,7 +132,7 @@ class _EbookScreenState extends State<EbookScreen> {
 
   Center _loading() {
     return Center(
-      child: StyleLoadingWidget.foldingCube
+      child: StyleLoadingWidget.fadingCube
           .renderWidget(size: 40.0, color: _primaryColor),
     );
   }

@@ -62,23 +62,25 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: _backgroundColor,
-      body: StreamBuilder(
-        stream: _bloc.loading$,
-        builder: (ctx, sS) {
-          final loading = sS.data ?? false;
-          if (loading) {
-            return _loading();
-          }
-          return StreamBuilder(
-            stream: _bloc.course$,
-            builder: (ctx1, sS1) {
-              if (sS1.data == null) {
-                return const SizedBox();
-              }
-              return _mainView(course: sS1.data!);
-            },
-          );
-        },
+      body: SafeArea(
+        child: StreamBuilder(
+          stream: _bloc.loading$,
+          builder: (ctx, sS) {
+            final loading = sS.data ?? false;
+            if (loading) {
+              return _loading();
+            }
+            return StreamBuilder(
+              stream: _bloc.course$,
+              builder: (ctx1, sS1) {
+                if (sS1.data == null) {
+                  return const SizedBox();
+                }
+                return _mainView(course: sS1.data!);
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -293,7 +295,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
   Center _loading() {
     return Center(
-      child: StyleLoadingWidget.foldingCube
+      child: StyleLoadingWidget.fadingCube
           .renderWidget(size: 40.0, color: _primaryColor),
     );
   }

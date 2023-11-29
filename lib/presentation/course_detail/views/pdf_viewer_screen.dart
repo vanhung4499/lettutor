@@ -52,7 +52,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
     return Scaffold(
       body: isLoading
           ? Center(
-        child: StyleLoadingWidget.foldingCube.renderWidget(
+        child: StyleLoadingWidget.fadingCube.renderWidget(
             size: 40.0, color: Theme.of(context).primaryColor),
       )
           : SizedBox(

@@ -9,6 +9,7 @@ import 'package:lettutor/generated/l10n.dart';
 import 'package:lettutor/presentation/auth/base/auth_mixin.dart';
 import 'package:lettutor/presentation/auth/blocs/register/register_state.dart';
 import 'package:lettutor/presentation/auth/views/widgets/render_app_bar.dart';
+import 'package:lettutor/routes/routes.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 
 import '../blocs/register/register_bloc.dart';
@@ -38,8 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController(text: 'phhai@ymail.co');
-    _passwordController = TextEditingController(text: '12345');
+    _emailController = TextEditingController(text: 'student@lettutor.com');
+    _passwordController = TextEditingController(text: '123456');
     _rePasswordController = TextEditingController();
     listen ??= _bloc.state$.flatMap(handleState).collect();
   }
@@ -82,12 +83,12 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
           const SizedBox(height: 20.0),
           Image.asset(
             ImageConstant.loginImage,
-            height: context.heightDevice * 0.3,
+            height: context.heightDevice * 0.25,
             width: double.infinity,
           ),
           const SizedBox(height: 20.0),
           Text(
-            S.of(context).signUpToUse,
+            S.of(context).startLearning,
             textAlign: TextAlign.center,
             style: context.titleLarge.copyWith(
               fontWeight: FontWeight.bold,
@@ -98,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(
-              S.of(context).registerAccountToUse,
+              S.of(context).becomeFluent,
               style: context.titleSmall,
               textAlign: TextAlign.center,
             ),
@@ -106,18 +107,39 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
           const SizedBox(height: 15.0),
           Padding(
             padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-            child: _emailTextField(),
+            const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+            child: _buildEmailWidget(),
           ),
           Padding(
             padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-            child: _passwordField(),
+            const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+            child: _buildPasswordWidget(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () =>
+                      context.openPageWithRoute(Routes.resetPassword),
+                  child: Text(
+                    S.of(context).forgotPassword,
+                    style: context.titleSmall.copyWith(color: primaryColor),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      context.backToPageWithRoute(Routes.login),
+                  child: Text(S.of(context).login, style: context.titleSmall),
+                )
+              ],
+            ),
           ),
           const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_signUpButton()],
+            children: [_buildRegisterButton()],
           ),
         ],
       ),
@@ -126,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
 
   // Widget _rePasswordField() {}
 
-  Widget _passwordField() {
+  Widget _buildPasswordWidget() {
     return StreamBuilder<String?>(
       stream: _bloc.passwordError$,
       builder: (context, snapshot) {
@@ -142,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
                 suffixIcon: GestureDetector(
                   onTap: _onChangeObscureText,
                   child: Icon(
-                    obscureText ? Icons.lock_outline : Icons.lock_open_sharp,
+                    obscureText ? Icons.visibility_off : Icons.visibility,
                   ),
                 ),
                 labelText: S.of(context).password,
@@ -155,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
     );
   }
 
-  Widget _emailTextField() {
+  Widget _buildEmailWidget() {
     return StreamBuilder<String?>(
       stream: _bloc.emailError$,
       builder: (context, snapshot) {
@@ -182,7 +204,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
     );
   }
 
-  Widget _signUpButton() {
+  Widget _buildRegisterButton() {
     return ProgressButton(
       call: () async {
         _bloc.submitRegister();
@@ -190,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
       },
       width: 300,
       isAnimation: true,
-      textInside: S.of(context).registerAccount,
+      textInside: S.of(context).register,
       radius: 10.0,
     );
   }

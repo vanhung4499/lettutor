@@ -52,7 +52,7 @@ class TutorInfoHero extends StatelessWidget {
               const SizedBox(height: 2.0),
               if (tutor.country?.isNotEmpty ?? false) ...[
                 Text(
-                  '${countryCodeToEmoji(tutor.country!)} ${Constant.countries[tutor.country!.toUpperCase()]!}',
+                  '${countryCodeToEmoji(tutor.country!)} ${Constants.countries[tutor.country!.toUpperCase()]!}',
                   style: context.titleSmall.copyWith(
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).hintColor,

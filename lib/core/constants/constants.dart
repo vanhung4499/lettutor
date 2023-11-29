@@ -1,4 +1,4 @@
-class Constant {
+class Constants {
   static DateTime timeNow = DateTime.now();
   static List<String> boardNumber = [
     '1',
