@@ -1,26 +1,17 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/config/app_config.dart';
 import 'package:lettutor/core/constants/image_constant.dart';
-import 'package:lettutor/core/extensions/context_extension.dart';
-import 'package:lettutor/core/extensions/string_extension.dart';
 import 'package:lettutor/core/layouts/search_layout/models/filter_model.dart';
 import 'package:lettutor/core/layouts/search_layout/views/search_layout.dart';
 import 'package:lettutor/core/layouts/setting_layout/views/setting_screen.dart';
 import 'package:lettutor/core/mixins/app_mixin.dart';
-import 'package:lettutor/core/widgets/button_custom.dart';
-import 'package:lettutor/core/widgets/category/category_model.dart';
-import 'package:lettutor/core/widgets/custom_text_field.dart';
-import 'package:lettutor/core/widgets/pagination_view/pagination_list_view.dart';
 import 'package:lettutor/core/config/setting_config.dart';
-import 'package:lettutor/core/widgets/progress_button.dart';
 import 'package:lettutor/core/widgets/tab_bar/tab_bar_custom.dart';
 import 'package:lettutor/core/widgets/tab_bar/tab_bar_model.dart';
 import 'package:lettutor/core/widgets/tab_bar/tab_bar_type.dart';
-import 'package:lettutor/core/widgets/tree_view_custom/tree_view.dart';
-import 'package:lettutor/core/widgets/video_player.dart';
+
 
 
 class ModelTest {

@@ -38,6 +38,7 @@ class _DashboardViewState extends State<DashboardView> {
 
   final dashboardItem = <TabBarModel>[
     TabBarModel(
+      // iconData: Icons.home,
       svgAsset: ImageConstant.homeIcon,
       title: 'Home',
       screen: BlocProvider<HomeBloc>(
@@ -46,6 +47,7 @@ class _DashboardViewState extends State<DashboardView> {
       ),
     ),
     TabBarModel(
+      // iconData: Icons.person,
       svgAsset: ImageConstant.documentIcon,
       title: 'Tutor',
       screen: BlocProvider<TutorListBloc>(
@@ -54,6 +56,7 @@ class _DashboardViewState extends State<DashboardView> {
       ),
     ),
     TabBarModel(
+      // iconData: Icons.class_outlined,
       svgAsset: ImageConstant.searchIcon,
       title: 'Course',
       screen: BlocProvider<CourseListBloc>(
@@ -62,6 +65,7 @@ class _DashboardViewState extends State<DashboardView> {
       ),
     ),
     TabBarModel(
+      // iconData: Icons.calendar_today,
       svgAsset: ImageConstant.calendarIcon,
       title: 'Schedule',
       screen: BlocProvider<ScheduleBloc>(
@@ -70,6 +74,7 @@ class _DashboardViewState extends State<DashboardView> {
       ),
     ),
     TabBarModel(
+      // iconData: Icons.settings,
       svgAsset: ImageConstant.personIcon,
       title: 'Setting',
       screen: SettingScreen(
@@ -105,12 +110,12 @@ class _DashboardViewState extends State<DashboardView> {
         child: TabBarCustom(
           radius: 0,
           elevation: 0.1,
-          tabBarType: TabBarType.dotTabBar,
+          tabBarType: TabBarType.animationTabBar,
           iconSize: 23.0,
           iconSelectedColor: Theme.of(context).primaryColor,
           duration: 200,
           isSvgIcon: true,
-          animatedTabStyle: const AnimatedTabStyle(posHeight: 5),
+          animatedTabStyle: const AnimatedTabStyle(posHeight: 10),
           items: <TabBarItemStyle>[
             ...dashboardItem.map(
                   (e) => TabBarItemStyle(

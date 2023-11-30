@@ -19,7 +19,7 @@ class _ScheduleApi implements ScheduleApi {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<BookingResponse?>> getBooHistory(
+  Future<HttpResponse<BookingResponse?>> getBookingHistory(
       Map<String, dynamic> queries) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -50,7 +50,7 @@ class _ScheduleApi implements ScheduleApi {
   }
 
   @override
-  Future<HttpResponse<UpcomingResponse?>> getUpComing(int time) async {
+  Future<HttpResponse<UpcomingResponse?>> getUpComingClass(int time) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

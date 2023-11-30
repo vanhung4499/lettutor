@@ -49,19 +49,19 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
     super.didChangeDependencies();
   }
 
-  void _selectedTime() async {
+  void _openSelectTimeWidget() async {
     final result = await context.pickRangeDate(_rangeDateController);
     if (result?.isNotEmpty ?? false) {
       _bloc.selectTime(result!.first, result.last);
     }
   }
 
-  void _booTutorClass({required ScheduleDetail schedule}) async {
+  void _buildBookingDialog({required ScheduleDetail schedule}) async {
     final addNote = await showDialog(
       context: context,
       builder: (ctx) => Dialog(
         backgroundColor: Colors.transparent,
-        child: AddBookingNote(scheduleDetail: schedule),
+        child: BookingNoteWidget(scheduleDetail: schedule),
       ),
     );
     if (addNote is String && addNote.isNotEmpty) {
@@ -86,7 +86,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
         final loading = sS.data ?? false;
         return Stack(
           children: [
-            _body(context),
+            _buildBody(context),
             if (loading)
               Container(
                 color: Colors.black45,
@@ -100,7 +100,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
     );
   }
 
-  Scaffold _body(BuildContext context) {
+  Scaffold _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: _backgroundColor,
       appBar: AppBar(
@@ -128,11 +128,14 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  Text('${S.of(context).pickTime}: ',
+                      style: context.titleMedium.copyWith(
+                          fontWeight: FontWeight.w600)),
                   TextButton(
-                    onPressed: _selectedTime,
+                    onPressed: _openSelectTimeWidget,
                     child: Text(
                       '${getYmdFormat(sT)} - ${getYmdFormat(eT)}',
-                      style: context.titleSmall.copyWith(
+                      style: context.titleMedium.copyWith(
                           fontWeight: FontWeight.w600, color: _primaryColor),
                     ),
                   )
@@ -154,7 +157,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
                   if (data.isEmpty) {
                     return const Expanded(child: NotFoundWidget());
                   }
-                  return _itemField(data);
+                  return _buildScheduleListView(data);
                 },
               );
             },
@@ -164,7 +167,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
     );
   }
 
-  Expanded _itemField(List<Schedule> data) {
+  Expanded _buildScheduleListView(List<Schedule> data) {
     return Expanded(
       child: ListView(
         children: [
@@ -175,7 +178,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
                 if (e.scheduleDetails.isEmpty) {
                   return;
                 }
-                _booTutorClass(schedule: e.scheduleDetails.first);
+                _buildBookingDialog(schedule: e.scheduleDetails.first);
               },
             ),
           )

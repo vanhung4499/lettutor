@@ -40,7 +40,7 @@ class ScheduleRepositoryImpl extends BaseApi implements ScheduleRepository {
           );
         }
         final response = await getStateOf(
-            request: () async => await _scheduleApi.getBooHistory(queries));
+            request: () async => await _scheduleApi.getBookingHistory(queries));
         if (response is DataFailed) {
           return Either.left(
             AppException(message: response.dioError?.message ?? 'Error'),
@@ -61,13 +61,13 @@ class ScheduleRepositoryImpl extends BaseApi implements ScheduleRepository {
       });
 
   @override
-  SingleResult<BookingInfo?> getUpComingBookingInfo({required DateTime dateTime}) =>
+  SingleResult<BookingInfo?> getUpComingClass({required DateTime dateTime}) =>
       SingleResult.fromCallable(
             () async {
           final millisecondsSinceEpoch = dateTime.millisecondsSinceEpoch;
           final response = await getStateOf(
             request: () async =>
-            await _scheduleApi.getUpComing(millisecondsSinceEpoch),
+              await _scheduleApi.getUpComingClass(millisecondsSinceEpoch),
           );
           if (response is DataFailed) {
             return Either.left(
@@ -76,7 +76,7 @@ class ScheduleRepositoryImpl extends BaseApi implements ScheduleRepository {
           }
           final responseData = response.data;
           if (responseData == null) {
-            return Either.right(null);
+            return const Either.right(null);
           }
           final listData = responseData.data.where((element) {
             final startPeriodTimestamp =
@@ -88,7 +88,7 @@ class ScheduleRepositoryImpl extends BaseApi implements ScheduleRepository {
           }).toList();
 
           if (listData.isEmpty) {
-            return Either.right(null);
+            return const Either.right(null);
           }
           listData.sort((a, b) {
             return a.scheduleDetailInfo!.startPeriodTimestamp

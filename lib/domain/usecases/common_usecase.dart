@@ -1,5 +1,4 @@
 
-import 'package:injectable/injectable.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/providers/local/preferences.dart';
 import 'package:lettutor/domain/entities/user/user.dart';

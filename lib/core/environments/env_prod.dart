@@ -1,5 +1,5 @@
 final Map<String, dynamic> environmentProd = {
-  'name': 'letutor prod',
+  'name': 'Lettutor',
   'environment': 'prod',
   'baseUrl': 'https://sandbox.api.lettutor.com',
   'mode': 'mobile',

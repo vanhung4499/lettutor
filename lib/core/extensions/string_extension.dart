@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:lettutor/core/constants/constants.dart';
+
 extension ColorExtension on String {
   toColor() {
     var hexString = this;
@@ -9,14 +11,5 @@ extension ColorExtension on String {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  String get renderExperienceText => switch (this) {
-    "0" => "Any level",
-    "1" => "Beginner",
-    "2" => "High Beginner",
-    "3" => "Pre-Intermediate",
-    "4" => "Intermediate",
-    "5" => "Upper-Intermediate",
-    "6" => "Advanced",
-    _ => "Proficiency"
-  };
+  String get renderExperienceText => Constants.levelMap[this] ?? '';
 }

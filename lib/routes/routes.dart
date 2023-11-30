@@ -4,7 +4,6 @@ class Routes {
   static const String splash = '/splash';
   static const String testUi = '/test-ui';
   static const String ebook = '/ebook';
-  static const String meeting = '/meeting';
   static const String pdfViewer = '/pdf-viewer';
   static const String schedule = '/schedule';
   static const String register = '/register';
@@ -20,5 +19,6 @@ class Routes {
   static const String courseDetail = '/course-detail';
   static const String resetPassword = '/reset-password';
   static const String tutorSchedule = '/tutor-schedule';
-  static const String beforeMeeting = '/before-meeting';
+  static const String metingPrepare = '/meeting-prepare';
+  static const String meeting = '/meeting';
 }

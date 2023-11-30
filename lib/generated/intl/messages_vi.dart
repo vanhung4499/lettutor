@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allTopics": MessageLookupByLibrary.simpleMessage("Tất cả chủ đề"),
         "and": MessageLookupByLibrary.simpleMessage("và"),
         "appearance": MessageLookupByLibrary.simpleMessage("Giao diện"),
+        "apply": MessageLookupByLibrary.simpleMessage("Áp dụng"),
         "basicInfo": MessageLookupByLibrary.simpleMessage("Thông tin cơ bản"),
         "becomeFluent": MessageLookupByLibrary.simpleMessage(
             "Trở nên lưu loát hơn thông qua các bài học trò chuyện video một kèm một được tùy chỉnh theo mục tiêu của bạn"),
@@ -46,8 +47,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "bio": MessageLookupByLibrary.simpleMessage("Tiểu sử"),
         "birthDay": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
         "birthday": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
+        "book": MessageLookupByLibrary.simpleMessage("Đặt lịch"),
         "bookTutor": MessageLookupByLibrary.simpleMessage("Đặt lịch gia sư"),
+        "bookingDetail":
+            MessageLookupByLibrary.simpleMessage("Chi tiết đặt lịch"),
         "byPrice": MessageLookupByLibrary.simpleMessage("Theo giá"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "codeAndFingerPrints":
             MessageLookupByLibrary.simpleMessage("Mã và dấu vân tay"),
         "country": MessageLookupByLibrary.simpleMessage("Quốc gia"),
@@ -59,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "donHaveAnyUpcoming":
             MessageLookupByLibrary.simpleMessage("Không có lớp học sắp tới"),
+        "edit": MessageLookupByLibrary.simpleMessage("Chỉnh sửa"),
         "education": MessageLookupByLibrary.simpleMessage("Học vấn"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "endTime": MessageLookupByLibrary.simpleMessage("Thời gian kết thúc"),
@@ -93,10 +99,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "languages": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "lessonDate": MessageLookupByLibrary.simpleMessage("Ngày học"),
+        "lessonRequest":
+            MessageLookupByLibrary.simpleMessage("Yêu cầu cho buổi học"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Chế độ sáng"),
         "lockAndSecurity":
             MessageLookupByLibrary.simpleMessage("Khóa và Bảo mật"),
         "logOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
+        "meetingPrepare":
+            MessageLookupByLibrary.simpleMessage("Chuẩn bị cho buổi học"),
         "meetingSettings":
             MessageLookupByLibrary.simpleMessage("Cài đặt buổi họp"),
         "minutes": MessageLookupByLibrary.simpleMessage("phút"),
@@ -104,17 +114,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chuyên môn của tôi là"),
         "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "nationality": MessageLookupByLibrary.simpleMessage("Quốc tịch"),
+        "noRequest": MessageLookupByLibrary.simpleMessage("Không có yêu cầu"),
+        "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
         "notifications": MessageLookupByLibrary.simpleMessage("Thông báo"),
         "orContinue":
             MessageLookupByLibrary.simpleMessage("Hoặc tiếp tục bằng"),
         "overview": MessageLookupByLibrary.simpleMessage("Tổng quan"),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Chọn thời gian"),
         "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
             "Vui lòng nhập địa chỉ email của bạn để tìm kiếm tài khoản"),
         "professions": MessageLookupByLibrary.simpleMessage("Nghề nghiệp"),
         "profilePreview":
             MessageLookupByLibrary.simpleMessage("Xem trước hồ sơ"),
         "rateStar": MessageLookupByLibrary.simpleMessage("Đánh giá"),
+        "rating": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "recommendCourses":
             MessageLookupByLibrary.simpleMessage("Khóa học đề xuất"),
         "recommendEbooks":
@@ -164,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "topicsAndPreparations":
             MessageLookupByLibrary.simpleMessage("Chủ đề và Chuẩn bị"),
         "totalLessonsTimesIs":
-            MessageLookupByLibrary.simpleMessage("Tổng số buổi học là "),
+            MessageLookupByLibrary.simpleMessage("Tổng thời gian học là "),
         "tutor": MessageLookupByLibrary.simpleMessage("Gia sư"),
         "tutorDetail": MessageLookupByLibrary.simpleMessage("Chi tiết gia sư"),
         "tutorRegister": MessageLookupByLibrary.simpleMessage("Đăng ký gia sư"),
@@ -172,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lịch trình gia sư"),
         "tutorSearch": MessageLookupByLibrary.simpleMessage("Tìm kiếm gia sư"),
         "upComing": MessageLookupByLibrary.simpleMessage("Sắp tới"),
+        "upComingLesson":
+            MessageLookupByLibrary.simpleMessage("Buổi học sắp tới"),
         "upComingLessonsWillAppear": MessageLookupByLibrary.simpleMessage(
             "Các buổi học sắp tới sẽ xuất hiện"),
         "update": MessageLookupByLibrary.simpleMessage("Cập nhật"),

@@ -159,7 +159,7 @@ class HomeScreenState extends State<HomeScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(12.0),
               width: double.infinity,
               height: context.heightDevice * 0.15,
               decoration: BoxDecoration(
@@ -212,7 +212,7 @@ class HomeScreenState extends State<HomeScreen> {
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
-          return RenderWaitToFetchData(
+          return SkeletonLoadingWidget(
             expandIndicator: const <int>[1],
             height: 180,
             widthItem: context.widthDevice * 0.7,
@@ -253,10 +253,10 @@ class HomeScreenState extends State<HomeScreen> {
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
-          return RenderWaitToFetchData(
+          return SkeletonLoadingWidget(
             expandIndicator: const <int>[1],
             height: 220,
-            widthItem: context.widthDevice * 0.4,
+            widthItem: context.widthDevice * 0.5,
           );
         }
         return StreamBuilder(
@@ -294,7 +294,7 @@ class HomeScreenState extends State<HomeScreen> {
       builder: (ctx, sS) {
         final loading = sS.data ?? false;
         if (loading) {
-          return RenderWaitToFetchData(
+          return SkeletonLoadingWidget(
             expandIndicator: const <int>[1, 3, 1],
             height: 210,
             widthItem: context.widthDevice * 0.55,
@@ -329,11 +329,11 @@ class HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class RenderWaitToFetchData extends StatelessWidget {
+class SkeletonLoadingWidget extends StatelessWidget {
   final List<int> expandIndicator;
   final double height;
   final double widthItem;
-  const RenderWaitToFetchData({
+  const SkeletonLoadingWidget({
     super.key,
     required this.expandIndicator,
     required this.height,

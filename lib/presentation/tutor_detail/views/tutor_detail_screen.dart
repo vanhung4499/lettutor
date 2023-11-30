@@ -113,7 +113,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
       backgroundColor: _backgroundColor,
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           child: ButtonCustom(
             height: 45.0,
             onPress: () => _bloc.openTutorSchedulePage(),
@@ -207,13 +207,13 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                     (index, e) => Expanded(
                   child: ButtonCustom(
                     color: switch (index) {
-                      0 => Colors.grey.withOpacity(0.7),
-                      _ => _primaryColor
+                      0 => Colors.blueGrey.withOpacity(0.3),
+                      _ => Colors.red.withOpacity(0.8)
                     },
                     radius: 5.0,
                     child: Row(
                       children: [
-                        Expanded(child: Text(e)),
+                        Expanded(child: Text(e, style: context.titleMedium.copyWith(color: Colors.white))),
                         switch (index) {
                           0 => favIcon(tutor.isFavorite ?? false),
                           _ => const Icon(Icons.report, color: Colors.white)

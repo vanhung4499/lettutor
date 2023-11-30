@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/core/config/app_env.dart';
 import 'package:lettutor/core/constants/image_constant.dart';
 import 'package:lettutor/core/extensions/bloc_extension.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
@@ -26,7 +27,7 @@ class _RenderAppBarState extends State<RenderAppBar> {
       children: [
         Icon(Icons.school, color: primaryColor, size: 30),
         Text(
-          " LetTutor",
+          AppEnv.name,
           style: context.titleLarge
               .copyWith(fontWeight: FontWeight.bold, color: primaryColor),
         ),
@@ -36,9 +37,11 @@ class _RenderAppBarState extends State<RenderAppBar> {
           builder: (ctx, state) {
             final lang = state.data.langCode;
             return SizedBox(
-              width: 120,
+              width: 80,
               child: DropdownButtonCustom<String?>(
-                radius: 8.0,
+                borderColor: Colors.transparent,
+                showIcon: false,
+                width: 60,
                 items: SettingUtils.locals
                     .map(
                       (e) => DropdownMenuItem(
@@ -48,8 +51,7 @@ class _RenderAppBarState extends State<RenderAppBar> {
                         width: 40,
                         height: 20),
                   ),
-                )
-                    .toList(),
+                ).toList(),
                 value: lang,
                 onChange: (lang) => _settingBloc.add(
                   SettingEvent.updateLangCode(

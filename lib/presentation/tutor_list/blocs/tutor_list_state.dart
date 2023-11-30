@@ -4,19 +4,35 @@ import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 @immutable
 abstract class TutorListState {}
 
-class FetchTutorDataSuccess implements TutorListState {
+class ListTutorSuccess implements TutorListState {
   final String message;
-  const FetchTutorDataSuccess({this.message = "Fetch data success"});
+  const ListTutorSuccess({this.message = "List tutor success"});
 }
 
-class FetchTutorDataFailed implements TutorListState {
+class ListTutorFailed implements TutorListState {
   final Object? error;
   final String? message;
-  const FetchTutorDataFailed({this.error, this.message});
+  const ListTutorFailed({this.error, this.message});
 
   @override
   String toString() =>
-      "FetchDataFailed => {message=${message ?? ''}, error=${error ?? ''}}";
+      "ListTutorFailed => {message=${message ?? ''}, error=${error ?? ''}}";
+}
+
+
+class ListTopicSuccess implements TutorListState {
+  const ListTopicSuccess();
+}
+
+class ListTopicFailed implements TutorListState {
+  final String? message;
+  final Object? error;
+
+  const ListTopicFailed({this.error, this.message});
+
+  @override
+  String toString() =>
+      "[List topic error] => message ${message ?? ''}, error ${error ?? ''} ";
 }
 
 class AddTutorToFavSuccess implements TutorListState {
@@ -66,9 +82,9 @@ class GetUpComingClassSuccess implements TutorListState {
   const GetUpComingClassSuccess();
 }
 
-class OpenBeforeMeetingViewSuccess implements TutorListState {
+class OpenMeetingPrepareViewSuccess implements TutorListState {
   final BookingInfo args;
-  const OpenBeforeMeetingViewSuccess(this.args);
+  const OpenMeetingPrepareViewSuccess(this.args);
 }
 
 class OpenBeforeMeetingViewFailed implements TutorListState {

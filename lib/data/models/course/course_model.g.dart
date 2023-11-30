@@ -27,6 +27,9 @@ CourseModel _$CourseModelFromJson(Map<String, dynamic> json) => CourseModel(
       json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      (json['topics'] as List<dynamic>?)
+          ?.map((e) => CourseTopicModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$CourseModelToJson(CourseModel instance) =>
@@ -47,4 +50,5 @@ Map<String, dynamic> _$CourseModelToJson(CourseModel instance) =>
       'displayOrder': instance.displayOrder,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'topics': instance.topics,
     };

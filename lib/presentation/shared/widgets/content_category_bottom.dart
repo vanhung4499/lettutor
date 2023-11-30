@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/app_coordinator.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/button_custom.dart';
+import 'package:lettutor/generated/l10n.dart';
 import 'package:lettutor/presentation/course_list/blocs/home_bloc.dart';
 import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
 
 
-class CourseCategoryBottom extends StatefulWidget {
-  const CourseCategoryBottom({
+class CourseCategoryBottomSheet extends StatefulWidget {
+  const CourseCategoryBottomSheet({
     super.key,
     this.bloc,
     this.ebookBloc,
@@ -21,10 +22,10 @@ class CourseCategoryBottom extends StatefulWidget {
   final EbookBloc? ebookBloc;
 
   @override
-  State<CourseCategoryBottom> createState() => _CourseCategoryBottomState();
+  State<CourseCategoryBottomSheet> createState() => _CourseCategoryBottomSheetState();
 }
 
-class _CourseCategoryBottomState extends State<CourseCategoryBottom> {
+class _CourseCategoryBottomSheetState extends State<CourseCategoryBottomSheet> {
   @override
   void initState() {
     super.initState();
@@ -42,6 +43,7 @@ class _CourseCategoryBottomState extends State<CourseCategoryBottom> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement multiple choice
     return Container(
       width: context.widthDevice,
       constraints: BoxConstraints(
@@ -58,7 +60,7 @@ class _CourseCategoryBottomState extends State<CourseCategoryBottom> {
             radius: 5.0,
             onPress: () => context.popArgs(categorySelected.value),
             child: Text(
-              'Apply',
+              S.of(context).apply,
               style: context.titleMedium.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -94,7 +96,7 @@ class _CourseCategoryBottomState extends State<CourseCategoryBottom> {
                             ),
                           ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                           avatar: isSelected
                               ? Icon(Icons.check,

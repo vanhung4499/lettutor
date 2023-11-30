@@ -6,6 +6,7 @@ class DropdownButtonCustom<T> extends StatelessWidget {
   final double? borderWidth;
   final double? height;
   final double? radius;
+  final bool showIcon;
   final Color? color;
   final Color? borderColor;
   final EdgeInsetsGeometry? padding;
@@ -13,6 +14,7 @@ class DropdownButtonCustom<T> extends StatelessWidget {
   final T value;
   final Function(T?) onChange;
   final String? headerText;
+
   const DropdownButtonCustom({
     super.key,
     this.width,
@@ -23,6 +25,7 @@ class DropdownButtonCustom<T> extends StatelessWidget {
     this.borderColor,
     this.borderWidth,
     this.headerText,
+    this.showIcon = true,
     required this.items,
     required this.value,
     required this.onChange,
@@ -32,7 +35,7 @@ class DropdownButtonCustom<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width ?? double.infinity,
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 15.0),
       decoration: BoxDecoration(
         color: color ?? Colors.transparent,
         borderRadius: BorderRadius.circular(radius ?? 15.0),
@@ -43,6 +46,7 @@ class DropdownButtonCustom<T> extends StatelessWidget {
       ),
       child: DropdownButtonFormField<T>(
         borderRadius: BorderRadius.circular(10),
+
         decoration: InputDecoration(
           labelText: headerText,
           labelStyle: context.titleMedium.copyWith(
@@ -52,8 +56,8 @@ class DropdownButtonCustom<T> extends StatelessWidget {
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),
-        icon: const Icon(Icons.keyboard_arrow_down_rounded),
         focusColor: Theme.of(context).primaryColor,
+        icon: Visibility (visible:showIcon, child: const Icon(Icons.arrow_drop_down)),
         padding: const EdgeInsets.all(0.0),
         items: items,
         onChanged: onChange,

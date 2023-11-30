@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/di/di.dart';
-import 'package:lettutor/core/layouts/setting_layout/views/passcode_screen.dart';
 import 'package:lettutor/data/models/request/search_tutor_request.dart';
+import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/presentation/auth/blocs/login/login_bloc.dart';
 import 'package:lettutor/presentation/auth/blocs/register/register_bloc.dart';
 import 'package:lettutor/presentation/auth/blocs/reset_password/reset_password_bloc.dart';
@@ -19,6 +19,8 @@ import 'package:lettutor/presentation/dashboard/blocs/dashboard_bloc.dart';
 import 'package:lettutor/presentation/dashboard/views/dashboard_view.dart';
 import 'package:lettutor/presentation/ebook/blocs/ebook_bloc.dart';
 import 'package:lettutor/presentation/ebook/views/ebook_screen.dart';
+import 'package:lettutor/presentation/metting/views/meeting_prepare_screen.dart';
+import 'package:lettutor/presentation/metting/views/meeting_screen.dart';
 import 'package:lettutor/presentation/splash/bloc/splash_bloc.dart';
 import 'package:lettutor/presentation/splash/views/splash_screen.dart';
 import 'package:lettutor/presentation/tutor_detail/blocs/tutor_detail_bloc.dart';
@@ -190,6 +192,28 @@ class AppRoutes {
                     injector.get<CourseDetailBloc>(param1: settings.arguments),
                 child: const CourseDetailScreen(),
               );
+            }
+            return const SizedBox();
+          },
+        );
+
+      case Routes.metingPrepare:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            if (settings.arguments is BookingInfo) {
+              return MeetingPrepareScreen(bookingInfo: settings.arguments as BookingInfo);
+            }
+            return const SizedBox();
+          },
+        );
+
+      case Routes.meeting:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            if (settings.arguments is String) {
+              return MeetingScreen(serverUrl: settings.arguments.toString());
             }
             return const SizedBox();
           },

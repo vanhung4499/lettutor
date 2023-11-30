@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/generated/l10n.dart';
 
-class RowSearchField extends StatelessWidget {
+class RowSearchWidget extends StatelessWidget {
   final Function(String) onSubmit;
   final Function() openSelectedFilter;
-  const RowSearchField(
+  const RowSearchWidget(
       {super.key, required this.onSubmit, required this.openSelectedFilter});
 
   @override
@@ -25,10 +26,10 @@ class RowSearchField extends StatelessWidget {
               decoration: boxDecoration,
               child: TextField(
                 onSubmitted: onSubmit,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Search here....',
-                  contentPadding: EdgeInsets.all(5.0),
+                  hintText: '${S.of(context).searchHere}...',
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 ),
               ),
             ),
@@ -40,7 +41,7 @@ class RowSearchField extends StatelessWidget {
               width: 51,
               height: 51,
               decoration: boxDecoration,
-              child: Icon(Icons.grid_view_rounded, color: primaryColor),
+              child: Icon(Icons.filter_list, color: primaryColor),
             ),
           ),
         ],

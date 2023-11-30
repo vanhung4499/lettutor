@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/constants/image_constant.dart';
 
-
 class TabBarModel{
   final IconData iconData;
   final String svgAsset;

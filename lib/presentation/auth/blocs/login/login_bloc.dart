@@ -54,7 +54,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     required this.passwordError$,
   }) : super(dispose);
 
-  factory LoginBloc({required LoginUseCase loginUseCase}) {
+  factory LoginBloc({required AuthUseCase loginUseCase}) {
     ///[controllers]
     final emailController = PublishSubject<String>();
 

@@ -124,7 +124,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
                 color: _primaryColor,
               ),
             ),
-            const Spacer(),
+            // const Spacer(),
           ],
         ),
       ),
@@ -143,21 +143,21 @@ class _ScheduleScreenState extends State<ScheduleScreen>
                 TabBar(
                   tabs: [
                     ...[S.of(context).upComing, S.of(context).history]
-                        .map((e) => Tab(text: e, height: 40.0))
+                        .map((e) => Tab(text: e, height: 40))
                   ],
                   controller: _tabController,
                   onTap: (value) => _bloc.changeTab(value),
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                   physics: const BouncingScrollPhysics(),
                   indicatorPadding: const EdgeInsets.all(0.0),
-                  isScrollable: true,
+                  isScrollable: false,
                   unselectedLabelStyle: context.titleSmall.copyWith(
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).hintColor,
                   ),
                   unselectedLabelColor: Theme.of(context).hintColor,
                   indicatorSize: TabBarIndicatorSize.tab,
-                  splashBorderRadius: BorderRadius.circular(5.0),
+                  splashBorderRadius: BorderRadius.circular(10.0),
                   splashFactory: NoSplash.splashFactory,
                   labelColor: Colors.white,
                   labelStyle: context.titleMedium.copyWith(
@@ -175,7 +175,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
                     final tab = sS1.data ?? 0;
                     return Expanded(
                       child:
-                      _listHBookingInfoField(history: history, currentTab: tab),
+                      _buildListBookingWidget(history: history, currentTab: tab),
                     );
                   },
                 ),
@@ -187,7 +187,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
     );
   }
 
-  Widget _listHBookingInfoField(
+  Widget _buildListBookingWidget(
       {required Pagination<BookingInfo> history, required int currentTab}) {
     if (history.rows.isEmpty) {
       return const NotFoundWidget();

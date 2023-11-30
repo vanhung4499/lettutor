@@ -19,31 +19,35 @@ class CommonRepositoryImpl extends BaseApi implements CommonRepository {
   @override
   SingleResult<List<Topic>> listTopic() {
     return SingleResult.fromCallable(() async {
-      final response = await getStateOf(
-        request: () async => await _commonApi.getTopic(),
+      final topicResponse = await getStateOf(
+        request: () async => await _commonApi.listTopic(),
       );
 
-      final response1 = await getStateOf(
-        request: () async => await _commonApi.getTestPreparation(),
+      final testPrepareResponse = await getStateOf(
+        request: () async => await _commonApi.listTestPreparation(),
       );
 
-      if ((response is DataFailed) && (response1 is DataFailed)) {
+      // final majorResponse = await getStateOf(
+      //   request: () async => await _commonApi.listMajor(),
+      // );
+
+      if ((topicResponse is DataFailed) && (testPrepareResponse is DataFailed)) {
         return Either.left(
-          AppException(message: response.dioError?.message ?? 'Error'),
+          AppException(message: topicResponse.dioError?.message ?? 'Error'),
         );
       }
-      if ((response.data == null) && (response1.data == null)) {
+      if ((topicResponse.data == null) && (testPrepareResponse.data == null)) {
         return Either.left(
           AppException(message: "Data error"),
         );
       }
       return Either.right(
         [
-          ...response.data
+          ...topicResponse.data
               ?.map((e) => e.toEntity().copyWith(isTopics: true))
               .toList() ??
               <Topic>[],
-          ...response1.data
+          ...testPrepareResponse.data
               ?.map((e) => e.toEntity().copyWith(isTopics: false))
               .toList() ??
               <Topic>[],
@@ -70,7 +74,7 @@ class CommonRepositoryImpl extends BaseApi implements CommonRepository {
             body.addAll({"categoryId": categoryId});
           }
           final response =
-          await getStateOf(request: () async => _commonApi.getListEbook(body));
+          await getStateOf(request: () async => _commonApi.listEbook(body));
 
           if (response is DataFailed) {
             return Either.left(

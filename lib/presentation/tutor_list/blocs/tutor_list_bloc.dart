@@ -8,6 +8,7 @@ import 'package:lettutor/core/extensions/log_extension.dart';
 import 'package:lettutor/core/utils/type_defs.dart';
 import 'package:lettutor/core/utils/validator.dart';
 import 'package:lettutor/domain/entities/common/pagination.dart';
+import 'package:lettutor/domain/entities/common/topic.dart';
 import 'package:lettutor/domain/entities/schedule/booking_info.dart';
 import 'package:lettutor/domain/entities/tutor/tutor.dart';
 import 'package:lettutor/domain/entities/tutor/tutor_fav.dart';
@@ -19,7 +20,7 @@ import 'tutor_list_state.dart';
 @injectable
 class TutorListBloc extends DisposeCallbackBaseBloc {
   ///[functions] input
-  final Function0<void> fetchData;
+  final Function0<void> listTutor;
 
   final Function1<String, void> addTutorToFav;
 
@@ -31,7 +32,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
 
   final Function0<void> getTotalTime;
 
-  final Function0<void> openBeforeMeeting;
+  final Function0<void> openMeetingPrepare;
 
   ///[Streams]
 
@@ -43,7 +44,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
 
   final Stream<int> learningTotalTime$;
 
-  final Stream<TutorFav> tutor$;
+  final Stream<TutorFav> tutors$;
 
   final Stream<TutorListState> state$;
 
@@ -53,23 +54,22 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
     required Function0<void> dispose,
 
     ///[Event functions]
-    required this.fetchData,
+    required this.listTutor,
     required this.getTotalTime,
     required this.addTutorToFav,
     required this.onRefreshData,
     required this.getUpComingClass,
     required this.changeFavoriteMode,
-    required this.openBeforeMeeting,
+    required this.openMeetingPrepare,
 
     ///[States]
-
     required this.learningTotalTime$,
     required this.upComingClass$,
     required this.loadingHeader$,
     required this.favoriteMode$,
     required this.loading$,
     required this.state$,
-    required this.tutor$,
+    required this.tutors$,
   }) : super(dispose);
 
   factory TutorListBloc({required TutorListUseCase tutorListUseCase}) {
@@ -77,7 +77,12 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
 
     final tutorUserIdToAdd = PublishSubject<String>();
 
-    final fetchDataController = PublishSubject<void>();
+    final listTutorController = PublishSubject<void>();
+
+    final topicController =
+    BehaviorSubject<List<Topic>>.seeded(List<Topic>.empty(growable: true));
+
+    final listTopicController = PublishSubject<void>();
 
     final loadingController = BehaviorSubject<bool>.seeded(false);
 
@@ -108,7 +113,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
             (paginationValid, loading) => paginationValid || !loading)
         .shareValueSeeded(false);
 
-    final fetchData$ = fetchDataController.stream
+    final listTutor$ = listTutorController.stream
         .withLatestFrom(isValid$, (_, isValid) => isValid)
         .share();
 
@@ -158,7 +163,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
       }),
       addTutorFav$
           .where((isValid) => !isValid)
-          .map((_) => const FetchTutorDataFailed(message: "Invalid format"))
+          .map((_) => const ListTutorFailed(message: "Invalid format"))
     ]).whereNotNull().share();
 
     final getTotalTimeState$ =
@@ -212,8 +217,8 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
       }
     });
 
-    final fetchDataState$ = Rx.merge([
-      fetchData$
+    final listTutorState$ = Rx.merge([
+      listTutor$
           .where((isValid) => isValid)
           .debug(log: debugPrint)
           .withLatestFrom(
@@ -230,7 +235,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
           )
               .map(
                 (data) => data.fold(
-              ifLeft: (error) => FetchTutorDataFailed(
+              ifLeft: (error) => ListTutorFailed(
                 error: error.code,
                 message: error.message,
               ),
@@ -245,22 +250,22 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
                     ),
                     fav: pData.fav,
                   ));
-                  return const FetchTutorDataSuccess();
+                  return const ListTutorSuccess();
                 }
-                return const FetchTutorDataFailed();
+                return const ListTutorFailed();
               },
             ),
           );
         } catch (e) {
           ///do something
           return Stream<TutorListState>.error(
-            FetchTutorDataFailed(message: e.toString()),
+            ListTutorFailed(message: e.toString()),
           );
         }
       }).debug(identifier: 'Fetch tutors data', log: debugPrint),
-      fetchData$
+      listTutor$
           .where((isValid) => !isValid)
-          .map((_) => const FetchTutorDataFailed(message: "Invalid format")),
+          .map((_) => const ListTutorFailed(message: "Invalid format")),
     ]).whereNotNull().share();
 
     ///[Open before meeting view]
@@ -271,7 +276,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
     final openBeforeMeetingViewState$ = Rx.merge<TutorListState>([
       openBeforeMeetingView$
           .where((event) => event.isNotNull)
-          .map((event) => OpenBeforeMeetingViewSuccess(event!)),
+          .map((event) => OpenMeetingPrepareViewSuccess(event!)),
       openBeforeMeetingView$
           .where((event) => event.isNull)
           .map((_) => const OpenBeforeMeetingViewFailed())
@@ -284,7 +289,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
           favoriteModeController.add(!currentMode);
           return const ChangeFavoriteModeSuccess();
         }).share(),
-        fetchDataState$,
+        listTutorState$,
         addTutorFavState$,
         getUpComingState$,
         getTotalTimeState$,
@@ -301,7 +306,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
     return TutorListBloc._(
       dispose: () async => await DisposeBag([
         paginationController,
-        fetchDataController,
+        listTutorController,
         loadingController,
         addTutorToFavController,
         tutorUserIdToAdd,
@@ -316,7 +321,7 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
         ...subscriptions,
       ]).dispose(),
       upComingClass$: upComingClassController,
-      openBeforeMeeting: () => openBeforeMeetingController.add(null),
+      openMeetingPrepare: () => openBeforeMeetingController.add(null),
       getUpComingClass: () => getUpComingClassController.add(null),
       getTotalTime: () => getTotalTimeController.add(null),
       loadingHeader$: loadingHeaderController,
@@ -327,7 +332,8 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
           return;
         }
         paginationController.add(TutorFav());
-        fetchDataController.add(null);
+        listTutorController.add(null);
+        listTopicController.add(null);
       },
       favoriteMode$: favoriteModeController,
       changeFavoriteMode: () => changeFavoriteModeController.add(null),
@@ -335,10 +341,10 @@ class TutorListBloc extends DisposeCallbackBaseBloc {
         tutorUserIdToAdd.add(value.trim());
         addTutorToFavController.add(null);
       },
-      fetchData: () => fetchDataController.add(null),
+      listTutor: () => listTutorController.add(null),
       loading$: loadingController,
       state$: state$,
-      tutor$: paginationController,
+      tutors$: paginationController,
     );
   }
 }

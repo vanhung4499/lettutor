@@ -12,5 +12,5 @@ abstract class ScheduleRepository {
     String sortBy = 'desc',
   });
 
-  SingleResult<BookingInfo?> getUpComingBookingInfo({required DateTime dateTime});
+  SingleResult<BookingInfo?> getUpComingClass({required DateTime dateTime});
 }

@@ -49,7 +49,7 @@ class _CourseListScreenState extends State<CourseListScreen> with DidChangeDepen
     }
   }
 
-  void _openSelectedFilter() async {
+  void _openCategoryFilter() async {
     final getCategories = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -57,10 +57,10 @@ class _CourseListScreenState extends State<CourseListScreen> with DidChangeDepen
         borderRadius: BorderRadius.vertical(top: Radius.circular(14.0)),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      isDismissible: false,
+      isDismissible: true,
       enableDrag: false,
       builder: (context) {
-        return CourseCategoryBottom(bloc: _bloc);
+        return CourseCategoryBottomSheet(bloc: _bloc);
         // return const SizedBox();
       },
     );
@@ -106,15 +106,14 @@ class _CourseListScreenState extends State<CourseListScreen> with DidChangeDepen
                 color: _primaryColor,
               ),
             ),
-            const Spacer(),
           ],
         ),
       ),
       body: Column(
         children: [
-          RowSearchField(
+          RowSearchWidget(
               onSubmit: (text) => _bloc.submitWithText(text),
-              openSelectedFilter: _openSelectedFilter),
+              openSelectedFilter: _openCategoryFilter),
           Expanded(
             child: StreamBuilder(
               stream: _bloc.courses$,

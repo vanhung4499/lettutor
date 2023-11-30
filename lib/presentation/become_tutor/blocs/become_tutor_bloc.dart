@@ -149,7 +149,7 @@ class BecomeTutorBloc extends DisposeCallbackBaseBloc {
     final fetchTopicState$ =
     fetchTopicsController.debug(log: debugPrint).exhaustMap((_) {
       try {
-        return becomeTutorUseCase.getTopics().map(
+        return becomeTutorUseCase.listTopic().map(
               (data) => data.fold(
               ifLeft: (error) => ListTopicFailed(
                   message: error.message, error: error.code),

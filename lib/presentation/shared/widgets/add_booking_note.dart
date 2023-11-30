@@ -5,19 +5,20 @@ import 'package:lettutor/core/utils/handle_time.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/button_custom.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/generated/l10n.dart';
 
-class AddBookingNote extends StatefulWidget {
+class BookingNoteWidget extends StatefulWidget {
   final ScheduleDetail scheduleDetail;
-  const AddBookingNote({
+  const BookingNoteWidget({
     super.key,
     required this.scheduleDetail,
   });
 
   @override
-  State<AddBookingNote> createState() => _AddBookingNoteState();
+  State<BookingNoteWidget> createState() => _BookingNoteWidgetState();
 }
 
-class _AddBookingNoteState extends State<AddBookingNote> {
+class _BookingNoteWidgetState extends State<BookingNoteWidget> {
   final _noteController = TextEditingController();
 
   @override
@@ -38,14 +39,14 @@ class _AddBookingNoteState extends State<AddBookingNote> {
         borderRadius: BorderRadius.circular(10.0),
         color: Theme.of(context).cardColor,
       ),
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(15.0),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Book details',
+                  S.of(context).bookingDetail,
                   style: context.titleLarge.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Container(
@@ -60,7 +61,7 @@ class _AddBookingNoteState extends State<AddBookingNote> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${getjmFormat(widget.scheduleDetail.startPeriodTimestamp)} ⌚ ${getjmFormat(widget.scheduleDetail.endPeriodTimestamp)}',
+                        '${getjmFormat(widget.scheduleDetail.startPeriodTimestamp)} - ${getjmFormat(widget.scheduleDetail.endPeriodTimestamp)}',
                         style: elementBoxStyle,
                       ),
                       const SizedBox(height: 5.0),
@@ -73,18 +74,23 @@ class _AddBookingNoteState extends State<AddBookingNote> {
                     ],
                   ),
                 ),
-                Text('Enter your note here', style: context.titleMedium),
+                Text(S.of(context).notes, style: context.titleMedium),
                 TextField(
                   controller: _noteController,
-                  decoration: const InputDecoration(
-                    hintText: "Add note",
+                  maxLines: 2,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: primaryColor),
+                    ),
+                    hintText: S.of(context).enterNote,
                   ),
                 ),
               ].expand((e) => [e, const SizedBox(height: 5.0)]).toList()
                 ..removeLast(),
             )),
         ButtonCustom(
-          radius: 5.0,
+          radius: 10.0,
           onPress: () => context.popArgs(_noteController.text),
           child: Text(
             'Book',

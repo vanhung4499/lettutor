@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../generated/l10n.dart';
@@ -213,7 +214,11 @@ class _RangeDatePicDialogState extends State<RangeDatePicDialog> {
             width: double.infinity,
             child: ButtonCustom(
               onPress: popDia,
-              child: Text(S.of(context).update),
+              child: Text(S.of(context).update,
+                style: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+              ))
             ),
           )
         ],

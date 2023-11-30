@@ -38,7 +38,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
   void initState() {
     super.initState();
     listen ??= _bloc.state$.flatMap(handleState).collect();
-    _bloc.fetchData();
+    _bloc.listTutor();
     _bloc.getTotalTime();
     _bloc.getUpComingClass();
     _scrollController = ScrollController();
@@ -48,7 +48,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
   void _listenerScroll() {
     if (_scrollController!.position.atEdge) {
       if (_scrollController!.position.pixels != 0) {
-        _bloc.fetchData();
+        _bloc.listTutor();
       }
     }
   }
@@ -110,14 +110,13 @@ class _TutorListScreenState extends State<TutorListScreen> {
           ),
           body: Column(
             children: [
-              _headerField(),
+              _buildHeaderWidget(),
               const SizedBox(height: 10.0),
               Expanded(
                 child: StreamBuilder(
-                  stream: _bloc.tutor$,
+                  stream: _bloc.tutors$,
                   builder: (ctx1, snapShot) {
-                    var listItem = (snapShot.data?.tutors.rows ?? <Tutor>[])
-                    as List<Tutor>;
+                    var listItem = (snapShot.data?.tutors.rows ?? <Tutor>[]) as List<Tutor>;
                     final fav = snapShot.data?.fav ?? <String>[];
                     if (isFavoriteMode) {
                       listItem = listItem
@@ -129,7 +128,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
                       builder: (ctx2, snapShot2) {
                         return RefreshIndicator(
                           onRefresh: () async => _bloc.onRefreshData(),
-                          child: _listView(
+                          child: _buildTutorListView(
                             fav: fav,
                             listItem: listItem,
                             loading: snapShot2.data ?? false,
@@ -147,15 +146,15 @@ class _TutorListScreenState extends State<TutorListScreen> {
     );
   }
 
-  Widget _headerField() => StreamBuilder(
+  Widget _buildHeaderWidget() => StreamBuilder(
     stream: _bloc.loadingHeader$,
     builder: (ctx, sS) {
       final loading = sS.data ?? false;
       if (loading) {
-        return CircularProgressIndicator(color: _primaryColor);
+        return Center(child: CircularProgressIndicator(color: _primaryColor));
       }
       return GestureDetector(
-        onTap: () => _bloc.openBeforeMeeting(),
+        onTap: () => _bloc.openMeetingPrepare(),
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(15.0),
@@ -191,9 +190,9 @@ class _TutorListScreenState extends State<TutorListScreen> {
                       int hours = time.round() ~/ 3600;
                       int minutes = (time.round() % 3600) ~/ 60;
                       int seconds = time.round() % 60;
-                      return _renderRichText(hours, minutes, seconds,
+                      return _buildRichText(hours, minutes, seconds,
                           header:
-                          '${S.of(context).upComingLessonsWillAppear} ');
+                          '${S.of(context).upComingLesson} ');
                     },
                     interval: const Duration(milliseconds: 100),
                     onFinished: () {
@@ -210,7 +209,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
 
                   int hours = data ~/ 60;
                   int minutes = data % 60;
-                  return _renderRichText(hours, minutes, null,
+                  return _buildRichText(hours, minutes, null,
                       header: '${S.of(context).totalLessonsTimesIs} ');
                 },
               )
@@ -221,7 +220,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
     },
   );
 
-  RichText _renderRichText(int hours, int minutes, int? seconds,
+  RichText _buildRichText(int hours, int minutes, int? seconds,
       {required String header}) {
     return RichText(
       textAlign: TextAlign.center,
@@ -231,7 +230,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
           ...[
             header,
             hours.toString(),
-            ' ${S.of(context).hours} ${S.of(context).and} ',
+            ' ${S.of(context).hours} ',
             minutes.toString(),
             ' ${S.of(context).minutes} ',
             if (seconds != null) ...[
@@ -249,7 +248,7 @@ class _TutorListScreenState extends State<TutorListScreen> {
     );
   }
 
-  ListView _listView({
+  ListView _buildTutorListView({
     required List<dynamic> listItem,
     required bool loading,
     required List<String> fav,
@@ -295,12 +294,12 @@ class _TutorListScreenState extends State<TutorListScreen> {
   }
 
   Stream<void> handleState(state) async* {
-    if (state is FetchTutorDataFailed) {
-      log('[Fetch data course] ${state.message}');
+    if (state is ListTutorFailed) {
+      log('[List tutor failed] ${state.message}');
       return;
     }
-    if (state is FetchTutorDataSuccess) {
-      log('[Fetch data success] ${state.message}');
+    if (state is ListTutorSuccess) {
+      log('[List tutor success] ${state.message}');
       return;
     }
     if (state is GetTotalTimeFailed) {
@@ -311,8 +310,8 @@ class _TutorListScreenState extends State<TutorListScreen> {
       log('[Get total time success] Success');
       return;
     }
-    if (state is OpenBeforeMeetingViewSuccess) {
-      context.openPageWithRouteAndParams(Routes.beforeMeeting, state.args);
+    if (state is OpenMeetingPrepareViewSuccess) {
+      context.openPageWithRouteAndParams(Routes.metingPrepare, state.args);
       return;
     }
   }

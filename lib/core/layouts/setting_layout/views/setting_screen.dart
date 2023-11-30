@@ -337,6 +337,7 @@ class _SettingScreenState extends State<SettingScreen> {
         expandedTitleScale: 1.5,
         title: Text(
           S.of(context).settings,
+          textAlign: TextAlign.center,
           style: context.titleMedium.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.white,

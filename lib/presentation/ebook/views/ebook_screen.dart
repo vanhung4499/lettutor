@@ -52,7 +52,7 @@ class _EbookScreenState extends State<EbookScreen> {
       isDismissible: false,
       enableDrag: false,
       builder: (context) {
-        return CourseCategoryBottom(ebookBloc: _bloc);
+        return CourseCategoryBottomSheet(ebookBloc: _bloc);
         // return const SizedBox();
       },
     );
@@ -102,7 +102,7 @@ class _EbookScreenState extends State<EbookScreen> {
         onRefresh: () async => _bloc.refreshData(),
         child: Column(
           children: [
-            RowSearchField(
+            RowSearchWidget(
               onSubmit: (text) => _bloc.listEbook(text, null),
               openSelectedFilter: _openSelectedFilter,
             ),

@@ -25,11 +25,11 @@ class CourseCard extends StatelessWidget {
           const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
           padding: const EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(10.0),
             color: Theme.of(context).cardColor,
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.2),
+                color: Theme.of(context).shadowColor.withOpacity(0.3),
                 blurRadius: 5.0,
               )
             ],
@@ -37,7 +37,7 @@ class CourseCard extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(10.0),
                 child: ImageCustom(
                   imageUrl: course.imageUrl ?? ImageConstant.defaultImage,
                   isNetworkImage: true,
@@ -46,7 +46,7 @@ class CourseCard extends StatelessWidget {
                   loadingWidget: SkeletonContainer.rounded(
                     width: 120,
                     height: 120,
-                    borderRadius: BorderRadius.circular(5.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
@@ -68,16 +68,11 @@ class CourseCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Levels',
+                          '${(course.level ?? '0').renderExperienceText} - ${course.topics.length} lessons',
                           style: context.titleSmall.copyWith(
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).primaryColor,
                           ),
-                        ),
-                        Text(
-                          ' ${course.level} . ${course.topics.length} topics',
-                          style: context.titleSmall
-                              .copyWith(fontWeight: FontWeight.w400),
                         )
                       ],
                     ),
@@ -96,8 +91,8 @@ class CourseCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(5.0),
-                bottomRight: Radius.circular(5.0),
+                topLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0),
               ),
             ),
             child: Text(

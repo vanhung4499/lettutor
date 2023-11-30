@@ -890,6 +890,86 @@ class S {
     );
   }
 
+  /// `Book`
+  String get book {
+    return Intl.message(
+      'Book',
+      name: 'book',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message(
+      'Apply',
+      name: 'apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message(
+      'Rating',
+      name: 'rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No request`
+  String get noRequest {
+    return Intl.message(
+      'No request',
+      name: 'noRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming lesson`
+  String get upComingLesson {
+    return Intl.message(
+      'Upcoming lesson',
+      name: 'upComingLesson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request for lesson`
+  String get lessonRequest {
+    return Intl.message(
+      'Request for lesson',
+      name: 'lessonRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tutor detail`
   String get tutorDetail {
     return Intl.message(
@@ -1085,6 +1165,56 @@ class S {
     return Intl.message(
       'Total lessons times is ',
       name: 'totalLessonsTimesIs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking detail`
+  String get bookingDetail {
+    return Intl.message(
+      'Booking detail',
+      name: 'bookingDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes`
+  String get notes {
+    return Intl.message(
+      'Notes',
+      name: 'notes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your note`
+  String get enterNote {
+    return Intl.message(
+      'Enter your note',
+      name: 'enterNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meeting prepare`
+  String get meetingPrepare {
+    return Intl.message(
+      'Meeting prepare',
+      name: 'meetingPrepare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick time`
+  String get pickTime {
+    return Intl.message(
+      'Pick time',
+      name: 'pickTime',
       desc: '',
       args: [],
     );

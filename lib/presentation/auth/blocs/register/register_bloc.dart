@@ -48,7 +48,7 @@ class RegisterBloc extends DisposeCallbackBaseBloc {
     required this.passwordError$,
   }) : super(dispose);
 
-  factory RegisterBloc({required LoginUseCase login}) {
+  factory RegisterBloc({required AuthUseCase authUseCase}) {
     ///[controllers]
     final emailController = PublishSubject<String>();
 
@@ -90,7 +90,7 @@ class RegisterBloc extends DisposeCallbackBaseBloc {
         final email = groupData.email.toString();
         final password = groupData.password.toString();
         try {
-          return login
+          return authUseCase
               .register(email: email, password: password)
               .doOn(
             ///[Change state] update loading value when register complete

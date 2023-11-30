@@ -38,7 +38,7 @@ class ProgressButton extends StatefulWidget {
 
   final double? radius;
   const ProgressButton({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.radius,
@@ -54,8 +54,7 @@ class ProgressButton extends StatefulWidget {
         assert(
         isAnimation ? width != null : true,
         'If button is animationMode $isAnimation width of button is \'t null',
-        ),
-        super(key: key);
+        );
 
   @override
   State<ProgressButton> createState() => _ProgressButtonState();

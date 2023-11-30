@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/app_coordinator.dart';
 import 'package:lettutor/domain/entities/tutor/tutor.dart';
 import 'package:lettutor/core/extensions/context_extension.dart';
 import 'package:lettutor/core/widgets/button_custom.dart';
 import 'package:lettutor/core/widgets/tutor_info_hero.dart';
+import 'package:lettutor/generated/l10n.dart';
+import 'package:lettutor/routes/routes.dart';
 
 class TutorCard extends StatelessWidget {
   final Tutor tutor;
@@ -73,7 +76,7 @@ class TutorCard extends StatelessWidget {
                   overflow: TextOverflow.fade,
                 ),
               ),
-            const Divider(),
+            // const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -84,17 +87,23 @@ class TutorCard extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Icon(Icons.credit_card, color: primaryColor),
+                      const SizedBox(width: 5.0),
                       Text(
-                        'Books ',
+                        S.of(context).book,
                         style: context.titleSmall.copyWith(
                           fontWeight: FontWeight.w500,
                           color: primaryColor,
                         ),
                       ),
-                      Icon(Icons.check, color: primaryColor),
                     ],
                   ),
-                  onPress: () {},
+                  onPress: () {
+                    // context.openPageWithRouteAndParams(
+                    //   Routes.tutorSchedule,
+                    //   tutor.id,
+                    // );
+                  },
                 ),
               ],
             )

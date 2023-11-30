@@ -38,7 +38,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   Color get _backgroundColor => Theme.of(context).scaffoldBackgroundColor;
 
   EdgeInsets get _horizontalPadding =>
-      const EdgeInsets.symmetric(horizontal: 10.0);
+      const EdgeInsets.symmetric(horizontal: 12.0);
 
   TextStyle get _headerStyle =>
       context.titleLarge.copyWith(fontWeight: FontWeight.w600);
@@ -76,7 +76,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 if (sS1.data == null) {
                   return const SizedBox();
                 }
-                return _mainView(course: sS1.data!);
+                return _buildMainView(course: sS1.data!);
               },
             );
           },
@@ -85,7 +85,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     );
   }
 
-  CustomScrollView _mainView({required Course course}) {
+  CustomScrollView _buildMainView({required Course course}) {
     return CustomScrollView(
       physics:
       const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),

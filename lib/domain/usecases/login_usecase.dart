@@ -4,10 +4,10 @@ import 'package:lettutor/data/models/user/user_token_model.dart';
 import 'package:lettutor/domain/repositories/auth_repository.dart';
 
 @injectable
-class LoginUseCase {
+class AuthUseCase {
   final AuthRepository _authRepository;
 
-  LoginUseCase(this._authRepository);
+  AuthUseCase(this._authRepository);
 
   SingleResult<UserTokenModel?> login(
       {required String email, required String password}) =>

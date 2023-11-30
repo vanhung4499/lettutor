@@ -28,5 +28,5 @@ class TutorListUseCase {
   SingleResult<int> getTotalTime() => _userRepository.getTotalTime();
 
   SingleResult<BookingInfo?> getUpComingClass({required DateTime dateTime}) =>
-      _scheduleRepository.getUpComingBookingInfo(dateTime: dateTime);
+      _scheduleRepository.getUpComingClass(dateTime: dateTime);
 }

@@ -150,17 +150,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
         ),
         const Divider(),
-        _informationTextField(
-          controller: _nameController,
-          hintText: S.of(context).enterYourName,
-          labelText: S.of(context).name,
-        ),
-        const SizedBox(),
         ...[
+          S.of(context).name,
           S.of(context).birthDay,
           S.of(context).country,
           S.of(context).userLevels,
-          S.of(context).topicsAndPreparations
+          S.of(context).topicsAndPreparations,
+          S.of(context).schedule,
         ].mapIndexed(
               (index, e) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,16 +164,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               Text(
                 e,
                 style: context.titleMedium.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: Theme.of(context).hintColor,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 5.0),
               switch (index) {
-                0 => _buildCalendarWidget(context),
-                1 => _buildSelectCountryWidget(user, context),
-                2 => _buildLevelWidget(),
-                _ => StreamBuilder<List<Topic>>(
+                0 => _informationTextField(
+                  controller: _nameController,
+                  hintText: S.of(context).enterYourName,
+                  labelText: S.of(context).name,
+                ),
+                1 => _buildCalendarWidget(context),
+                2 => _buildSelectCountryWidget(user, context),
+                3 => _buildLevelWidget(),
+                4 => StreamBuilder<List<Topic>>(
                   stream: _bloc.topics$,
                   builder: (ctx2, sS2) {
                     final topics = sS2.data ?? <Topic>[];
@@ -192,17 +192,18 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       },
                     );
                   },
-                )
-              }
+                ),
+                _ => _informationTextField(
+                    controller: _studySchedule,
+                    hintText: S.of(context).enterStudySchedule,
+                    labelText: S.of(context).studySchedule,
+                ),
+              },
+              const SizedBox(height: 10.0),
             ],
           ),
         ),
         const SizedBox(height: 10),
-        _informationTextField(
-          controller: _studySchedule,
-          hintText: S.of(context).enterStudySchedule,
-          labelText: S.of(context).studySchedule,
-        ),
       ]
           .expand((e) => [
         Padding(
@@ -281,7 +282,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   Container _buildSelectCountryWidget(User user, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(width: 1.5, color: Theme.of(context).dividerColor),
@@ -309,7 +310,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     _countryCode.value = value.code;
                   },
                 ),
-                Expanded(child: Text(countryCode, style: context.titleMedium))
+                // Expanded(child: Text(countryCode, style: context.titleMedium))
               ],
             );
           }),
@@ -321,7 +322,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       valueListenable: _birthday,
       builder: (_, birthDay, __) {
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             border:
@@ -355,7 +356,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         labelStyle: TextStyle(decorationColor: _primaryColor),
         labelText: labelText,
         hintText: hintText,
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 30,
           vertical: 20,

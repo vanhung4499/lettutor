@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> with AuthMixin {
       return;
     }
     if (state is RegisterError) {
-      context.showSnackBar("🐛[Register error] ${state.toString()}");
+      context.showSnackBar("🐛[Register error] ${state.message}");
       return;
     }
   }

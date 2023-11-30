@@ -3,7 +3,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lettutor/core/config/app_env.dart';
 import 'package:lettutor/core/network/app_exception.dart';
-import 'package:lettutor/core/services/google_sign_in_service.dart';
 import 'package:lettutor/core/utils/validator.dart';
 import 'package:lettutor/data/models/common/app_error.dart';
 import 'package:lettutor/data/models/user/user_token_model.dart';
@@ -11,13 +10,11 @@ import 'package:lettutor/data/providers/network/apis/auth_api.dart';
 import 'package:lettutor/data/providers/network/base_api.dart';
 import 'package:lettutor/data/providers/network/data_state.dart';
 import 'package:lettutor/domain/repositories/auth_repository.dart';
-import 'package:rxdart_ext/rxdart_ext.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl extends BaseApi implements AuthRepository {
   final AuthApi _authApi;
-  final GoogleSignInService _googleSignInService;
-  AuthRepositoryImpl(this._authApi, this._googleSignInService);
+  AuthRepositoryImpl(this._authApi);
 
   @override
   SingleResult<UserTokenModel?> login(

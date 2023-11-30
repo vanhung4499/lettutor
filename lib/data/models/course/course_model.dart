@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:lettutor/data/models/course/course_topic_model.dart';
 import 'package:lettutor/domain/entities/course/course.dart';
 
 part 'course_model.g.dart';
@@ -53,8 +54,8 @@ class CourseModel {
   @JsonKey(name: 'updatedAt')
   final DateTime? updatedAt;
 
-  // @JsonKey(name: 'topics')
-  // final List<CourseTopicModel>? topics;
+  @JsonKey(name: 'topics')
+  final List<CourseTopicModel>? topics;
 
   // @JsonKey(name: 'categories')
   // final List<CourseCategoryModel>? categories;
@@ -76,7 +77,7 @@ class CourseModel {
       this.displayOrder,
       this.createdAt,
       this.updatedAt,
-      // this.topics,
+      this.topics,
       // this.categories,
       );
 
@@ -99,5 +100,6 @@ class CourseModel {
     defaultPrice: defaultPrice?.toDouble() ?? 0.0,
     coursePrice: coursePrice?.toDouble() ?? 0.0,
     visible: visible ?? true,
+    topics: topics?.map((e) => e.toEntity()).toList() ?? [],
   );
 }

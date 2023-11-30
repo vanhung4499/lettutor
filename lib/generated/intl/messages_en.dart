@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allTopics": MessageLookupByLibrary.simpleMessage("All topics"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
+        "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "basicInfo": MessageLookupByLibrary.simpleMessage("Basic information"),
         "becomeFluent": MessageLookupByLibrary.simpleMessage(
             "Become fluent faster through one on one video chat lessons tailored to your goals"),
@@ -45,8 +46,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
         "birthDay": MessageLookupByLibrary.simpleMessage("Birth day"),
         "birthday": MessageLookupByLibrary.simpleMessage("Birthday"),
+        "book": MessageLookupByLibrary.simpleMessage("Book"),
         "bookTutor": MessageLookupByLibrary.simpleMessage("Book tutor"),
+        "bookingDetail": MessageLookupByLibrary.simpleMessage("Booking detail"),
         "byPrice": MessageLookupByLibrary.simpleMessage("By Price"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "codeAndFingerPrints":
             MessageLookupByLibrary.simpleMessage("Code and fingerprint"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
@@ -58,12 +62,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "donHaveAnyUpcoming": MessageLookupByLibrary.simpleMessage(
             "Don\'t have any upcoming class"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "endTime": MessageLookupByLibrary.simpleMessage("End time"),
         "enterCode": MessageLookupByLibrary.simpleMessage("Enter code"),
         "enterEducation":
             MessageLookupByLibrary.simpleMessage("Enter your education"),
+        "enterNote": MessageLookupByLibrary.simpleMessage("Enter your note"),
         "enterStudySchedule":
             MessageLookupByLibrary.simpleMessage("Enter study schedule"),
         "enterTutorName":
@@ -92,11 +98,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "language": MessageLookupByLibrary.simpleMessage("Language I speak"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lessonDate": MessageLookupByLibrary.simpleMessage("Lesson date"),
+        "lessonRequest":
+            MessageLookupByLibrary.simpleMessage("Request for lesson"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light theme"),
         "lockAndSecurity":
             MessageLookupByLibrary.simpleMessage("Lock and Security"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "meetingPrepare":
+            MessageLookupByLibrary.simpleMessage("Meeting prepare"),
         "meetingSettings":
             MessageLookupByLibrary.simpleMessage("Meeting settings"),
         "minutes": MessageLookupByLibrary.simpleMessage("minutes"),
@@ -104,16 +114,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("My specialties are"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nationality": MessageLookupByLibrary.simpleMessage("Nationality"),
+        "noRequest": MessageLookupByLibrary.simpleMessage("No request"),
+        "notes": MessageLookupByLibrary.simpleMessage("Notes"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "orContinue": MessageLookupByLibrary.simpleMessage("Or continue with"),
         "overview": MessageLookupByLibrary.simpleMessage("overview"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Pick time"),
         "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address to search for your account"),
         "professions": MessageLookupByLibrary.simpleMessage("Professions"),
         "profilePreview":
             MessageLookupByLibrary.simpleMessage("Profile preview"),
         "rateStar": MessageLookupByLibrary.simpleMessage("Rate star"),
+        "rating": MessageLookupByLibrary.simpleMessage("Rating"),
         "recommendCourses":
             MessageLookupByLibrary.simpleMessage("Recommend courses"),
         "recommendEbooks":
@@ -169,6 +183,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tutorSchedule": MessageLookupByLibrary.simpleMessage("Tutor schedule"),
         "tutorSearch": MessageLookupByLibrary.simpleMessage("Tutor search"),
         "upComing": MessageLookupByLibrary.simpleMessage("UpComing"),
+        "upComingLesson":
+            MessageLookupByLibrary.simpleMessage("Upcoming lesson"),
         "upComingLessonsWillAppear": MessageLookupByLibrary.simpleMessage(
             "UpComing lessons will appear"),
         "update": MessageLookupByLibrary.simpleMessage("update"),

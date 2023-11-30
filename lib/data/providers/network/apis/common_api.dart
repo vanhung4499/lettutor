@@ -17,12 +17,15 @@ abstract class CommonApi {
   Future<HttpResponse<int>> getTotalTime();
 
   @GET("/learn-topic")
-  Future<HttpResponse<List<TopicResponse>?>> getTopic();
+  Future<HttpResponse<List<TopicResponse>?>> listTopic();
+
+  @GET("/major")
+  Future<HttpResponse<List<TopicResponse>?>> listMajor();
 
   @GET("/test-preparation")
-  Future<HttpResponse<List<TopicResponse>?>> getTestPreparation();
+  Future<HttpResponse<List<TopicResponse>?>> listTestPreparation();
 
   @GET("/e-book")
-  Future<HttpResponse<EbookResponse?>> getListEbook(
+  Future<HttpResponse<EbookResponse?>> listEbook(
       @Queries() Map<String, dynamic> queries);
 }

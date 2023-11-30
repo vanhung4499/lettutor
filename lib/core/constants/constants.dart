@@ -24,12 +24,25 @@ class Constants {
     "PROFICIENCY": "C2 (Proficiency)",
   };
 
+  static Map<String, String> levelMap = {
+    "0": "Any Level",
+    "1": "Beginner",
+    "2": "Higher Beginner",
+    "3": "Pre-Intermediate",
+    "4": "Intermediate",
+    "5": "Upper-Intermediate",
+    "6": "Advanced",
+    "7": "Proficiency",
+  };
+
+  // static Map<String, String>
+
   static double currentTimeMilliSeconds =
       DateTime.now().subtract(const Duration(days: 19)).millisecondsSinceEpoch /
           1000;
 
   static DateTime currentTime =
-  DateTime.now().subtract(const Duration(days: 19));
+  DateTime.now().subtract(const Duration(days: 1));
 
   static Map<String, String> countries = {
     "AF": "Afghanistan",
