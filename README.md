@@ -101,7 +101,15 @@ I add a core folder to contain all the app related stuffs. It contains app confi
 
 ### Milestone 3
 
-- Upcoming
+- Online app with more implementation from Milestone 2
+- Demo video: https://drive.google.com/file/d/1VVWSzjuiARzbRN92yg5ji8GYX7_BsRZm/view?usp=sharing
+  - Because i have done integration with api in milestone 2, so i don't have to do much in milestone 3, just add some features and fix some bugs.
+  - Please watch the video in milestone 2, it's the same.
+- The report can be found in [here](https://docs.google.com/document/d/e/2PACX-1vRy8spMPcTorAYu327Iebl8Tux2QlgM1XJMJ-413wgIMW-4oLg0ezOAc3lnx7pX2g/pub)
+
+### Milestone 4
+
+- Coming soon
 
 ## References
 
