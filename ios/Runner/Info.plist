@@ -45,5 +45,22 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select images for user profile feature.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to capture photos for user profile feature.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone to record audio for user profile feature.</string>
+	<key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<string>com.googleusercontent.apps.450036471337-ke0gj573jo7m1gmjtgimndfvdgti2gjt</string>
+    		</array>
+    	</dict>
+    </array>
 </dict>
 </plist>

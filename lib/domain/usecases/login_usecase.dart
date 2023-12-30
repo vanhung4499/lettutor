@@ -1,14 +1,24 @@
-import 'package:lettutor/app/core/usecases/param_usecase.dart';
-import 'package:lettutor/domain/entities/user.dart';
+import 'package:injectable/injectable.dart';
+import 'package:lettutor/data/models/common/app_error.dart';
+import 'package:lettutor/data/models/user/user_token_model.dart';
 import 'package:lettutor/domain/repositories/auth_repository.dart';
-import 'package:tuple/tuple.dart';
 
-class LoginUseCase extends ParamUseCase<User, Tuple2<String, String>> {
-  final AuthRepository _repository;
-  LoginUseCase(this._repository);
+@injectable
+class AuthUseCase {
+  final AuthRepository _authRepository;
 
-  @override
-  Future<User> execute(Tuple2<String, String> params) {
-    return _repository.register(params.item1, params.item2);
-  }
+  AuthUseCase(this._authRepository);
+
+  SingleResult<UserTokenModel?> login(
+      {required String email, required String password}) =>
+      _authRepository.login(email: email, password: password);
+
+  SingleResult<UserTokenModel?> register(
+      {required String email, required String password}) =>
+      _authRepository.register(email: email, password: password);
+
+  SingleResult<UserTokenModel?> googleLogin() => _authRepository.googleSignIn();
+
+  SingleResult<bool?> verifyAccount(String token) =>
+      _authRepository.verifyAccountEmail(token: token);
 }
