@@ -119,6 +119,8 @@
     "donHaveAnyUpcoming": "Don't have any upcoming class",
     "tutor": "Tutor",
     "showMore": "Show more",
+    "invalidEmail": "Invalid email",
+    "invalidPassword": "Invalid password",
     "showLess": "Show less",
     "tutorSchedule": "Tutor schedule",
     "createdAt": "Created at",

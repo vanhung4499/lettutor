@@ -1250,6 +1250,26 @@ class S {
     );
   }
 
+  /// `Invalid email`
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid password`
+  String get invalidPassword {
+    return Intl.message(
+      'Invalid password',
+      name: 'invalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Show less`
   String get showLess {
     return Intl.message(

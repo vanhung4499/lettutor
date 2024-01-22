@@ -93,6 +93,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "iAmFrom": MessageLookupByLibrary.simpleMessage("I\'m from"),
         "interests": MessageLookupByLibrary.simpleMessage("Interests"),
         "introduction": MessageLookupByLibrary.simpleMessage("Introduction"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Invalid password"),
         "isFavorite": MessageLookupByLibrary.simpleMessage("Is favorite"),
         "joinMeeting": MessageLookupByLibrary.simpleMessage("JoinMeeting "),
         "language": MessageLookupByLibrary.simpleMessage("Language I speak"),

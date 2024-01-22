@@ -93,6 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "iAmFrom": MessageLookupByLibrary.simpleMessage("Tôi đến từ"),
         "interests": MessageLookupByLibrary.simpleMessage("Sở thích"),
         "introduction": MessageLookupByLibrary.simpleMessage("Giới thiệu"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Mật khẩu không hợp lệ"),
         "isFavorite": MessageLookupByLibrary.simpleMessage("Yêu thích"),
         "joinMeeting":
             MessageLookupByLibrary.simpleMessage("Tham gia cuộc họp"),

@@ -81,7 +81,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
           ),
           const SizedBox(height: 10.0),
           HeaderTextCustom(headerText: S.of(context).nationality),
-          _nationalityTutorsField(context),
+          _nationalityWidget(context),
           const SizedBox(height: 10.0),
           HeaderTextCustom(headerText: S.of(context).topics),
           StreamBuilder<bool?>(
@@ -102,7 +102,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
                     stream: _bloc.selectedTopic$,
                     builder: (ctx3, sS3) {
                       final topicSelected = sS3.data ?? <Topic>[];
-                      return _topicsField(
+                      return _topicsWidget(
                         topics: topics,
                         topicsSelected: topicSelected,
                       );
@@ -130,7 +130,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
     );
   }
 
-  StreamBuilder<TutorNationality> _nationalityTutorsField(
+  StreamBuilder<TutorNationality> _nationalityWidget(
       BuildContext context) {
     return StreamBuilder<TutorNationality>(
       stream: _bloc.tutorNationality,
@@ -146,9 +146,9 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
                 leading: Radio<TutorNationality>(
                   activeColor: _primaryColor,
                   value: e,
-                  onChanged: (TutorNationality? nationalityTutor) =>
-                      _bloc.selectedTutorNationality(
-                          nationalityTutor ?? nationalityConstants.first),
+                  onChanged: (TutorNationality? nationality) =>
+                      _bloc.selectTutorNationality(
+                          nationality ?? nationalityConstants.first),
                   groupValue: sS.data,
                 ),
               ),
@@ -159,7 +159,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
     );
   }
 
-  Padding _topicsField(
+  Padding _topicsWidget(
       {required List<Topic> topics, required List<Topic> topicsSelected}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -167,7 +167,7 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
         spacing: 6.0,
         runSpacing: -8,
         alignment: WrapAlignment.start,
-        verticalDirection: VerticalDirection.up,
+        verticalDirection: VerticalDirection.down,
         children: [
           ...topics.map((e) {
             final isSelected = topicsSelected.contains(e);
@@ -177,18 +177,21 @@ class TutorSearchScreenState extends State<TutorSearchScreen> {
                 style: context.titleSmall.copyWith(
                   fontSize: 14,
                   color: isSelected ? _primaryColor : null,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(
+                  color: isSelected ? _primaryColor : Colors.grey,
+                ),
               ),
               avatar: isSelected
                   ? Icon(Icons.check, color: _primaryColor, size: 15.0)
                   : null,
               selected: isSelected,
-              onSelected: (_) => _bloc.selectedTopic(e),
-              backgroundColor: Theme.of(context).dividerColor.withOpacity(0.07),
+              onSelected: (_) => _bloc.selectTopic(e),
+              backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
               selectedColor: _primaryColor.withOpacity(0.1),
             );
           })

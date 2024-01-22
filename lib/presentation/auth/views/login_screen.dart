@@ -44,8 +44,8 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void initState() {
-    _emailController = TextEditingController(text: 'student@lettutor.com');
-    _passwordController = TextEditingController(text: '123456');
+    _emailController = TextEditingController(text: '');
+    _passwordController = TextEditingController(text: '');
     super.initState();
     didChangeDependencies$
         .exhaustMap((_) => _bloc.message$)
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen>
           const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_loginButton()],
+            children: [_buildLoginButton()],
           ),
           const SizedBox(height: 5.0),
           Text(S.of(context).orContinue,
@@ -238,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen>
           keyboardType: TextInputType.emailAddress,
           maxLines: 1,
           style: const TextStyle(fontSize: 16.0),
-          onChanged: _bloc.emailedChanged,
+          onChanged: _bloc.emailChanged,
           textInputAction: TextInputAction.next,
           onSubmitted: (_) {
             FocusScope.of(context).requestFocus(_passwordFocusNode);
@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  Widget _loginButton() {
+  Widget _buildLoginButton() {
     return ProgressButton(
       call: () async {
         _bloc.submitLogin();

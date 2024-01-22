@@ -12,5 +12,5 @@ class ResetPasswordFailed implements ResetPasswordState {
   ResetPasswordFailed({this.message});
 
   @override
-  String toString() => "🐛[ Reset password failed] $message";
+  String toString() => "🐛[Reset password failed] $message";
 }

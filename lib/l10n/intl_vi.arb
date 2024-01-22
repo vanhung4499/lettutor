@@ -73,6 +73,8 @@
     "minutes": "phút",
     "meetingSettings": "Cài đặt buổi họp",
     "joinMeeting": "Tham gia cuộc họp",
+    "invalidEmail": "Email không hợp lệ",
+    "invalidPassword": "Mật khẩu không hợp lệ",
     "and": "và",
     "name": "Tên",
     "profilePreview": "Xem trước hồ sơ",

@@ -23,7 +23,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
 
   final Function0<void> submitGoogleLogin;
 
-  final Function1<String, void> emailedChanged;
+  final Function1<String, void> emailChanged;
 
   final Function1<String, void> passwordChanged;
 
@@ -42,7 +42,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
 
     ///[Event functions]
     required this.submitLogin,
-    required this.emailedChanged,
+    required this.emailChanged,
     required this.submitRegister,
     required this.passwordChanged,
     required this.submitGoogleLogin,
@@ -149,7 +149,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     final emailError$ = emailController.stream
         .map((email) {
       if (Validator.isValidEmail(email)) return null;
-      return 'Invalid email address';
+      return 'Invalid email';
     })
         .distinct()
         .share();
@@ -157,7 +157,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     final passwordError$ = passwordController.stream
         .map((password) {
       if (Validator.isValidPassword(password)) return null;
-      return 'Invalid password address';
+      return 'Invalid password';
     })
         .distinct()
         .share();
@@ -186,7 +186,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
       emailError$: emailError$,
       loading$: loadingController,
       passwordError$: passwordError$,
-      emailedChanged: trim.pipe(emailController.add),
+      emailChanged: trim.pipe(emailController.add),
       passwordChanged: trim.pipe(passwordController.add),
       submitLogin: () => submitLoginController.add(null),
       submitRegister: () => submitLoginController.add(null),

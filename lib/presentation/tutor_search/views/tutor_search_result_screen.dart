@@ -64,7 +64,6 @@ class _TutorSearchResultScreenState extends State<TutorSearchResultScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20.0),
           Expanded(
             child: StreamBuilder(
               stream: _bloc.tutor$,

@@ -16,11 +16,11 @@ class TutorSearchBloc extends DisposeCallbackBaseBloc {
   ///[functions] input
   final Function0<void> listTopic;
 
-  final Function1<Topic, void> selectedTopic;
+  final Function1<Topic, void> selectTopic;
 
   final Function1<String, void> openSearchResultPage;
 
-  final Function1<TutorNationality, void> selectedTutorNationality;
+  final Function1<TutorNationality, void> selectTutorNationality;
 
   ///[Streams]
 
@@ -36,12 +36,12 @@ class TutorSearchBloc extends DisposeCallbackBaseBloc {
 
   TutorSearchBloc._({
     required Function0<void> dispose,
-    required this.selectedTutorNationality,
+    required this.selectTutorNationality,
     required this.openSearchResultPage,
     required this.tutorNationality,
     required this.listTopic,
     required this.selectedTopic$,
-    required this.selectedTopic,
+    required this.selectTopic,
     required this.loading$,
     required this.topics$,
     required this.state$,
@@ -102,8 +102,8 @@ class TutorSearchBloc extends DisposeCallbackBaseBloc {
             .map((e) => e.key?.toLowerCase().trim() ?? '')
             .toList(),
         nationality: {
-          'isVietNamese': tutorNationalityController.value.isVietNamese,
-          'isNative': tutorNationalityController.value.isNative,
+          // 'isVietNamese': tutorNationalityController.value.isVietNamese,
+          // 'isNative': tutorNationalityController.value.isNative,
         },
       ),
     ))
@@ -171,9 +171,9 @@ class TutorSearchBloc extends DisposeCallbackBaseBloc {
       ]).dispose(),
       listTopic: () => fetchTopicsController.add(null),
       selectedTopic$: selectTopicController,
-      selectedTopic: (topic) => selectedTopicController.add(topic),
-      selectedTutorNationality: (tutorString) =>
-          selectedNationalityTutorController.add(tutorString),
+      selectTopic: (topic) => selectedTopicController.add(topic),
+      selectTutorNationality: (nationality) =>
+          selectedNationalityTutorController.add(nationality),
       loading$: loadingController,
       topics$: topicController,
       tutorNationality: tutorNationalityController,
